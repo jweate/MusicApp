@@ -73,7 +73,10 @@ class ViewController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAu
      * Function called when Sign In button is pressed
      */
     @IBAction func SignIn(_ sender: UIButton) {
-        if UIApplication.shared.openURL(loginUrl!) {
+        if (UIApplication.shared.canOpenURL(loginUrl!)) {
+            UIApplication.shared.open(loginUrl!)
+        }
+        else {
             if auth.canHandle(auth.redirectURL) {
                 // To do - build in error handling
             }
