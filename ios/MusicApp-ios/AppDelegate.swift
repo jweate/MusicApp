@@ -20,6 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         auth.redirectURL     = URL(string: "MusicApp-ios://returnAfterLogin")
         auth.sessionUserDefaultsKey = "current session"
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window!.rootViewController = RootController()
+        window!.makeKeyAndVisible()
         return true
     }
     
