@@ -8,20 +8,14 @@
 
 import UIKit
 
-class QueueController: UIViewController {
+class QueueController: UINavigationController {
+    
+    var queueList = QueueListController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //self.tabBarItem = UITabBarItem(title: "Queue", image: UIImage(named: "icon-spotify"), selectedImage: UIImage(named: "icon-spotify"))
-        //self.tabBarItem.tag = 0
-        
-        view.backgroundColor = .white
-        
-        let placeholderText = UILabel()
-        placeholderText.text = "Queue View"
-        view.addSubview(placeholderText)
-
+        self.viewControllers = [queueList]
     }
 
     override func didReceiveMemoryWarning() {

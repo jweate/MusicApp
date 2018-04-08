@@ -9,12 +9,16 @@
 import UIKit
 
 class ActivityController: UINavigationController {
+    
+    var activityFeed = ActivityFeedController()
+    var myProfile = MyProfileController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let activityFeed = ActivityFeedController()
-        let myProfile = MyProfileController()
+        
+        activityFeed.navigationItem.setRightBarButton(UIBarButtonItem(title: "My Profile", style: .plain, target: self, action: #selector(navigateToMyProfile)), animated: true)
+        
+        self.viewControllers = [activityFeed]
         
     }
 
@@ -24,7 +28,9 @@ class ActivityController: UINavigationController {
     }
     
     @objc func navigateToMyProfile(_ sender: UIBarButtonItem) {
-        self.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
+        self.pushViewController(myProfile, animated: true)
     }
+    
+    
 
 }

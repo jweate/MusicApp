@@ -8,19 +8,15 @@
 
 import UIKit
 
-class BrowseController: UIViewController {
+class BrowseController: UINavigationController {
 
+    var swipeDeck = SwipeDeckController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //self.tabBarItem = UITabBarItem(title: "Browse", image: UIImage(named: "icon-spotify"), selectedImage: UIImage(named: "icon-spotify"))
-        //self.tabBarItem.tag = 1
         
-        view.backgroundColor = .blue
+        self.viewControllers = [swipeDeck]
         
-        let placeholderText = UILabel()
-        placeholderText.text = "Browse View"
-        view.addSubview(placeholderText)
     }
 
     override func didReceiveMemoryWarning() {
