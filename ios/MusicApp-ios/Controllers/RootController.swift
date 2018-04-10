@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 /*
  * This class contains and manages the entire app
@@ -18,6 +19,16 @@ class RootController: UITabBarController {
     
     // MARK: Properties
     var auth: AuthController?
+    var isAuth = false
+    
+    override func viewDidAppear(_ animated: Bool){
+        super.viewDidAppear(animated)
+        
+        // determines if user needs to be authenticated
+        if (!isAuth){
+            self.present(auth!, animated: true)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +36,10 @@ class RootController: UITabBarController {
         let queue = QueueController()
         let browse = BrowseController()
         let activity = ActivityController()
+        auth = AuthController()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateAfterFirstLogin), name: Notification.Name("LoggedIn"), object: nil)
+        
         
         queue.tabBarItem = UITabBarItem(title: "Queue", image: UIImage(named: "icon-spotify"), selectedImage: UIImage(named: "icon-spotify"))
         queue.tabBarItem.tag = 0
@@ -37,6 +52,19 @@ class RootController: UITabBarController {
         tabBar.barTintColor = .clear
         tabBar.backgroundImage = UIImage()
     }
+    
+    @objc func updateAfterFirstLogin () {
+        os_log("updated")
+        isAuth = true
+        if let sessionObj:AnyObject = UserDefaults.standard.object(forKey: "SpotifySession") as AnyObject? {
+            let sessionDataObj = sessionObj as! Data
+            let firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as! SPTSession
+            self.dismiss(animated: true)
+//            self.session = firstTimeSession
+//            initializePlayer(authSession: session)
+        }
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
