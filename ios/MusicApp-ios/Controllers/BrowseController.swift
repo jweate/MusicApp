@@ -10,7 +10,7 @@ import UIKit
 
 class BrowseController: UINavigationController {
 
-    var swipeDeck = SwipeDeckController()
+    var swipeDeck = SwipeDeckController()    
     
     override func viewDidLoad() {
         super.viewDidLoad()

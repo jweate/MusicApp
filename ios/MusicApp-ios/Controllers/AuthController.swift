@@ -7,11 +7,10 @@
 //
 import UIKit
 
-class AuthController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
+class AuthController: UIViewController {
     
     var auth = SPTAuth.defaultInstance()!
     var session:SPTSession!
-    var player: SPTAudioStreamingController?
     var loginUrl: URL?
     
     override func viewDidLoad() {
@@ -33,19 +32,6 @@ class AuthController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAu
     }
     
     
-    /*
-     * Initializes the Spotify Player
-     */
-    func initializePlayer(authSession:SPTSession){
-        if self.player == nil {
-            self.player = SPTAudioStreamingController.sharedInstance()
-            self.player!.playbackDelegate = self
-            self.player!.delegate = self
-            try! player!.start(withClientId: auth.clientID)
-            self.player!.login(withAccessToken: authSession.accessToken)
-        }
-    }
-    
     // setup Spotify environment
     func setup(){
         SPTAuth.defaultInstance().clientID = "e442cd6018ed442793042372fc7a1b1e"
@@ -53,7 +39,7 @@ class AuthController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAu
         SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope, SPTAuthPlaylistModifyPublicScope, SPTAuthPlaylistModifyPrivateScope]
         loginUrl = SPTAuth.defaultInstance().spotifyWebAuthenticationURL()
     }
-    
+        
     // action for the Login button
     @objc func buttonAction(sender: UIButton!) {
         print("Button tapped")
