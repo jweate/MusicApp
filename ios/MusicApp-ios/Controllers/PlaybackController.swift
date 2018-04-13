@@ -11,8 +11,8 @@ import UIKit
 class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
     
     // Spotify properties
-    var player: SPTAudioStreamingController?
     var auth = SPTAuth.defaultInstance()!
+    var player: SPTAudioStreamingController?
     var session: SPTSession!
 
     // Playback properties
@@ -21,8 +21,8 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
     
     // MARK: Properties
     var playButton: UIButton?
-    var skipForwardButton: UIButton?
-    var skipBackwardButton: UIButton?
+    var skipNextButton: UIButton?
+    var skipPrevButton: UIButton?
     var trackDurationSlider: UISlider?
     
     override func viewDidLoad() {
@@ -31,8 +31,8 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
         view.backgroundColor = UIColor(hexString: "#333333")
 
         playButton = UIButton()
-        skipForwardButton = UIButton()
-        skipBackwardButton = UIButton()
+        skipNextButton = UIButton()
+        skipPrevButton = UIButton()
         
         playButton!.backgroundColor = .red
         view.addSubview(playButton!)
@@ -43,23 +43,23 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
         playButton!.widthAnchor.constraint(equalToConstant: 80).isActive = true
         playButton!.addTarget(self, action: #selector(playTrack), for: .touchUpInside)
         
-        skipForwardButton!.backgroundColor = .red
-        view.addSubview(skipForwardButton!)
-        skipForwardButton!.translatesAutoresizingMaskIntoConstraints = false
-        skipForwardButton!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 100).isActive = true
-        skipForwardButton!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        skipForwardButton!.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        skipForwardButton!.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        skipForwardButton!.addTarget(self, action: #selector(skipTrack), for: .touchUpInside)
+        skipNextButton!.backgroundColor = .red
+        view.addSubview(skipNextButton!)
+        skipNextButton!.translatesAutoresizingMaskIntoConstraints = false
+        skipNextButton!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 100).isActive = true
+        skipNextButton!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        skipNextButton!.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        skipNextButton!.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        skipNextButton!.addTarget(self, action: #selector(skipTrack), for: .touchUpInside)
         
-        skipBackwardButton!.backgroundColor = .red
-        view.addSubview(skipBackwardButton!)
-        skipBackwardButton!.translatesAutoresizingMaskIntoConstraints = false
-        skipBackwardButton!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -100).isActive = true
-        skipBackwardButton!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        skipBackwardButton!.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        skipBackwardButton!.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        skipBackwardButton!.addTarget(self, action: #selector(backTrack), for: .touchUpInside)
+        skipPrevButton!.backgroundColor = .red
+        view.addSubview(skipPrevButton!)
+        skipPrevButton!.translatesAutoresizingMaskIntoConstraints = false
+        skipPrevButton!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -100).isActive = true
+        skipPrevButton!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        skipPrevButton!.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        skipPrevButton!.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        skipPrevButton!.addTarget(self, action: #selector(backTrack), for: .touchUpInside)
         
         NotificationCenter.default.addObserver(self, selector: #selector(createPlayer), name: Notification.Name("Playtime"), object: nil)
         

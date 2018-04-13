@@ -8,7 +8,13 @@
 
 import UIKit
 
-class QueueListController: UITableViewController {
+class QueueListController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var tableView = UITableView()
+    var playback = PlaybackController()
+    
+    var tabBarHeight: CGFloat?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,26 +22,45 @@ class QueueListController: UITableViewController {
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
-        
-        self.title = "Queue"
+        tableView.dataSource = self
+        tableView.delegate = self
         
         // set up editting environment
         self.navigationItem.rightBarButtonItem = self.editButtonItem
-        self.tableView.isEditing = false
+        
+        self.title = "Queue"
+        self.view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+        tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1.0).isActive = true
+        
+        self.view.addSubview(playback.view)
+        playback.view.translatesAutoresizingMaskIntoConstraints = false
+        playback.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+        playback.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.2).isActive = true
+        playback.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
         
         // register Cells - located at bottom of file
         tableView.register(MyCell.self, forCellReuseIdentifier: "cellId")
         
     }
+    
+    override func setEditing(_ editing: Bool,
+                             animated: Bool) {
+        super.setEditing(editing, animated: editing)
+        tableView.setEditing(editing, animated: animated)
+    }
 
     // determines the amount of rows in View
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return Queue.instance.count()
     }
 
     // populates individual Cells
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
 
         cell.textLabel?.text = Queue.instance.nodeAt(atIndex: indexPath.row)
@@ -46,7 +71,9 @@ class QueueListController: UITableViewController {
     }
     
     // allows user to edit the order of the Queue
-    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   moveRowAt sourceIndexPath: IndexPath,
+                   to destinationIndexPath: IndexPath) {
         let movedObject = Queue.instance.nodeAt(atIndex: sourceIndexPath.row)
         Queue.instance.removeAt(atIndex: sourceIndexPath.row)
         Queue.instance.insertAt(String: movedObject, atIndex: destinationIndexPath.row)
@@ -54,28 +81,28 @@ class QueueListController: UITableViewController {
     }
     
     // responsible for switches between Edit and View mode
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        if(self.editButtonItem.isEnabled){
+    func tableView(_ tableView: UITableView,
+                   editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if (self.editButtonItem.isEnabled){
             return .delete
-        }
-        else{
+        } else {
             return .none
         }
     }
     // indents the cells when in Edit mode
-    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        if(self.editButtonItem.isEnabled){
+    func tableView(_ tableView: UITableView,
+                   shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        if (self.editButtonItem.isEnabled) {
             return true
-        }
-        else{
+        } else {
             return false
         }
     }
     
     // Deletes the cells from the Table View and the Queue instance
-    override func tableView(_ tableView: UITableView,
-                            commit editingStyle: UITableViewCellEditingStyle,
-                            forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCellEditingStyle,
+                   forRowAt indexPath: IndexPath) {
         Queue.instance.removeAt(atIndex: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
         print(Queue.instance.count())
