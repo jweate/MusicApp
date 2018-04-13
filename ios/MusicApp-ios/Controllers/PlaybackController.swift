@@ -17,7 +17,7 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
 
     // Playback properties
     var playing = false
-    var startTime = 0
+    var startTime = TimeInterval(0)
     
     // MARK: Properties
     var playButton: UIButton?
@@ -50,7 +50,7 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
         skipForwardButton!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         skipForwardButton!.heightAnchor.constraint(equalToConstant: 60).isActive = true
         skipForwardButton!.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        //skipForwardButton!.addTarget(self, action: #selector(skipTrack), for: .touchUpInside)
+        skipForwardButton!.addTarget(self, action: #selector(skipTrack), for: .touchUpInside)
         
         skipBackwardButton!.backgroundColor = .red
         view.addSubview(skipBackwardButton!)
@@ -60,7 +60,6 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
         skipBackwardButton!.heightAnchor.constraint(equalToConstant: 60).isActive = true
         skipBackwardButton!.widthAnchor.constraint(equalToConstant: 60).isActive = true
         skipBackwardButton!.addTarget(self, action: #selector(backTrack), for: .touchUpInside)
-        
         
         NotificationCenter.default.addObserver(self, selector: #selector(createPlayer), name: Notification.Name("Playtime"), object: nil)
         
@@ -72,9 +71,7 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
         initializePlayer(authSession: session)
     }
     
-    /*
-     * Initializes the Spotify Player
-     */
+    // initialize the spotify player
     func initializePlayer(authSession:SPTSession){
         if self.player == nil {
             self.player = SPTAudioStreamingController.sharedInstance()
@@ -93,45 +90,43 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
         if(playing){
             pause()
             playing = false
+            startTime = (self.player?.playbackState.position)!
         }
         else{
             play(track)
             playing = true
         }
-        
-//        if(playing){
-//            self.player?.setIsPlaying(false ,callback: { (error) in
-//                if (error != nil) {
-//                    print("paused")
-//                }
-//            })
-//            playing = false
-//        }
-//        else{
-//            print(track)
-//            self.player?.playSpotifyURI(track, startingWith: 0, startingWithPosition: 0, callback: { (error) in
-//                if (error != nil) {
-//                    print("playing!")
-//                }
-//            })
-//            playing = true
-//        }
+    }
+ 
+    // action for the skip button
+    @objc func skipTrack(sender: UIButton!) {
+        Queue.instance.skip()
+        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint())
+        startTime = 0
+        playing = true
+        play(track)
     }
     
-    
-    // action for the Play button
+    // action for the back button
     @objc func backTrack(sender: UIButton!) {
-        print("Back Track!")
+        Queue.instance.prev()
+        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint())
+        startTime = 0
+        playing = true
+        play(track)
     }
-    
+
+    // helper function for playing a track
     func play(_ track: String){
-        self.player?.playSpotifyURI(track, startingWith: 0, startingWithPosition: TimeInterval(startTime), callback: { (error) in
+        print(Queue.instance.getPoint())
+        self.player?.playSpotifyURI(track, startingWith: 0, startingWithPosition: startTime, callback: { (error) in
             if (error != nil) {
                 print("playing!")
             }
         })
     }
     
+    // helper function for pausing a track
     func pause(){
         self.player?.setIsPlaying(false ,callback: { (error) in
             if (error != nil) {
@@ -139,8 +134,6 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
             }
         })
     }
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
