@@ -63,7 +63,7 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
 
-        cell.textLabel?.text = Queue.instance.nodeAt(atIndex: indexPath.row)
+        cell.textLabel?.text = Queue.instance.nodeAt(atIndex: indexPath.row).title
 
         cell.imageView?.image = UIImage(named: "SS3")
         

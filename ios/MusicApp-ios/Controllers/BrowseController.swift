@@ -9,19 +9,23 @@
 import UIKit
 
 class BrowseController: UINavigationController {
-
-    var swipeDeck = SwipeDeckController()    
+    
+    var rootVC = SwipeDeckController()
+    //var queueList = QueueListController()
+    //var playback = PlaybackController()
+    
+    var tabBarHeight: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.viewControllers = [swipeDeck]
-        
-    }
 
+        //rootVC.tabBarHeight = tabBarHeight!
+        self.viewControllers = [rootVC]
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 }

@@ -1,9 +1,27 @@
-//
-//  CardView.swift
-//  MusicApp-ios
-//
-//  Created by Jacob Weate on 4/11/18.
-//  Copyright © 2018 Jacob Weate. All rights reserved.
-//
+import UIKit
 
-import Foundation
+class CardView: UIView {
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    func setup() {
+        // Shadow
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.25
+        layer.shadowOffset = CGSize(width: 0, height: 1.5)
+        layer.shadowRadius = 4.0
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
+        
+        // Corner Radius
+        layer.cornerRadius = 10.0;
+    }
+}

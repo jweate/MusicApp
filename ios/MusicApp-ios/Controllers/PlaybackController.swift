@@ -85,7 +85,7 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
     // action for the Play button
     @objc func playTrack(sender: UIButton!) {
         
-        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint())
+        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint()).id!
         
         if(playing){
             pause()
@@ -101,7 +101,8 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
     // action for the skip button
     @objc func skipTrack(sender: UIButton!) {
         Queue.instance.skip()
-        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint())
+        print("pointer is " + String(Queue.instance.getPoint()))
+        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint()).id!
         startTime = 0
         playing = true
         play(track)
@@ -110,7 +111,7 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
     // action for the back button
     @objc func backTrack(sender: UIButton!) {
         Queue.instance.prev()
-        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint())
+        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint()).id!
         startTime = 0
         playing = true
         play(track)

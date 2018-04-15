@@ -1,0 +1,1011 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		033E20123508ACA1151479485BEC8D90 /* LayoutProxy+TypeErasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B75FE1DF7128EB633FFDA5FDC69AE8 /* LayoutProxy+TypeErasure.swift */; };
+		0739B8BF39538E41B6C747EDE71114F3 /* Constrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CED7DECB9747290D4B3954F816085E /* Constrain.swift */; };
+		078D75FC8795FA3EBD22377BC890520B /* Distribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0D41039C1DFFC53054DE7DC129C9D /* Distribute.swift */; };
+		1C92A98E34D0E29E787071F0B75401E5 /* Cartography-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E820CDD5AE4F57FF0C09FBE9CB7960B0 /* Cartography-dummy.m */; };
+		220781223118125E9CA2E3B0899F7746 /* UIColor+FlatColors-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BB76AD3CDD4866767C96306280ACB05 /* UIColor+FlatColors-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22C18133E55CC4E0633B633F3912F097 /* Cartography-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D6FA521241D01C771ED632B0A09692EC /* Cartography-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		26D9D26B1D4A7C48E1DFE6C4697A7EB3 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA112FDC3B160BE131914EBE9C1FBCF /* Size.swift */; };
+		27BEB6D60B638B2F7E7086598B419CB3 /* LayoutGuideProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 824DCA3BFCACCB23C0825F62EB072048 /* LayoutGuideProxy.swift */; };
+		2C639F6FD8D6AF9F7656F97446D487BA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		33E91E78F43301F168B42DB67C04CDC4 /* Coefficients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B0D07FA326EB6A33FC05D1D84B0DA3 /* Coefficients.swift */; };
+		370EA4B00C3E1F71C87314271179D06D /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCC10FD07DE3AFE9C11BC51DEB1468B /* Property.swift */; };
+		44279488206961A71665C70FD3BD9FCD /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4FDC8976769C1033B9E12FC203B5C3 /* Point.swift */; };
+		4B60BE1A4FD13A40F4E6E7F850165E70 /* UIColor+FlatColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE112DDF08284F60E1191036A24B6DC /* UIColor+FlatColors.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		529494C035B6D9F6EAA7D414932B0168 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		52C3E8081BB80AA34FEF1659F24533C2 /* ViewProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FC8CE935FB2104C9B92607EC326D75 /* ViewProxy.swift */; };
+		551EDA7C2AEF5DBDE54A1E04D3B66DEF /* ConstraintGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC4B3A4858FEEBD3082AC3251B6FEFF /* ConstraintGroup.swift */; };
+		58B00C7BCF27BE64587847CA77E9DD11 /* Align.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1AA165AE5339E477042D9BAE03B49CF /* Align.swift */; };
+		6303953B4072C1B9B5BE9038CD1A5858 /* LayoutProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122260513D217EB84829B7F9560E910D /* LayoutProxy.swift */; };
+		64C1C1BBD53C2B17073E4473687A853A /* LayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90E4B26FD2622432BC13908F8F70AD6 /* LayoutGuide.swift */; };
+		6DC3FEBCF400BC764470762143AC9ADB /* Pods-MusicApp-ios-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 721887EBABBF19DE00370A92C7A50B7E /* Pods-MusicApp-ios-dummy.m */; };
+		6F4FE3B61F3F4136F1C403AD21C331D7 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D36A044A12E66751B25F6EDC4CA5464 /* Context.swift */; };
+		75A09744CB87DB237A3D3FA76FC9AB9A /* Edges.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94C46AD6D3ED91759CD2E97122FCB3A /* Edges.swift */; };
+		7BBAA7D5001ABB0D1516ACAF7F51F4B5 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11E2843041FE90833193FCCE1C2AF9FD /* View.swift */; };
+		8618F6912FB92D3218758B045DEFED42 /* Pods-MusicApp-iosUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD64690D04C5564C024247AD85BD4B /* Pods-MusicApp-iosUITests-dummy.m */; };
+		869BF762B9D0699ABF4024F1DED0AD0E /* AutoresizingMaskLayoutProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB16485DBA8C2C3ABB37D6EC0C67408 /* AutoresizingMaskLayoutProxy.swift */; };
+		94C7D2A64168F83FDD3F1FDD86309462 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19268363FAE5D5171A86D481F79EA6F4 /* Edge.swift */; };
+		9C6E1370B7332CEA8408E407F24570B5 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE9747FAC12E7CD71844B7CC61A5A10 /* Expression.swift */; };
+		9DE7AC7E9424287CE00664C9EA68D2D2 /* LayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6911FAA4D1A1EB9825806D0F9915535 /* LayoutSupport.swift */; };
+		A37DED66695DC9C57FD67849B88A3B7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		A4550D4E72C84BE8816BC161E910FED8 /* UIColor+FlatColors-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 853486AE8B8B7589779C98592A180326 /* UIColor+FlatColors-dummy.m */; };
+		B4DBC3F172AFEA9A0F86A1428D235BAB /* Dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72C76BDD821996B48CA8EB79BE2C8701 /* Dimension.swift */; };
+		BAA82517E186455BBE3B74D44E5EDD5D /* LayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB51CF181EB3602D939D29C11F5A98F7 /* LayoutItem.swift */; };
+		C8ACE8D317F4A6C8A959683188C977ED /* Pods-MusicApp-iosUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D99D5F2632FC5CE36135D533E9AB3EF9 /* Pods-MusicApp-iosUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C93D0D04E44B7115F6E7D31CEF459E80 /* Pods-MusicApp-ios-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B9B9D128645B6CB28D5633B674C15D9C /* Pods-MusicApp-ios-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DB9F3857E166A3EAC8EC5646023E7B8E /* Compound.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78DDB955074E96EDF59BD4FF023EDEB /* Compound.swift */; };
+		E2F636932DC549ECAC060149AE2925A8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913304A9A3BF2F5B81D36C69A30C1C13 /* Extensions.swift */; };
+		E5985E819D5941393426C87D5D9381EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		E79C8C2851495884D91FEFFFC53FAB45 /* LayoutSupportProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFEA0DA1FABA649BD12DDD89BB1646F8 /* LayoutSupportProxy.swift */; };
+		F07D2A1844FD215E3ACF7E362F14AD73 /* UIColor+FlatColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 507749B8AE58549EF441290A457BB979 /* UIColor+FlatColors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F14347E3AC3A254F7A424CCB7FCF512B /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00289F8A81936FCC5E348219D42D7BD /* Priority.swift */; };
+		F435B4C2D5E6E7B34471B69DAC6D5E51 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2DDD7776166E8E1F757A95172E24DE /* Constraint.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		289212BC68B9CD5F6467A81A6D4EDC29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EA68E0FD43D117EA1A0F82E15A7159CC;
+			remoteInfo = "UIColor+FlatColors";
+		};
+		CD6F5BC84C86CA8E9C94D513AEA88857 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05B5E6B6BF53C2C31E616E4C5644E8BB;
+			remoteInfo = Cartography;
+		};
+		F31ACEB43B296C32A3DCD94F4C575A52 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CC1A2F1E32C76D901BC5894BD828547D;
+			remoteInfo = "Pods-MusicApp-ios";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		01F12A52A63C5E1551ED26BE0202B770 /* UIColor+FlatColors-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIColor+FlatColors-prefix.pch"; sourceTree = "<group>"; };
+		03DA35B0460982250E31AADB8687AFF1 /* Pods-MusicApp-iosUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MusicApp-iosUITests-resources.sh"; sourceTree = "<group>"; };
+		09D421EC6D3F8A73CC11F106BEB3356A /* UIColor_FlatColors.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = UIColor_FlatColors.framework; path = "UIColor+FlatColors.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F5007BFE014160FD14419476BC6AC8C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1134C956D034D8D6C0BB1C2B5180D8AA /* Pods-MusicApp-ios-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MusicApp-ios-resources.sh"; sourceTree = "<group>"; };
+		11E2843041FE90833193FCCE1C2AF9FD /* View.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = View.swift; path = Cartography/View.swift; sourceTree = "<group>"; };
+		122260513D217EB84829B7F9560E910D /* LayoutProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutProxy.swift; path = Cartography/LayoutProxy.swift; sourceTree = "<group>"; };
+		12B0D07FA326EB6A33FC05D1D84B0DA3 /* Coefficients.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Coefficients.swift; path = Cartography/Coefficients.swift; sourceTree = "<group>"; };
+		19268363FAE5D5171A86D481F79EA6F4 /* Edge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Edge.swift; path = Cartography/Edge.swift; sourceTree = "<group>"; };
+		19F6FD61B1D2A6B890FC11F17F20CC24 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21848A03F2BEE5D4D396856BC1450742 /* Cartography.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Cartography.modulemap; sourceTree = "<group>"; };
+		234A145BE99E759D2B488D5EE5F19B01 /* Pods-MusicApp-iosUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MusicApp-iosUITests-frameworks.sh"; sourceTree = "<group>"; };
+		249B154EB5E460B23ABB1CCDDB648276 /* Cartography.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Cartography.xcconfig; sourceTree = "<group>"; };
+		2A2C26DA4D9ECEEFD133CC543FC752A8 /* Pods-MusicApp-ios.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MusicApp-ios.modulemap"; sourceTree = "<group>"; };
+		2BCC10FD07DE3AFE9C11BC51DEB1468B /* Property.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Property.swift; path = Cartography/Property.swift; sourceTree = "<group>"; };
+		2D0A63708A865047F6817911BDA82F5A /* UIColor+FlatColors.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "UIColor+FlatColors.modulemap"; sourceTree = "<group>"; };
+		2D36A044A12E66751B25F6EDC4CA5464 /* Context.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Context.swift; path = Cartography/Context.swift; sourceTree = "<group>"; };
+		3BA4A883C2C6C465BC1AF1573F139128 /* Cartography.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Cartography.framework; path = Cartography.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EBD64690D04C5564C024247AD85BD4B /* Pods-MusicApp-iosUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MusicApp-iosUITests-dummy.m"; sourceTree = "<group>"; };
+		3F29B99E588D7A6363E85036FFFC086F /* Pods-MusicApp-iosUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MusicApp-iosUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		422D1CCC3F8289207C15F606F7D26D0B /* Pods-MusicApp-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MusicApp-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		44F6A1EF15732CC4CBE232E2AC9F6B47 /* Cartography-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cartography-prefix.pch"; sourceTree = "<group>"; };
+		507749B8AE58549EF441290A457BB979 /* UIColor+FlatColors.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+FlatColors.h"; path = "UIColor+FlatColors/UIColor+FlatColors.h"; sourceTree = "<group>"; };
+		53FC8CE935FB2104C9B92607EC326D75 /* ViewProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewProxy.swift; path = Cartography/ViewProxy.swift; sourceTree = "<group>"; };
+		5EE112DDF08284F60E1191036A24B6DC /* UIColor+FlatColors.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+FlatColors.m"; path = "UIColor+FlatColors/UIColor+FlatColors.m"; sourceTree = "<group>"; };
+		6064E3DA3AEDCCC85DEDA0D2653B4B5D /* Pods-MusicApp-ios-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MusicApp-ios-frameworks.sh"; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		721887EBABBF19DE00370A92C7A50B7E /* Pods-MusicApp-ios-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MusicApp-ios-dummy.m"; sourceTree = "<group>"; };
+		72C76BDD821996B48CA8EB79BE2C8701 /* Dimension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Dimension.swift; path = Cartography/Dimension.swift; sourceTree = "<group>"; };
+		772E8CB787C6D1A6FA479338E44541BC /* Pods-MusicApp-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MusicApp-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
+		824DCA3BFCACCB23C0825F62EB072048 /* LayoutGuideProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutGuideProxy.swift; path = Cartography/LayoutGuideProxy.swift; sourceTree = "<group>"; };
+		8302A1EB085B46B7CD92B59F3114728C /* Pods-MusicApp-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MusicApp-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		853486AE8B8B7589779C98592A180326 /* UIColor+FlatColors-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIColor+FlatColors-dummy.m"; sourceTree = "<group>"; };
+		8BC4B3A4858FEEBD3082AC3251B6FEFF /* ConstraintGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintGroup.swift; path = Cartography/ConstraintGroup.swift; sourceTree = "<group>"; };
+		913304A9A3BF2F5B81D36C69A30C1C13 /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Cartography/Extensions.swift; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		97B75FE1DF7128EB633FFDA5FDC69AE8 /* LayoutProxy+TypeErasure.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "LayoutProxy+TypeErasure.swift"; path = "Cartography/LayoutProxy+TypeErasure.swift"; sourceTree = "<group>"; };
+		9BB76AD3CDD4866767C96306280ACB05 /* UIColor+FlatColors-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIColor+FlatColors-umbrella.h"; sourceTree = "<group>"; };
+		A58C3EC0DFB8B7151DA53593249F27DD /* Pods-MusicApp-iosUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MusicApp-iosUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		ADBB225AF05D35186F9F9367E47BDF40 /* Pods-MusicApp-iosUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MusicApp-iosUITests.modulemap"; sourceTree = "<group>"; };
+		AEB166206B1B736B8B9EB7D62BEB7187 /* UIColor+FlatColors.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "UIColor+FlatColors.xcconfig"; sourceTree = "<group>"; };
+		B9B9D128645B6CB28D5633B674C15D9C /* Pods-MusicApp-ios-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MusicApp-ios-umbrella.h"; sourceTree = "<group>"; };
+		BA4FDC8976769C1033B9E12FC203B5C3 /* Point.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Point.swift; path = Cartography/Point.swift; sourceTree = "<group>"; };
+		BAD128183143F192CFCEEF3C3B4874F8 /* Pods-MusicApp-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MusicApp-ios.release.xcconfig"; sourceTree = "<group>"; };
+		BEB16485DBA8C2C3ABB37D6EC0C67408 /* AutoresizingMaskLayoutProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AutoresizingMaskLayoutProxy.swift; path = Cartography/AutoresizingMaskLayoutProxy.swift; sourceTree = "<group>"; };
+		BEE9747FAC12E7CD71844B7CC61A5A10 /* Expression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Expression.swift; path = Cartography/Expression.swift; sourceTree = "<group>"; };
+		C657A8907D5FDAA5013F6AFBEE87ED24 /* Pods-MusicApp-ios-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MusicApp-ios-acknowledgements.plist"; sourceTree = "<group>"; };
+		C6911FAA4D1A1EB9825806D0F9915535 /* LayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutSupport.swift; path = Cartography/LayoutSupport.swift; sourceTree = "<group>"; };
+		CF254E44E20F2673F95DEE20E2FE54B3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D00289F8A81936FCC5E348219D42D7BD /* Priority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Priority.swift; path = Cartography/Priority.swift; sourceTree = "<group>"; };
+		D6FA521241D01C771ED632B0A09692EC /* Cartography-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Cartography-umbrella.h"; sourceTree = "<group>"; };
+		D778C6C6B77B1B3CCB7F85CF0ED4D670 /* Pods-MusicApp-ios-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MusicApp-ios-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D90E4B26FD2622432BC13908F8F70AD6 /* LayoutGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutGuide.swift; path = Cartography/LayoutGuide.swift; sourceTree = "<group>"; };
+		D99D5F2632FC5CE36135D533E9AB3EF9 /* Pods-MusicApp-iosUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MusicApp-iosUITests-umbrella.h"; sourceTree = "<group>"; };
+		DFEA0DA1FABA649BD12DDD89BB1646F8 /* LayoutSupportProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutSupportProxy.swift; path = Cartography/LayoutSupportProxy.swift; sourceTree = "<group>"; };
+		E1AA165AE5339E477042D9BAE03B49CF /* Align.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Align.swift; path = Cartography/Align.swift; sourceTree = "<group>"; };
+		E5E4CC7AB0D96793220485C7F0156197 /* Pods_MusicApp_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MusicApp_iosUITests.framework; path = "Pods-MusicApp-iosUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E78DDB955074E96EDF59BD4FF023EDEB /* Compound.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Compound.swift; path = Cartography/Compound.swift; sourceTree = "<group>"; };
+		E820CDD5AE4F57FF0C09FBE9CB7960B0 /* Cartography-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Cartography-dummy.m"; sourceTree = "<group>"; };
+		E8605D9EC0EF0E474D60457618860BA7 /* Pods_MusicApp_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MusicApp_ios.framework; path = "Pods-MusicApp-ios.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E94C46AD6D3ED91759CD2E97122FCB3A /* Edges.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Edges.swift; path = Cartography/Edges.swift; sourceTree = "<group>"; };
+		EAA112FDC3B160BE131914EBE9C1FBCF /* Size.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Size.swift; path = Cartography/Size.swift; sourceTree = "<group>"; };
+		EF2DDD7776166E8E1F757A95172E24DE /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Cartography/Constraint.swift; sourceTree = "<group>"; };
+		F1CED7DECB9747290D4B3954F816085E /* Constrain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constrain.swift; path = Cartography/Constrain.swift; sourceTree = "<group>"; };
+		F3B9066A51B2FE7E9408A002B870DA3F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAB0D41039C1DFFC53054DE7DC129C9D /* Distribute.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Distribute.swift; path = Cartography/Distribute.swift; sourceTree = "<group>"; };
+		FB51CF181EB3602D939D29C11F5A98F7 /* LayoutItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutItem.swift; path = Cartography/LayoutItem.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		66F11910B4682C55BD5811F333E55F89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A37DED66695DC9C57FD67849B88A3B7C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6FB64CF10D12F08A9EC51015C30E1944 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5985E819D5941393426C87D5D9381EB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE625E62DF6815774283474C081ACA4A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				529494C035B6D9F6EAA7D414932B0168 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4B199222252BEE91A95A85C951B11C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C639F6FD8D6AF9F7656F97446D487BA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2896F438F12A6E4F07396C17698DE644 /* Cartography */ = {
+			isa = PBXGroup;
+			children = (
+				E1AA165AE5339E477042D9BAE03B49CF /* Align.swift */,
+				BEB16485DBA8C2C3ABB37D6EC0C67408 /* AutoresizingMaskLayoutProxy.swift */,
+				12B0D07FA326EB6A33FC05D1D84B0DA3 /* Coefficients.swift */,
+				E78DDB955074E96EDF59BD4FF023EDEB /* Compound.swift */,
+				F1CED7DECB9747290D4B3954F816085E /* Constrain.swift */,
+				EF2DDD7776166E8E1F757A95172E24DE /* Constraint.swift */,
+				8BC4B3A4858FEEBD3082AC3251B6FEFF /* ConstraintGroup.swift */,
+				2D36A044A12E66751B25F6EDC4CA5464 /* Context.swift */,
+				72C76BDD821996B48CA8EB79BE2C8701 /* Dimension.swift */,
+				FAB0D41039C1DFFC53054DE7DC129C9D /* Distribute.swift */,
+				19268363FAE5D5171A86D481F79EA6F4 /* Edge.swift */,
+				E94C46AD6D3ED91759CD2E97122FCB3A /* Edges.swift */,
+				BEE9747FAC12E7CD71844B7CC61A5A10 /* Expression.swift */,
+				913304A9A3BF2F5B81D36C69A30C1C13 /* Extensions.swift */,
+				D90E4B26FD2622432BC13908F8F70AD6 /* LayoutGuide.swift */,
+				824DCA3BFCACCB23C0825F62EB072048 /* LayoutGuideProxy.swift */,
+				FB51CF181EB3602D939D29C11F5A98F7 /* LayoutItem.swift */,
+				122260513D217EB84829B7F9560E910D /* LayoutProxy.swift */,
+				97B75FE1DF7128EB633FFDA5FDC69AE8 /* LayoutProxy+TypeErasure.swift */,
+				C6911FAA4D1A1EB9825806D0F9915535 /* LayoutSupport.swift */,
+				DFEA0DA1FABA649BD12DDD89BB1646F8 /* LayoutSupportProxy.swift */,
+				BA4FDC8976769C1033B9E12FC203B5C3 /* Point.swift */,
+				D00289F8A81936FCC5E348219D42D7BD /* Priority.swift */,
+				2BCC10FD07DE3AFE9C11BC51DEB1468B /* Property.swift */,
+				EAA112FDC3B160BE131914EBE9C1FBCF /* Size.swift */,
+				11E2843041FE90833193FCCE1C2AF9FD /* View.swift */,
+				53FC8CE935FB2104C9B92607EC326D75 /* ViewProxy.swift */,
+				FD008260FBD5F7F6098BF54A93E0E6BA /* Support Files */,
+			);
+			name = Cartography;
+			path = Cartography;
+			sourceTree = "<group>";
+		};
+		54A9187F76AAF0D383F63C92822FA4D7 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				CF254E44E20F2673F95DEE20E2FE54B3 /* Info.plist */,
+				2D0A63708A865047F6817911BDA82F5A /* UIColor+FlatColors.modulemap */,
+				AEB166206B1B736B8B9EB7D62BEB7187 /* UIColor+FlatColors.xcconfig */,
+				853486AE8B8B7589779C98592A180326 /* UIColor+FlatColors-dummy.m */,
+				01F12A52A63C5E1551ED26BE0202B770 /* UIColor+FlatColors-prefix.pch */,
+				9BB76AD3CDD4866767C96306280ACB05 /* UIColor+FlatColors-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/UIColor+FlatColors";
+			sourceTree = "<group>";
+		};
+		6735300DDFA1B5AAFB342E7AB76394C9 /* Pods-MusicApp-iosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F3B9066A51B2FE7E9408A002B870DA3F /* Info.plist */,
+				ADBB225AF05D35186F9F9367E47BDF40 /* Pods-MusicApp-iosUITests.modulemap */,
+				3F29B99E588D7A6363E85036FFFC086F /* Pods-MusicApp-iosUITests-acknowledgements.markdown */,
+				A58C3EC0DFB8B7151DA53593249F27DD /* Pods-MusicApp-iosUITests-acknowledgements.plist */,
+				3EBD64690D04C5564C024247AD85BD4B /* Pods-MusicApp-iosUITests-dummy.m */,
+				234A145BE99E759D2B488D5EE5F19B01 /* Pods-MusicApp-iosUITests-frameworks.sh */,
+				03DA35B0460982250E31AADB8687AFF1 /* Pods-MusicApp-iosUITests-resources.sh */,
+				D99D5F2632FC5CE36135D533E9AB3EF9 /* Pods-MusicApp-iosUITests-umbrella.h */,
+				422D1CCC3F8289207C15F606F7D26D0B /* Pods-MusicApp-iosUITests.debug.xcconfig */,
+				772E8CB787C6D1A6FA479338E44541BC /* Pods-MusicApp-iosUITests.release.xcconfig */,
+			);
+			name = "Pods-MusicApp-iosUITests";
+			path = "Target Support Files/Pods-MusicApp-iosUITests";
+			sourceTree = "<group>";
+		};
+		77BCC1DCD8E4F7CA5AB2CBE3DE5A7546 /* Pods-MusicApp-ios */ = {
+			isa = PBXGroup;
+			children = (
+				0F5007BFE014160FD14419476BC6AC8C /* Info.plist */,
+				2A2C26DA4D9ECEEFD133CC543FC752A8 /* Pods-MusicApp-ios.modulemap */,
+				D778C6C6B77B1B3CCB7F85CF0ED4D670 /* Pods-MusicApp-ios-acknowledgements.markdown */,
+				C657A8907D5FDAA5013F6AFBEE87ED24 /* Pods-MusicApp-ios-acknowledgements.plist */,
+				721887EBABBF19DE00370A92C7A50B7E /* Pods-MusicApp-ios-dummy.m */,
+				6064E3DA3AEDCCC85DEDA0D2653B4B5D /* Pods-MusicApp-ios-frameworks.sh */,
+				1134C956D034D8D6C0BB1C2B5180D8AA /* Pods-MusicApp-ios-resources.sh */,
+				B9B9D128645B6CB28D5633B674C15D9C /* Pods-MusicApp-ios-umbrella.h */,
+				8302A1EB085B46B7CD92B59F3114728C /* Pods-MusicApp-ios.debug.xcconfig */,
+				BAD128183143F192CFCEEF3C3B4874F8 /* Pods-MusicApp-ios.release.xcconfig */,
+			);
+			name = "Pods-MusicApp-ios";
+			path = "Target Support Files/Pods-MusicApp-ios";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				9D3FE8194D00F36923994522FFFC9CB9 /* Pods */,
+				E75B3A58788E8D42F9C3937BB872D650 /* Products */,
+				DA30C378C701049BB1641C8C2A890B99 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		9D3FE8194D00F36923994522FFFC9CB9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2896F438F12A6E4F07396C17698DE644 /* Cartography */,
+				D303476F3ED2170FE59253118A5C650B /* UIColor+FlatColors */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D303476F3ED2170FE59253118A5C650B /* UIColor+FlatColors */ = {
+			isa = PBXGroup;
+			children = (
+				507749B8AE58549EF441290A457BB979 /* UIColor+FlatColors.h */,
+				5EE112DDF08284F60E1191036A24B6DC /* UIColor+FlatColors.m */,
+				54A9187F76AAF0D383F63C92822FA4D7 /* Support Files */,
+			);
+			name = "UIColor+FlatColors";
+			path = "UIColor+FlatColors";
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		DA30C378C701049BB1641C8C2A890B99 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				77BCC1DCD8E4F7CA5AB2CBE3DE5A7546 /* Pods-MusicApp-ios */,
+				6735300DDFA1B5AAFB342E7AB76394C9 /* Pods-MusicApp-iosUITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		E75B3A58788E8D42F9C3937BB872D650 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BA4A883C2C6C465BC1AF1573F139128 /* Cartography.framework */,
+				E8605D9EC0EF0E474D60457618860BA7 /* Pods_MusicApp_ios.framework */,
+				E5E4CC7AB0D96793220485C7F0156197 /* Pods_MusicApp_iosUITests.framework */,
+				09D421EC6D3F8A73CC11F106BEB3356A /* UIColor_FlatColors.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FD008260FBD5F7F6098BF54A93E0E6BA /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				21848A03F2BEE5D4D396856BC1450742 /* Cartography.modulemap */,
+				249B154EB5E460B23ABB1CCDDB648276 /* Cartography.xcconfig */,
+				E820CDD5AE4F57FF0C09FBE9CB7960B0 /* Cartography-dummy.m */,
+				44F6A1EF15732CC4CBE232E2AC9F6B47 /* Cartography-prefix.pch */,
+				D6FA521241D01C771ED632B0A09692EC /* Cartography-umbrella.h */,
+				19F6FD61B1D2A6B890FC11F17F20CC24 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Cartography";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3B7909E5BB787E89429A35A7198AC199 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22C18133E55CC4E0633B633F3912F097 /* Cartography-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51B1B66B11CE5791762C1C40F0541DE1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				220781223118125E9CA2E3B0899F7746 /* UIColor+FlatColors-umbrella.h in Headers */,
+				F07D2A1844FD215E3ACF7E362F14AD73 /* UIColor+FlatColors.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C06FC11FEDBC23A20458C0D183314763 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C93D0D04E44B7115F6E7D31CEF459E80 /* Pods-MusicApp-ios-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE90E36B0A7BD25D0813C14837900084 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8ACE8D317F4A6C8A959683188C977ED /* Pods-MusicApp-iosUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		05B5E6B6BF53C2C31E616E4C5644E8BB /* Cartography */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9BAA343D12FE6672E7011D9FB12285B /* Build configuration list for PBXNativeTarget "Cartography" */;
+			buildPhases = (
+				43377B59D0D68F9FC09F2D7CA5D04AC4 /* Sources */,
+				66F11910B4682C55BD5811F333E55F89 /* Frameworks */,
+				3B7909E5BB787E89429A35A7198AC199 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Cartography;
+			productName = Cartography;
+			productReference = 3BA4A883C2C6C465BC1AF1573F139128 /* Cartography.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CC1A2F1E32C76D901BC5894BD828547D /* Pods-MusicApp-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6B7395003F846A67C9CC2BC23104AC60 /* Build configuration list for PBXNativeTarget "Pods-MusicApp-ios" */;
+			buildPhases = (
+				4495CE40C33BDF4EDBD4AAB00603459A /* Sources */,
+				CE625E62DF6815774283474C081ACA4A /* Frameworks */,
+				C06FC11FEDBC23A20458C0D183314763 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7A79EC25A3911E37735D32ACB7615259 /* PBXTargetDependency */,
+				55C38ABFBAC9BB8C945E823331594CD9 /* PBXTargetDependency */,
+			);
+			name = "Pods-MusicApp-ios";
+			productName = "Pods-MusicApp-ios";
+			productReference = E8605D9EC0EF0E474D60457618860BA7 /* Pods_MusicApp_ios.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EA68E0FD43D117EA1A0F82E15A7159CC /* UIColor+FlatColors */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B73AFCF92A98C23CAA19F446DE93F19 /* Build configuration list for PBXNativeTarget "UIColor+FlatColors" */;
+			buildPhases = (
+				139FE28EFF0776492686050846A7A47A /* Sources */,
+				6FB64CF10D12F08A9EC51015C30E1944 /* Frameworks */,
+				51B1B66B11CE5791762C1C40F0541DE1 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "UIColor+FlatColors";
+			productName = "UIColor+FlatColors";
+			productReference = 09D421EC6D3F8A73CC11F106BEB3356A /* UIColor_FlatColors.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F1999E96C5F1177DD44DDFA278666BE5 /* Pods-MusicApp-iosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8845EBE0C7BDC948A9147CF935A2F469 /* Build configuration list for PBXNativeTarget "Pods-MusicApp-iosUITests" */;
+			buildPhases = (
+				024FEF2219437DF09C25F2788D79FF66 /* Sources */,
+				F4B199222252BEE91A95A85C951B11C1 /* Frameworks */,
+				CE90E36B0A7BD25D0813C14837900084 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BD2C019A8F6402980079099435281DF4 /* PBXTargetDependency */,
+			);
+			name = "Pods-MusicApp-iosUITests";
+			productName = "Pods-MusicApp-iosUITests";
+			productReference = E5E4CC7AB0D96793220485C7F0156197 /* Pods_MusicApp_iosUITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = E75B3A58788E8D42F9C3937BB872D650 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				05B5E6B6BF53C2C31E616E4C5644E8BB /* Cartography */,
+				CC1A2F1E32C76D901BC5894BD828547D /* Pods-MusicApp-ios */,
+				F1999E96C5F1177DD44DDFA278666BE5 /* Pods-MusicApp-iosUITests */,
+				EA68E0FD43D117EA1A0F82E15A7159CC /* UIColor+FlatColors */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		024FEF2219437DF09C25F2788D79FF66 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8618F6912FB92D3218758B045DEFED42 /* Pods-MusicApp-iosUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		139FE28EFF0776492686050846A7A47A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A4550D4E72C84BE8816BC161E910FED8 /* UIColor+FlatColors-dummy.m in Sources */,
+				4B60BE1A4FD13A40F4E6E7F850165E70 /* UIColor+FlatColors.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		43377B59D0D68F9FC09F2D7CA5D04AC4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58B00C7BCF27BE64587847CA77E9DD11 /* Align.swift in Sources */,
+				869BF762B9D0699ABF4024F1DED0AD0E /* AutoresizingMaskLayoutProxy.swift in Sources */,
+				1C92A98E34D0E29E787071F0B75401E5 /* Cartography-dummy.m in Sources */,
+				33E91E78F43301F168B42DB67C04CDC4 /* Coefficients.swift in Sources */,
+				DB9F3857E166A3EAC8EC5646023E7B8E /* Compound.swift in Sources */,
+				0739B8BF39538E41B6C747EDE71114F3 /* Constrain.swift in Sources */,
+				F435B4C2D5E6E7B34471B69DAC6D5E51 /* Constraint.swift in Sources */,
+				551EDA7C2AEF5DBDE54A1E04D3B66DEF /* ConstraintGroup.swift in Sources */,
+				6F4FE3B61F3F4136F1C403AD21C331D7 /* Context.swift in Sources */,
+				B4DBC3F172AFEA9A0F86A1428D235BAB /* Dimension.swift in Sources */,
+				078D75FC8795FA3EBD22377BC890520B /* Distribute.swift in Sources */,
+				94C7D2A64168F83FDD3F1FDD86309462 /* Edge.swift in Sources */,
+				75A09744CB87DB237A3D3FA76FC9AB9A /* Edges.swift in Sources */,
+				9C6E1370B7332CEA8408E407F24570B5 /* Expression.swift in Sources */,
+				E2F636932DC549ECAC060149AE2925A8 /* Extensions.swift in Sources */,
+				64C1C1BBD53C2B17073E4473687A853A /* LayoutGuide.swift in Sources */,
+				27BEB6D60B638B2F7E7086598B419CB3 /* LayoutGuideProxy.swift in Sources */,
+				BAA82517E186455BBE3B74D44E5EDD5D /* LayoutItem.swift in Sources */,
+				033E20123508ACA1151479485BEC8D90 /* LayoutProxy+TypeErasure.swift in Sources */,
+				6303953B4072C1B9B5BE9038CD1A5858 /* LayoutProxy.swift in Sources */,
+				9DE7AC7E9424287CE00664C9EA68D2D2 /* LayoutSupport.swift in Sources */,
+				E79C8C2851495884D91FEFFFC53FAB45 /* LayoutSupportProxy.swift in Sources */,
+				44279488206961A71665C70FD3BD9FCD /* Point.swift in Sources */,
+				F14347E3AC3A254F7A424CCB7FCF512B /* Priority.swift in Sources */,
+				370EA4B00C3E1F71C87314271179D06D /* Property.swift in Sources */,
+				26D9D26B1D4A7C48E1DFE6C4697A7EB3 /* Size.swift in Sources */,
+				7BBAA7D5001ABB0D1516ACAF7F51F4B5 /* View.swift in Sources */,
+				52C3E8081BB80AA34FEF1659F24533C2 /* ViewProxy.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4495CE40C33BDF4EDBD4AAB00603459A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DC3FEBCF400BC764470762143AC9ADB /* Pods-MusicApp-ios-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		55C38ABFBAC9BB8C945E823331594CD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "UIColor+FlatColors";
+			target = EA68E0FD43D117EA1A0F82E15A7159CC /* UIColor+FlatColors */;
+			targetProxy = 289212BC68B9CD5F6467A81A6D4EDC29 /* PBXContainerItemProxy */;
+		};
+		7A79EC25A3911E37735D32ACB7615259 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Cartography;
+			target = 05B5E6B6BF53C2C31E616E4C5644E8BB /* Cartography */;
+			targetProxy = CD6F5BC84C86CA8E9C94D513AEA88857 /* PBXContainerItemProxy */;
+		};
+		BD2C019A8F6402980079099435281DF4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-MusicApp-ios";
+			target = CC1A2F1E32C76D901BC5894BD828547D /* Pods-MusicApp-ios */;
+			targetProxy = F31ACEB43B296C32A3DCD94F4C575A52 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		199D972A13F2B4C56847F7A89CCA83BC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		35CD2F04F4932C334716650A32F1BB13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 249B154EB5E460B23ABB1CCDDB648276 /* Cartography.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Cartography/Cartography-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Cartography/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Cartography/Cartography.modulemap";
+				PRODUCT_MODULE_NAME = Cartography;
+				PRODUCT_NAME = Cartography;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3998B78CED5C8CE264EE2146E91E6BFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 422D1CCC3F8289207C15F606F7D26D0B /* Pods-MusicApp-iosUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MusicApp-iosUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MusicApp-iosUITests/Pods-MusicApp-iosUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7684BEB6CDFD1000ADE4DA003B12EBAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 772E8CB787C6D1A6FA479338E44541BC /* Pods-MusicApp-iosUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MusicApp-iosUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MusicApp-iosUITests/Pods-MusicApp-iosUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		898BEEF540BAE3491DE2C962AB56CF63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEB166206B1B736B8B9EB7D62BEB7187 /* UIColor+FlatColors.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/UIColor+FlatColors/UIColor+FlatColors-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/UIColor+FlatColors/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/UIColor+FlatColors/UIColor+FlatColors.modulemap";
+				PRODUCT_MODULE_NAME = UIColor_FlatColors;
+				PRODUCT_NAME = UIColor_FlatColors;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9EC4BC840843F8B62490CB28F68923FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEB166206B1B736B8B9EB7D62BEB7187 /* UIColor+FlatColors.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/UIColor+FlatColors/UIColor+FlatColors-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/UIColor+FlatColors/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/UIColor+FlatColors/UIColor+FlatColors.modulemap";
+				PRODUCT_MODULE_NAME = UIColor_FlatColors;
+				PRODUCT_NAME = UIColor_FlatColors;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C34C00134F26343DBED64744162CF6E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 249B154EB5E460B23ABB1CCDDB648276 /* Cartography.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Cartography/Cartography-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Cartography/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Cartography/Cartography.modulemap";
+				PRODUCT_MODULE_NAME = Cartography;
+				PRODUCT_NAME = Cartography;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D2B96D87844B69CA768E93CB9A71569B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAD128183143F192CFCEEF3C3B4874F8 /* Pods-MusicApp-ios.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MusicApp-ios/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MusicApp-ios/Pods-MusicApp-ios.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EFDBD522867450E355313D8ED601C5F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8302A1EB085B46B7CD92B59F3114728C /* Pods-MusicApp-ios.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MusicApp-ios/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MusicApp-ios/Pods-MusicApp-ios.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FDB2FC4A1E5891381CD9D922145497F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2B73AFCF92A98C23CAA19F446DE93F19 /* Build configuration list for PBXNativeTarget "UIColor+FlatColors" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9EC4BC840843F8B62490CB28F68923FF /* Debug */,
+				898BEEF540BAE3491DE2C962AB56CF63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				199D972A13F2B4C56847F7A89CCA83BC /* Debug */,
+				FDB2FC4A1E5891381CD9D922145497F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6B7395003F846A67C9CC2BC23104AC60 /* Build configuration list for PBXNativeTarget "Pods-MusicApp-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFDBD522867450E355313D8ED601C5F8 /* Debug */,
+				D2B96D87844B69CA768E93CB9A71569B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8845EBE0C7BDC948A9147CF935A2F469 /* Build configuration list for PBXNativeTarget "Pods-MusicApp-iosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3998B78CED5C8CE264EE2146E91E6BFD /* Debug */,
+				7684BEB6CDFD1000ADE4DA003B12EBAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A9BAA343D12FE6672E7011D9FB12285B /* Build configuration list for PBXNativeTarget "Cartography" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C34C00134F26343DBED64744162CF6E5 /* Debug */,
+				35CD2F04F4932C334716650A32F1BB13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

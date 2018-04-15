@@ -8,7 +8,7 @@
 
 class Queue {
     
-    public var list = LinkedList<String>()
+    public var list = LinkedList<Track>()
     static let instance = Queue()
     public var pointer = 0
     
@@ -17,20 +17,20 @@ class Queue {
         return list.count
     }
     
-    public func append(track: String){
+    public func append(track: Track){
         list.append(value: track)
     }
     
-    public func pop() -> String{
+    public func pop() -> Track{
         return list.removeAt(0)
     }
     
-    public func nodeAt(atIndex index: Int) -> String{
+    public func nodeAt(atIndex index: Int) -> Track{
         return list.nodeAt(atIndex: index).value
     }
     
-    public func insertAt(String value: String, atIndex index: Int) {
-        let newNode = LinkedListNode<String>(value: value)
+    public func insertAt(String value: Track, atIndex index: Int) {
+        let newNode = LinkedListNode<Track>(value: value)
         list.insert(newNode, atIndex: index)
     }
     
@@ -39,7 +39,13 @@ class Queue {
     }
     
     public func skip(){
-        pointer = pointer + 1
+        if(pointer == count() - 1){
+            print("fell in")
+            pointer = 0
+        }
+        else{
+            pointer = pointer + 1
+        }
     }
     
     public func prev(){
@@ -50,10 +56,10 @@ class Queue {
         return pointer
     }
     
-    public func toArray() -> [String]{
+    public func toArray() -> [Track]{
         var counter = 0
         let final = count()
-        var array = [String]()
+        var array = [Track]()
         while (counter < final){
             array.insert(Queue.instance.pop(), at: counter)
             counter = counter + 1
