@@ -34,7 +34,7 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
         skipNextButton = UIButton()
         skipPrevButton = UIButton()
         
-        playButton!.backgroundColor = .red
+        playButton!.setImage(UIImage(named: "icon-pause"), for: .normal)
         view.addSubview(playButton!)
         playButton!.translatesAutoresizingMaskIntoConstraints = false
         playButton!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -43,7 +43,7 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
         playButton!.widthAnchor.constraint(equalToConstant: 80).isActive = true
         playButton!.addTarget(self, action: #selector(playTrack), for: .touchUpInside)
         
-        skipNextButton!.backgroundColor = .red
+        skipNextButton!.setImage(UIImage(named: "icon-skip-next"), for: .normal)
         view.addSubview(skipNextButton!)
         skipNextButton!.translatesAutoresizingMaskIntoConstraints = false
         skipNextButton!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 100).isActive = true
@@ -52,7 +52,7 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
         skipNextButton!.widthAnchor.constraint(equalToConstant: 60).isActive = true
         skipNextButton!.addTarget(self, action: #selector(skipTrack), for: .touchUpInside)
         
-        skipPrevButton!.backgroundColor = .red
+        skipPrevButton!.setImage(UIImage(named: "icon-skip-prev"), for: .normal)
         view.addSubview(skipPrevButton!)
         skipPrevButton!.translatesAutoresizingMaskIntoConstraints = false
         skipPrevButton!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -100).isActive = true
@@ -85,14 +85,14 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
     // action for the Play button
     @objc func playTrack(sender: UIButton!) {
         
-        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint()).id!
+        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint()).id
         
-        if(playing){
+        if (playing) {
             pause()
             playing = false
             startTime = (self.player?.playbackState.position)!
-        }
-        else{
+            
+        } else {
             play(track)
             playing = true
         }
@@ -102,7 +102,7 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
     @objc func skipTrack(sender: UIButton!) {
         Queue.instance.skip()
         print("pointer is " + String(Queue.instance.getPoint()))
-        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint()).id!
+        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint()).id
         startTime = 0
         playing = true
         play(track)
@@ -111,7 +111,7 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
     // action for the back button
     @objc func backTrack(sender: UIButton!) {
         Queue.instance.prev()
-        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint()).id!
+        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint()).id
         startTime = 0
         playing = true
         play(track)
@@ -120,6 +120,8 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
     // helper function for playing a track
     func play(_ track: String){
         print(Queue.instance.getPoint())
+        playButton!.setImage(UIImage(named: "icon-pause"), for: .normal)
+        
         self.player?.playSpotifyURI(track, startingWith: 0, startingWithPosition: startTime, callback: { (error) in
             if (error != nil) {
                 print("playing!")
@@ -128,7 +130,8 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
     }
     
     // helper function for pausing a track
-    func pause(){
+    func pause() {
+        playButton!.setImage(UIImage(named: "icon-play"), for: .normal)
         self.player?.setIsPlaying(false ,callback: { (error) in
             if (error != nil) {
                 print("playing!")

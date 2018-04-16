@@ -19,9 +19,54 @@ class CardView: UIView {
         setup()
     }
     
+    convenience init(frame: CGRect, track: Track) {
+        self.init(frame: frame)
+        setup()
+        
+        print("Initializing card...")
+        print("  title: \(track.title)")
+        print("  artist: \(track.artist)")
+        print("  album: \(track.album)")
+        
+        // Track Setup
+        self.track = track
+        titleLabel = UILabel()
+        artistLabel = UILabel()
+        albumLabel = UILabel()
+        
+        titleLabel!.text = track.title
+        artistLabel!.text = track.artist
+        albumLabel!.text = track.album
+        imageView = UIImageView(image: track.artwork)
+        
+        self.addSubview(imageView!)
+        imageView!.translatesAutoresizingMaskIntoConstraints = false
+        imageView!.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        imageView!.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -100).isActive = true
+        
+        titleLabel!.textColor = .white
+        self.addSubview(titleLabel!)
+        imageView!.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel!.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        titleLabel!.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 50).isActive = true
+        
+        artistLabel!.textColor = .white
+        self.addSubview(artistLabel!)
+        imageView!.translatesAutoresizingMaskIntoConstraints = false
+        artistLabel!.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        artistLabel!.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 75).isActive = true
+        
+        albumLabel!.textColor = .white
+        self.addSubview(albumLabel!)
+        imageView!.translatesAutoresizingMaskIntoConstraints = false
+        albumLabel!.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        albumLabel!.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: 100).isActive = true
+        
+    }
+    
     func setup() {
         // Background
-        backgroundColor = UIColor(hexString: "333333")
+        backgroundColor = UIColor(hexString: "#333333")
         
         // Shadow
         layer.shadowColor = UIColor.black.cgColor
@@ -34,20 +79,5 @@ class CardView: UIView {
         // Corner Radius
         layer.cornerRadius = 10.0;
         
-        /*
-        // Track Setup
-        
-        titleLabel = UILabel()
-        artistLabel = UILabel()
-        albumLabel = UILabel()
-        
-        // Set up views if editing an existing Meal.
-        if let track = track {
-            titleLabel!.text = track.title!
-            artistLabel!.text = track.artist!
-            albumLabel!.text = track.album!
-            imageView = UIImageView(image: track.artwork)
-        }
-        */
     }
 }

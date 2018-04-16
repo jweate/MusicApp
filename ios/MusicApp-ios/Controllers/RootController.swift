@@ -62,12 +62,12 @@ class RootController: UITabBarController {
         viewControllers = [queue, browse, activity]
         tabBar.barTintColor = UIColor(hexString: "333333")
         tabBar.tintColor = UIColor(hexString: "B104FF")
-        
-        Queue.instance.append(track: Track("Sample Song 1", "4iV5W9uYEdYUVa79Axb7Rh"))
-        Queue.instance.append(track: Track("Sample Song 2", "6JzzI3YxHCcjZ7MCQS2YS1"))
-        Queue.instance.append(track: Track("Sample Song 3", "58s6EuEYJdlb0kO7awm3Vp"))
-        Queue.instance.append(track: Track("Sample Song 4", "6JzzI3YxHCcjZ7MCQS2YS1"))
-        Queue.instance.append(track: Track("Sample Song 5", "58s6EuEYJdlb0kO7awm3Vp"))
+
+//        Queue.instance.append(track: Track("Sample Song 1", "4iV5W9uYEdYUVa79Axb7Rh"))
+//        Queue.instance.append(track: Track("Sample Song 2", "6JzzI3YxHCcjZ7MCQS2YS1"))
+//        Queue.instance.append(track: Track("Sample Song 3", "58s6EuEYJdlb0kO7awm3Vp"))
+//        Queue.instance.append(track: Track("Sample Song 4", "6JzzI3YxHCcjZ7MCQS2YS1"))
+//        Queue.instance.append(track: Track("Sample Song 5", "58s6EuEYJdlb0kO7awm3Vp"))
     }
     
     @objc func updateAfterFirstLogin () {

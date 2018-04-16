@@ -45,6 +45,10 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
     override func setEditing(_ editing: Bool,
                              animated: Bool) {
         super.setEditing(editing, animated: editing)
@@ -54,19 +58,18 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
     // determines the amount of rows in View
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        
         return Queue.instance.count()
     }
 
     // populates individual Cells
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
-
-        cell.textLabel?.text = Queue.instance.nodeAt(atIndex: indexPath.row).title
-
-        cell.imageView?.image = UIImage(named: "SS3")
         
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+        let node = Queue.instance.nodeAt(atIndex: indexPath.row)
+        cell.textLabel?.text = node.title
+        cell.imageView?.image = node.artwork
         return cell
     }
     
@@ -74,6 +77,7 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView,
                    moveRowAt sourceIndexPath: IndexPath,
                    to destinationIndexPath: IndexPath) {
+        
         let movedObject = Queue.instance.nodeAt(atIndex: sourceIndexPath.row)
         Queue.instance.removeAt(atIndex: sourceIndexPath.row)
         Queue.instance.insertAt(String: movedObject, atIndex: destinationIndexPath.row)
@@ -83,6 +87,7 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
     // responsible for switches between Edit and View mode
     func tableView(_ tableView: UITableView,
                    editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        
         if (self.editButtonItem.isEnabled) {
             return .delete
         } else {

@@ -6,6 +6,8 @@
 //  Copyright © 2018 Jacob Weate. All rights reserved.
 //
 
+import os.log
+
 let sampleData = """
 {
     "tracks": [
@@ -110,7 +112,7 @@ let sampleData = """
 """
 
 struct RawTrackList: Decodable {
-    var tracks: RawTrack
+    var tracks: [RawTrack]
 }
 
 class Stack {
@@ -121,8 +123,22 @@ class Stack {
     init() {
         let jsonData = sampleData.data(using: .utf8)
         let decoder = JSONDecoder()
-        let serverResponse = try! decoder.decode(RawTrackList.self, from: jsonData!)
-        dump(serverResponse)
+        let rawTrackList = try! decoder.decode(RawTrackList.self, from: jsonData!)
+        
+        os_log("Loaded tracks")
+        
+        let albumArtwork = UIImage(named: "SS3")
+        
+        for rawTrack in rawTrackList.tracks {
+            print("Appending Track ----")
+            print("  title: \(rawTrack.title)")
+            print("  artist: \(rawTrack.artist)")
+            print("  album: \(rawTrack.album)")
+            let track = Track(rawTrack, image: albumArtwork!)
+            list.append(value: track)
+            Queue.instance.append(track: track)
+        }
+        
     }
     
     
@@ -138,12 +154,12 @@ class Stack {
         return list.removeAt(0)
     }
     
-    public func toArray() -> [Track]{
+    public func toArray() -> [Track] {
         var counter = 0
         let final = count()
         var array = [Track]()
         while (counter < final){
-            array.insert(Queue.instance.pop(), at: counter)
+            array.insert(self.pop(), at: counter)
             counter = counter + 1
         }
         return array

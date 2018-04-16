@@ -19,7 +19,7 @@ class AuthController: UIViewController {
         
         let button = UIButton()
         button.backgroundColor = UIColor.white
-        button.setTitle("Name your Button ", for: .normal)
+        button.setTitle("Sign In with Spotify", for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
         self.view.addSubview(button)
@@ -27,6 +27,10 @@ class AuthController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        button.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        button.layer.cornerRadius = 20
+        button.backgroundColor = UIColor(hexString: "#1DB954")
         
         setup()
     }
