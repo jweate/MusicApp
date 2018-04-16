@@ -11,26 +11,44 @@ import UIKit
 class SwipeDeckController: UIViewController {
     
     var swipeableView: ZLSwipeableView!
-    
-    var colors = ["Turquoise", "Green Sea", "Emerald", "Nephritis", "Peter River", "Belize Hole", "Amethyst", "Wisteria", "Wet Asphalt", "Midnight Blue", "Sun Flower", "Orange", "Carrot", "Pumpkin", "Alizarin", "Pomegranate", "Clouds", "Silver", "Concrete", "Asbestos"]
-    var colorIndex = 0
     var loadCardsFromXib = false
+    var colorIndex = 0
+    
+    var colors = [
+        "Turquoise",
+        "Green Sea",
+        "Emerald",
+        "Nephritis",
+        "Peter River",
+        "Belize Hole",
+        "Amethyst",
+        "Wisteria",
+        "Wet Asphalt",
+        "Midnight Blue",
+        "Sun Flower",
+        "Orange",
+        "Carrot",
+        "Pumpkin",
+        "Alizarin",
+        "Pomegranate",
+        "Clouds",
+        "Silver",
+        "Concrete",
+        "Asbestos"
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //self.viewControllers = [swipeDeck]
-        
-        
         self.title = "Queue"
-        //self.view.backgroundColor = .white
+        
         swipeableView = ZLSwipeableView()
         self.view.addSubview(swipeableView)
         swipeableView.translatesAutoresizingMaskIntoConstraints = false
-        swipeableView!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -100).isActive = true
+        swipeableView!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         swipeableView!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        swipeableView!.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        swipeableView!.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        swipeableView!.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.8).isActive = true
+        swipeableView!.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
         
         swipeableView.didStart = {view, location in
             print("Did start swiping view at location: \(location)")
@@ -69,7 +87,7 @@ class SwipeDeckController: UIViewController {
         }
     }
     
-    // MARK: ()
+    
     func nextCardView() -> UIView? {
         if colorIndex >= colors.count {
             colorIndex = 0
@@ -87,7 +105,8 @@ class SwipeDeckController: UIViewController {
             
             // This is important:
             // https://github.com/zhxnlai/ZLSwipeableView/issues/9
-            /*// Alternative:
+            /*
+             // Alternative:
              let metrics = ["width":cardView.bounds.width, "height": cardView.bounds.height]
              let views = ["contentView": contentView, "cardView": cardView]
              cardView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[contentView(width)]", options: .AlignAllLeft, metrics: metrics, views: views))

@@ -23,9 +23,4 @@ class QueueController: UINavigationController {
         self.viewControllers = [rootVC]
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }

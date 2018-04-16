@@ -83,12 +83,13 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
     // responsible for switches between Edit and View mode
     func tableView(_ tableView: UITableView,
                    editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        if (self.editButtonItem.isEnabled){
+        if (self.editButtonItem.isEnabled) {
             return .delete
         } else {
             return .none
         }
     }
+    
     // indents the cells when in Edit mode
     func tableView(_ tableView: UITableView,
                    shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {

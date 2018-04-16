@@ -16,7 +16,11 @@ class ActivityController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        activityFeed.navigationItem.setRightBarButton(UIBarButtonItem(title: "My Profile", style: .plain, target: self, action: #selector(navigateToMyProfile)), animated: true)
+        activityFeed.navigationItem.setRightBarButton(UIBarButtonItem(title: "My Profile",
+                                                                      style: .plain,
+                                                                      target: self,
+                                                                      action: #selector(navigateToMyProfile)),
+                                                      animated: true)
         
         self.viewControllers = [activityFeed]
         
