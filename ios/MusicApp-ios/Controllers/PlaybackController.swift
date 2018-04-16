@@ -34,7 +34,7 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
         skipNextButton = UIButton()
         skipPrevButton = UIButton()
         
-        playButton!.setImage(UIImage(named: "icon-pause"), for: .normal)
+        playButton!.setImage(UIImage(named: "icon-play"), for: .normal)
         view.addSubview(playButton!)
         playButton!.translatesAutoresizingMaskIntoConstraints = false
         playButton!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -85,7 +85,7 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
     // action for the Play button
     @objc func playTrack(sender: UIButton!) {
         
-        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint()).id
+        let track = "spotify:track:" + Queue.instance.getAt(atIndex: Queue.instance.getPointer())!.id
         
         if (playing) {
             pause()
@@ -100,9 +100,9 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
  
     // action for the skip button
     @objc func skipTrack(sender: UIButton!) {
-        Queue.instance.skip()
-        print("pointer is " + String(Queue.instance.getPoint()))
-        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint()).id
+        Queue.instance.skipNext()
+        print("pointer is " + String(Queue.instance.getPointer()))
+        let track = "spotify:track:" + Queue.instance.getAt(atIndex: Queue.instance.getPointer())!.id
         startTime = 0
         playing = true
         play(track)
@@ -110,8 +110,8 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
     
     // action for the back button
     @objc func backTrack(sender: UIButton!) {
-        Queue.instance.prev()
-        let track = "spotify:track:" + Queue.instance.nodeAt(atIndex: Queue.instance.getPoint()).id
+        Queue.instance.skipPrev()
+        let track = "spotify:track:" + Queue.instance.getAt(atIndex: Queue.instance.getPointer())!.id
         startTime = 0
         playing = true
         play(track)
@@ -119,7 +119,7 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
 
     // helper function for playing a track
     func play(_ track: String){
-        print(Queue.instance.getPoint())
+        print(Queue.instance.getPointer())
         playButton!.setImage(UIImage(named: "icon-pause"), for: .normal)
         
         self.player?.playSpotifyURI(track, startingWith: 0, startingWithPosition: startTime, callback: { (error) in

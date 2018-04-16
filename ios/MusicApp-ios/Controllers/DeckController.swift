@@ -48,10 +48,12 @@ class SwipeDeckController: UIViewController {
             print("Did swipe view in direction: \(direction), vector: \(vector)")
             if (direction.description == "Right") {
                 print("Swipe Right")
-                guard let cardView = view as? CardView else {
+                if let cardView = view as? CardView {
+                    print("Got card view")
+                    self.queue.append(track: cardView.track!)
+                } else {
                     fatalError("Error")
                 }
-                self.queue.append(track: cardView.track!)
             }
         }
         swipeableView.didCancel = {view in
@@ -64,12 +66,6 @@ class SwipeDeckController: UIViewController {
             print("Did disappear swiping view")
         }
         
-        //        constrain(swipeableView, view) { view1, view2 in
-        //            view1.left == view2.left+50
-        //            view1.right == view2.right-50
-        //            view1.top == view2.top + 120
-        //            view1.bottom == view2.bottom - 100
-        //        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -90,17 +86,6 @@ class SwipeDeckController: UIViewController {
         index = index + 1
         
         return cardView
-    }
-    
-    func colorForName(_ name: String) -> UIColor {
-        let sanitizedName = name.replacingOccurrences(of: " ", with: "")
-        let selector = "flat\(sanitizedName)Color"
-        return UIColor.perform(Selector(selector)).takeUnretainedValue() as! UIColor
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 }
