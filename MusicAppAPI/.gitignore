@@ -25,3 +25,7 @@ nbdist/
 .nb-gradle/
 
 .DS_Store
+/bin/
+mvn
+mvn.cmd
+application.properties
