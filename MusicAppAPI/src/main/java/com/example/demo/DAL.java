@@ -1,9 +1,14 @@
 package com.example.demo;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -11,8 +16,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.User;
+import spotify.controller.SPTController;
 import entities.Event;
 import entities.Job;
+import entities.Track;
 
 @Repository
 @Transactional
@@ -20,6 +27,8 @@ public class DAL {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
+	
+	private SPTController spt = new SPTController();
 	
 	
 	class EventRowMapper implements RowMapper<Event>{
@@ -43,13 +52,43 @@ public class DAL {
 		return jdbcTemplate.query(sql, new EventRowMapper());
 	}
 
-	public String addEvent(Event event) {
+	public void addEvent(Event event) {
 		String sql = "INSERT INTO Events VALUES (null,'";
 		sql += event.getEventType() + "','";
 		sql += event.getSongID() + "','";
 		sql += event.getIdUser() + "');";
 		jdbcTemplate.execute(sql);
-		return null;
+	}
+	
+	public List<Track> getRecs(String token) {
+		List<Track> tracks = new ArrayList<>();
+		try {
+            Process pr = Runtime.getRuntime().exec("python ml-recommender/mockrecommender.py");
+            BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
+            String line = "";
+            while((line = bfr.readLine()) != null) {
+            	JSONObject json = spt.getTrack(line, token);
+            	if (json == null) {
+            		continue;
+            	}
+            	Track track = new Track();
+            	track.setTrackID(json.getString("id"));
+            	track.setTrackName(json.getString("name"));
+            	track.setDuration(json.getInt("duration_ms"));
+            	JSONArray artists = json.getJSONArray("artists");
+            	for (int i = 0; i < artists.length(); i++) {
+            		track.addArtist(artists.getJSONObject(i).getString("name"));
+            	}
+            	JSONObject album = json.getJSONObject("album");
+            	track.setAlbumName(album.getString("name"));
+            	JSONArray albumArt = album.getJSONArray("images");
+            	track.setAlbumArtUrl(albumArt.getJSONObject(1).getString("url"));
+            	tracks.add(track);
+            }           
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		return tracks;
 	}
 	
 	

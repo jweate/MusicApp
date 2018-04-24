@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import entities.Event;
 import entities.Job;
+import entities.Track;
 import entities.User;
 
 
@@ -23,28 +24,27 @@ public class AController {
 	@Autowired
 	private DAL dal;
 	
-	
-	
-	
 	@RequestMapping(value = "/getEvents", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Event> getAllEvents(){
 		return dal.getAllEvents();
 	}
 	
-	
 	@RequestMapping(value = "/addEvent", method = RequestMethod.POST)
 	@ResponseBody
-	public String addEvent(@RequestParam("EventType") String EventType,
+	public void addEvent(@RequestParam("EventType") String EventType,
 							@RequestParam("SongID") String SongID,
 							@RequestParam("UserID") int UserID) {
 		Event event = new Event();
 		event.setEventType(EventType);
 		event.setSongID(SongID);
 		event.setIdUser(UserID);
-		
+	}
 	
-		return dal.addEvent(event);
+	@RequestMapping(value = "/getRecs", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Track> getRecs(@RequestParam("token") String token) {
+		return dal.getRecs(token);
 	}
 	
 	
