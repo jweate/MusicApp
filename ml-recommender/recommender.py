@@ -4,8 +4,8 @@ import graphlab as gl
 data_dir = './dataset'
 
 tracks = gl.SFrame.read_csv(path.join(data_dir, 'tracks.csv'))
-training_data = gl.SFrame.read_csv(path.join(data_dir, 'train_0.csv'))
-validation_data = gl.SFrame.read_csv(path.join(data_dir, 'test_0.csv'))
+actions = gl.SFrame.read_csv(path.join(data_dir, 'actions.csv'))
+training_data, validation_data = gl.recommender.util.random_split_by_user(actions, user_id='userID', item_id='trackID')
 
 model = gl.recommender.ranking_factorization_recommender.create(training_data, 
                                                                 user_id='userID', 

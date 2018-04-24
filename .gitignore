@@ -69,3 +69,5 @@ fastlane/test_output
 # python
 .ipynb_checkpoints
 *.pyc
+.metadata
+.recommenders
