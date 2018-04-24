@@ -16,9 +16,19 @@ class ActivityController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        activityFeed.navigationItem.setRightBarButton(UIBarButtonItem(title: "My Profile", style: .plain, target: self, action: #selector(navigateToMyProfile)), animated: true)
+        activityFeed.navigationItem.setRightBarButton(UIBarButtonItem(title: "My Profile",
+                                                                      style: .plain,
+                                                                      target: self,
+                                                                      action: #selector(navigateToMyProfile)),
+                                                      animated: true)
         
         self.viewControllers = [activityFeed]
+        
+        self.navigationBar.barTintColor = UIColor(hexString: "#333333")
+        self.navigationBar.tintColor = UIColor(hexString: "#00ffff")
+        self.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor: UIColor(hexString: "#f5f5f5")
+        ]
         
     }
 

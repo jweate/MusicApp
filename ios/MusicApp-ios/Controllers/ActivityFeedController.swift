@@ -8,12 +8,27 @@
 
 import UIKit
 
-class ActivityFeedController: UITableViewController {
+class ActivityFeedController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+
+    
+    var tableView = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "Activity"
+        
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        self.view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+        tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1.0).isActive = true
+        
+        tableView.register(MyCell.self, forCellReuseIdentifier: "cellId")
+
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -29,14 +44,28 @@ class ActivityFeedController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    // determines the amount of rows in View
+   func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 15
+    }
+    
+    // populates individual Cells
+   func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+        
+        cell.textLabel?.text = "Sample Activity " + String(indexPath.row)
+        
+        
+        return cell
     }
 
     /*

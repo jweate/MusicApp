@@ -1,0 +1,20 @@
+PODS:
+  - Cartography (3.0.1)
+  - "UIColor+FlatColors (0.0.2)"
+
+DEPENDENCIES:
+  - Cartography
+  - "UIColor+FlatColors"
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Cartography
+    - "UIColor+FlatColors"
+
+SPEC CHECKSUMS:
+  Cartography: f8c899bb0f5cf20758644a8eea59a75e98a03a5d
+  "UIColor+FlatColors": 6c699df7a575281794c688c64cee6c44fd1f93b4
+
+PODFILE CHECKSUM: 0ce8e5d1ca6dd68e42a65b89723c6f2b9e4f8688
+
+COCOAPODS: 1.5.0

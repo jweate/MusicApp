@@ -18,8 +18,9 @@ import os.log
 class RootController: UITabBarController {
     
     // MARK: Properties
-    var auth: AuthController?
+    public var auth: AuthController?
     var isAuth = false
+    static var firstTimeSession: SPTSession?
     
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
@@ -41,16 +42,32 @@ class RootController: UITabBarController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateAfterFirstLogin), name: Notification.Name("LoggedIn"), object: nil)
         
         
-        queue.tabBarItem = UITabBarItem(title: "Queue", image: UIImage(named: "icon-spotify"), selectedImage: UIImage(named: "icon-spotify"))
+        queue.tabBarItem = UITabBarItem(title: "queue",
+                                        image: UIImage(named: "icon-queue-inactive"),
+                                        selectedImage: UIImage(named: "icon-queue-active"))
         queue.tabBarItem.tag = 0
-        browse.tabBarItem = UITabBarItem(title: "Browse", image: UIImage(named: "icon-spotify"), selectedImage: UIImage(named: "icon-spotify"))
+        browse.tabBarItem = UITabBarItem(title: "browse",
+                                         image: UIImage(named: "icon-browse-inactive"),
+                                         selectedImage: UIImage(named: "icon-browse-active"))
+        
         browse.tabBarItem.tag = 1
-        activity.tabBarItem = UITabBarItem(title: "Activity", image: UIImage(named: "icon-spotify"), selectedImage: UIImage(named: "icon-spotify"))
+        activity.tabBarItem = UITabBarItem(title: "connect",
+                                           image: UIImage(named: "icon-connect-inactive"),
+                                           selectedImage: UIImage(named: "icon-connect-active"))
         activity.tabBarItem.tag = 2
         
+        queue.tabBarHeight = tabBar.frame.height
+        //queue.queueList.tabBarHeight = tabBar.frame.height
+        
         viewControllers = [queue, browse, activity]
-        tabBar.barTintColor = .clear
-        tabBar.backgroundImage = UIImage()
+        tabBar.barTintColor = UIColor(hexString: "#333333")
+        tabBar.tintColor = UIColor(hexString: "#00ffff")
+
+//        Queue.instance.append(track: Track("Sample Song 1", "4iV5W9uYEdYUVa79Axb7Rh"))
+//        Queue.instance.append(track: Track("Sample Song 2", "6JzzI3YxHCcjZ7MCQS2YS1"))
+//        Queue.instance.append(track: Track("Sample Song 3", "58s6EuEYJdlb0kO7awm3Vp"))
+//        Queue.instance.append(track: Track("Sample Song 4", "6JzzI3YxHCcjZ7MCQS2YS1"))
+//        Queue.instance.append(track: Track("Sample Song 5", "58s6EuEYJdlb0kO7awm3Vp"))
     }
     
     @objc func updateAfterFirstLogin () {
@@ -58,10 +75,9 @@ class RootController: UITabBarController {
         isAuth = true
         if let sessionObj:AnyObject = UserDefaults.standard.object(forKey: "SpotifySession") as AnyObject? {
             let sessionDataObj = sessionObj as! Data
-            let firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as! SPTSession
+            RootController.firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as? SPTSession
             self.dismiss(animated: true)
-//            self.session = firstTimeSession
-//            initializePlayer(authSession: session)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "Playtime"), object: nil)
         }
     }
     
@@ -70,5 +86,24 @@ class RootController: UITabBarController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
 
+extension UIColor {
+    convenience init(hexString: String) {
+        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int = UInt32()
+        Scanner(string: hex).scanHexInt32(&int)
+        let a, r, g, b: UInt32
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
+    }
 }

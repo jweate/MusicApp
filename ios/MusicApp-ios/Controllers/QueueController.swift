@@ -10,17 +10,23 @@ import UIKit
 
 class QueueController: UINavigationController {
     
-    var queueList = QueueListController()
-
+    var rootVC = QueueListController()
+    //var queueList = QueueListController()
+    //var playback = PlaybackController()
+    
+    var tabBarHeight: CGFloat?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        rootVC.tabBarHeight = tabBarHeight!
+        self.viewControllers = [rootVC]
         
-        self.viewControllers = [queueList]
+        self.navigationBar.barTintColor = UIColor(hexString: "#333333")
+        self.navigationBar.tintColor = UIColor(hexString: "#00ffff")
+        self.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor: UIColor(hexString: "#f5f5f5")
+        ]
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
 }

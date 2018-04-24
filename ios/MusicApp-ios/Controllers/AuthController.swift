@@ -7,11 +7,10 @@
 //
 import UIKit
 
-class AuthController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAudioStreamingDelegate {
+class AuthController: UIViewController {
     
     var auth = SPTAuth.defaultInstance()!
     var session:SPTSession!
-    var player: SPTAudioStreamingController?
     var loginUrl: URL?
     
     override func viewDidLoad() {
@@ -20,7 +19,7 @@ class AuthController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAu
         
         let button = UIButton()
         button.backgroundColor = UIColor.white
-        button.setTitle("Name your Button ", for: .normal)
+        button.setTitle("Sign In with Spotify", for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         
         self.view.addSubview(button)
@@ -28,23 +27,14 @@ class AuthController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAu
         button.translatesAutoresizingMaskIntoConstraints = false
         button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        button.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        button.layer.cornerRadius = 20
+        button.backgroundColor = UIColor(hexString: "#1DB954")
         
         setup()
     }
     
-    
-    /*
-     * Initializes the Spotify Player
-     */
-    func initializePlayer(authSession:SPTSession){
-        if self.player == nil {
-            self.player = SPTAudioStreamingController.sharedInstance()
-            self.player!.playbackDelegate = self
-            self.player!.delegate = self
-            try! player!.start(withClientId: auth.clientID)
-            self.player!.login(withAccessToken: authSession.accessToken)
-        }
-    }
     
     // setup Spotify environment
     func setup(){
@@ -53,7 +43,7 @@ class AuthController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAu
         SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope, SPTAuthPlaylistModifyPublicScope, SPTAuthPlaylistModifyPrivateScope]
         loginUrl = SPTAuth.defaultInstance().spotifyWebAuthenticationURL()
     }
-    
+        
     // action for the Login button
     @objc func buttonAction(sender: UIButton!) {
         print("Button tapped")
@@ -63,12 +53,5 @@ class AuthController: UIViewController, SPTAudioStreamingPlaybackDelegate, SPTAu
             }
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
     
 }
