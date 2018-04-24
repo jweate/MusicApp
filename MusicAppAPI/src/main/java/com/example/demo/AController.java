@@ -43,7 +43,7 @@ public class AController {
 	
 	@RequestMapping(value = "/getRecs", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Track> getRecs(@RequestParam("token") String token) {
+	public List<Track> getRecs(@RequestParam("access_token") String token) {
 		return dal.getRecs(token);
 	}
 	
