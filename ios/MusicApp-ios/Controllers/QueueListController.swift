@@ -29,6 +29,7 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         self.title = "Queue"
+
         self.view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
@@ -59,7 +60,7 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
         
-        return Queue.instance.count()
+        return Queue.instance.size()
     }
 
     // populates individual Cells
@@ -67,7 +68,7 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
-        let node = Queue.instance.nodeAt(atIndex: indexPath.row)
+        let node = Queue.instance.getAt(atIndex: indexPath.row)!
         cell.textLabel?.text = node.title
         cell.imageView?.image = node.artwork
         return cell
@@ -78,9 +79,8 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
                    moveRowAt sourceIndexPath: IndexPath,
                    to destinationIndexPath: IndexPath) {
         
-        let movedObject = Queue.instance.nodeAt(atIndex: sourceIndexPath.row)
-        Queue.instance.removeAt(atIndex: sourceIndexPath.row)
-        Queue.instance.insertAt(String: movedObject, atIndex: destinationIndexPath.row)
+        let movedTrack = Queue.instance.removeAt(atIndex: sourceIndexPath.row)!
+        Queue.instance.putAt(track: movedTrack, atIndex: destinationIndexPath.row)
         // To check for correctness enable: self.tableView.reloadData()
     }
     
@@ -111,7 +111,7 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
                    forRowAt indexPath: IndexPath) {
         Queue.instance.removeAt(atIndex: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
-        print(Queue.instance.count())
+        print(Queue.instance.size())
     }
     
 }

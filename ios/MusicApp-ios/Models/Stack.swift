@@ -141,28 +141,34 @@ class Stack {
         
     }
     
-    
-    public func count() -> Int {
-        return list.count
+    public func size() -> Int {
+        return list.size
     }
     
     public func push(track: Track) {
         list.append(value: track)
     }
     
-    public func pop() -> Track {
+    public func pop() -> Track? {
         return list.removeAt(0)
     }
     
+    public func removeAt(atIndex index: Int) -> Track? {
+        return list.removeAt(index)
+    }
+    
+    public func getAt(atIndex index: Int) -> Track? {
+        return list.nodeAt(atIndex: index)?.value
+    }
+    
+    
     public func toArray() -> [Track] {
-        var counter = 0
-        let final = count()
         var array = [Track]()
-        while (counter < final){
-            array.insert(self.pop(), at: counter)
-            counter = counter + 1
+        for i in 0..<size() {
+            array.append(getAt(atIndex: i)!)
         }
         return array
     }
     
 }
+
