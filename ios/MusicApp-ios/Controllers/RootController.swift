@@ -21,6 +21,7 @@ class RootController: UITabBarController {
     public var auth: AuthController?
     var isAuth = false
     static var firstTimeSession: SPTSession?
+    public var user: SPTUser?
     
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
@@ -68,6 +69,8 @@ class RootController: UITabBarController {
 //        Queue.instance.append(track: Track("Sample Song 3", "58s6EuEYJdlb0kO7awm3Vp"))
 //        Queue.instance.append(track: Track("Sample Song 4", "6JzzI3YxHCcjZ7MCQS2YS1"))
 //        Queue.instance.append(track: Track("Sample Song 5", "58s6EuEYJdlb0kO7awm3Vp"))
+        
+        print(Queue.instance.count())
     }
     
     @objc func updateAfterFirstLogin () {
@@ -78,6 +81,14 @@ class RootController: UITabBarController {
             RootController.firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as? SPTSession
             self.dismiss(animated: true)
             NotificationCenter.default.post(name: Notification.Name(rawValue: "Playtime"), object: nil)
+            //print(RootController.firstTimeSession?.accessToken)
+//            SPTUser.requestCurrentUser(withAccessToken: RootController.firstTimeSession?.accessToken, callback: { (error, request) in
+//                if(error == nil){
+//                    let user = request as! SPTUser
+//                    print(user.displayName)
+//                    
+//                }
+//            })
         }
     }
     

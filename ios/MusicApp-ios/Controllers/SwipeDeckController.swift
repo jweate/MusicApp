@@ -20,7 +20,7 @@ class SwipeDeckController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Queue"
+        self.title = "Browse"
         
         swipeableView = ZLSwipeableView()
         
@@ -52,6 +52,7 @@ class SwipeDeckController: UIViewController {
                     fatalError("Error")
                 }
                 self.queue.append(track: cardView.track!)
+                //print("Song is is " + self.queue.nodeAt(atIndex: 0).title)
             }
         }
         swipeableView.didCancel = {view in

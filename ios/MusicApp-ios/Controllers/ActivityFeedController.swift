@@ -64,7 +64,6 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         
         cell.textLabel?.text = "Sample Activity " + String(indexPath.row)
         
-        
         return cell
     }
 
