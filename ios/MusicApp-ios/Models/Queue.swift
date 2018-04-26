@@ -13,56 +13,54 @@ class Queue {
     public var pointer = 0
     
     
-    public func count() -> Int {
-        return list.count
+    public func size() -> Int {
+        return list.size
     }
     
     public func append(track: Track) {
         list.append(value: track)
     }
     
-    public func pop() -> Track {
+    public func pop() -> Track? {
         return list.removeAt(0)
     }
     
-    public func nodeAt(atIndex index: Int) -> Track {
-        return list.nodeAt(atIndex: index).value
+    public func getAt(atIndex index: Int) -> Track? {
+        return list.nodeAt(atIndex: index)?.value
     }
     
-    public func insertAt(String value: Track, atIndex index: Int) {
-        let newNode = LinkedListNode<Track>(value: value)
-        list.insert(newNode, atIndex: index)
+    public func putAt(track value: Track, atIndex index: Int) {
+        list.insert(value, atIndex: index)
     }
     
-    public func removeAt(atIndex index: Int) {
-        list.removeAt(index)
+    public func removeAt(atIndex index: Int) -> Track? {
+        return list.removeAt(index)
     }
     
-    public func skip() {
-        if (pointer == count() - 1) {
-            print("fell in")
+    public func skipNext() {
+        if (pointer == size() - 1) {
             pointer = 0
-        }
-        else{
+        } else {
             pointer = pointer + 1
         }
     }
     
-    public func prev() {
-        pointer = pointer - 1
+    public func skipPrev() {
+        if (pointer == 0) {
+            pointer = size() - 1
+        } else {
+            pointer = pointer - 1
+        }
     }
     
-    public func getPoint() -> Int {
+    public func getPointer() -> Int {
         return pointer
     }
     
     public func toArray() -> [Track] {
-        var counter = 0
-        let final = count()
         var array = [Track]()
-        while (counter < final){
-            array.insert(Queue.instance.pop(), at: counter)
-            counter = counter + 1
+        for i in 0..<size() {
+            array.append(getAt(atIndex: i)!)
         }
         return array
     }

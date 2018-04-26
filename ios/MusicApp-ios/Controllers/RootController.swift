@@ -61,8 +61,8 @@ class RootController: UITabBarController {
         //queue.queueList.tabBarHeight = tabBar.frame.height
         
         viewControllers = [queue, browse, activity]
-        tabBar.barTintColor = UIColor(hexString: "333333")
-        tabBar.tintColor = UIColor(hexString: "B104FF")
+        tabBar.barTintColor = UIColor(hexString: "#333333")
+        tabBar.tintColor = UIColor(hexString: "#00ffff")
 
 //        Queue.instance.append(track: Track("Sample Song 1", "4iV5W9uYEdYUVa79Axb7Rh"))
 //        Queue.instance.append(track: Track("Sample Song 2", "6JzzI3YxHCcjZ7MCQS2YS1"))

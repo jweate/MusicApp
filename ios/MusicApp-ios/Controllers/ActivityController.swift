@@ -24,6 +24,12 @@ class ActivityController: UINavigationController {
         
         self.viewControllers = [activityFeed]
         
+        self.navigationBar.barTintColor = UIColor(hexString: "#333333")
+        self.navigationBar.tintColor = UIColor(hexString: "#00ffff")
+        self.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor: UIColor(hexString: "#f5f5f5")
+        ]
+        
     }
 
     override func didReceiveMemoryWarning() {

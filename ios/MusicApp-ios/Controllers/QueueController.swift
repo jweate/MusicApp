@@ -21,6 +21,12 @@ class QueueController: UINavigationController {
     
         rootVC.tabBarHeight = tabBarHeight!
         self.viewControllers = [rootVC]
+        
+        self.navigationBar.barTintColor = UIColor(hexString: "#333333")
+        self.navigationBar.tintColor = UIColor(hexString: "#00ffff")
+        self.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor: UIColor(hexString: "#f5f5f5")
+        ]
     }
     
 }

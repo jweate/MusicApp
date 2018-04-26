@@ -22,7 +22,6 @@ struct RawTrack: Decodable {
 
 /*
 class Track {
-    
     public var title: String?
     public var artist: String?
     public var id: String?
@@ -31,8 +30,6 @@ class Track {
         self.title = Title
         self.id = Id
     }
-    
-    
 }
 */
 
