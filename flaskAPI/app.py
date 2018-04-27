@@ -1,11 +1,10 @@
 from flask import Flask, jsonify, request
-from recommender.mockrecommender import get_recs
-from spotify_controller.spt_controller import get_track
-#import graphlab as gl
-#from recommender.glrec.recommender import suggest_tracks
-
+from spotify_controller.spotify_controller import get_track
+from recommender.recommender import get_recs, get_mock_recs
 
 application = Flask(__name__)
+application.debug = True
+application.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 @application.route('/')
 def api_root():
@@ -13,27 +12,24 @@ def api_root():
 
 @application.route('/recs')
 def api_recs():
-    recs = get_recs()
-    tracks = []
     token = request.args.get('access_token')
+    #recs = get_recs()
+    recs = get_mock_recs()
+    tracks = []
+    print 'hello'
     for item in recs:
         resp = get_track(item, token)
         artists = []
         for artist in resp['artists']:
             artists.append(artist['name'])
-        tracks.append({'id': resp['id'], 
+        tracks.append({'id': resp['id'],
             'name': resp['name'],
-            'duration_ms': resp['duration_ms'], 
+            'duration_ms': resp['duration_ms'],
             'artists': artists,
-            'album': resp['album']['name'], 
+            'album': resp['album']['name'],
             'albumArtUrl': resp['album']['images'][1]['url']
             })
-    return jsonify(tracks) 
-
-#@application_route('/graphlab')
-#def api_graphlab():
-#    gl_text = suggest_tracks()
-#    return gl_text
+    return jsonify(tracks)
 
 if __name__ == "__main__":
     application.run()

@@ -1,4 +1,11 @@
+import graphlab as gl
+import os
+
 def get_recs():
+    #todo
+    return 'Okay'
+
+def get_mock_recs():
     rec_list = []
     rec_list.append("25oOaleife6E2MIKmFkPvg")
     rec_list.append("4DTpngLjoHj5gFxEZFeD3J")
