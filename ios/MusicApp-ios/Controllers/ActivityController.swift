@@ -20,7 +20,7 @@ class ActivityController: UINavigationController {
                                                                       style: .plain,
                                                                       target: self,
                                                                       action: #selector(navigateToMyProfile)),
-                                                      animated: true)
+                                                      animated: false)
         
         self.viewControllers = [activityFeed]
         
@@ -38,7 +38,7 @@ class ActivityController: UINavigationController {
     }
     
     @objc func navigateToMyProfile(_ sender: UIBarButtonItem) {
-        self.pushViewController(myProfile, animated: true)
+        self.pushViewController(myProfile, animated: false)
     }
     
     

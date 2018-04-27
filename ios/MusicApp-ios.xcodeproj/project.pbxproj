@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		29295702207AA4A4002F98A3 /* QueueListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29295701207AA4A4002F98A3 /* QueueListController.swift */; };
-		29295704207AA6B5002F98A3 /* DeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29295703207AA6B5002F98A3 /* DeckController.swift */; };
+		29295704207AA6B5002F98A3 /* SwipeDeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29295703207AA6B5002F98A3 /* SwipeDeckController.swift */; };
 		29295706207AA79F002F98A3 /* ActivityFeedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29295705207AA79F002F98A3 /* ActivityFeedController.swift */; };
 		29295708207AA9E6002F98A3 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29295707207AA9E6002F98A3 /* ProfileController.swift */; };
 		294AB0D020782A37005E9A69 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294AB0CF20782A37005E9A69 /* RootController.swift */; };
@@ -51,7 +51,7 @@
 
 /* Begin PBXFileReference section */
 		29295701207AA4A4002F98A3 /* QueueListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueListController.swift; sourceTree = "<group>"; };
-		29295703207AA6B5002F98A3 /* DeckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckController.swift; sourceTree = "<group>"; };
+		29295703207AA6B5002F98A3 /* SwipeDeckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeDeckController.swift; sourceTree = "<group>"; };
 		29295705207AA79F002F98A3 /* ActivityFeedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedController.swift; sourceTree = "<group>"; };
 		29295707207AA9E6002F98A3 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		294AB0CF20782A37005E9A69 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
@@ -132,7 +132,7 @@
 				29295701207AA4A4002F98A3 /* QueueListController.swift */,
 				E2E18C7020810ECD000CE9AF /* PlaybackController.swift */,
 				294AB0D520782CAC005E9A69 /* BrowseController.swift */,
-				29295703207AA6B5002F98A3 /* DeckController.swift */,
+				29295703207AA6B5002F98A3 /* SwipeDeckController.swift */,
 				294AB0DB20783189005E9A69 /* ActivityController.swift */,
 				29295705207AA79F002F98A3 /* ActivityFeedController.swift */,
 				294AB0E1207843B2005E9A69 /* MyProfileController.swift */,
@@ -411,7 +411,7 @@
 				E2E18C842081876E000CE9AF /* Direction.swift in Sources */,
 				E286292D207EAE31008E41AF /* CardView.swift in Sources */,
 				294AB0D420782AE8005E9A69 /* QueueController.swift in Sources */,
-				29295704207AA6B5002F98A3 /* DeckController.swift in Sources */,
+				29295704207AA6B5002F98A3 /* SwipeDeckController.swift in Sources */,
 				29295708207AA9E6002F98A3 /* ProfileController.swift in Sources */,
 				E2E18C812081876E000CE9AF /* ZLSwipeableView.swift in Sources */,
 				294AB0D220782A52005E9A69 /* AuthController.swift in Sources */,
@@ -563,7 +563,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 29DFC9ZC6U;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MusicApp-ios/Frameworks",
@@ -586,7 +586,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 29DFC9ZC6U;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MusicApp-ios/Frameworks",

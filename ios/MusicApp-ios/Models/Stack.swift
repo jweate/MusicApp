@@ -136,7 +136,7 @@ class Stack {
             print("  album: \(rawTrack.album)")
             let track = Track(rawTrack, image: albumArtwork!)
             list.append(value: track)
-            Queue.instance.append(track: track)
+            //Queue.instance.append(track: track)
         }
         
     }
