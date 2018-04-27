@@ -42,10 +42,12 @@ class AuthController: UIViewController {
         SPTAuth.defaultInstance().redirectURL = URL(string: "MusicApp-ios://returnAfterLogin")
         SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope, SPTAuthPlaylistModifyPublicScope, SPTAuthPlaylistModifyPrivateScope]
         loginUrl = SPTAuth.defaultInstance().spotifyWebAuthenticationURL()
+
     }
         
     // action for the Login button
     @objc func buttonAction(sender: UIButton!) {
+        
         print("Button tapped")
         if UIApplication.shared.openURL(loginUrl!) {
             if auth.canHandle(auth.redirectURL) {
