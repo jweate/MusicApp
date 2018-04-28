@@ -1,9 +1,9 @@
-from flask import Flask, jsonify, request
+from flask import abort, Flask, jsonify, make_response, request
 from spotify_controller.spotify_controller import get_several_tracks
 from recommender.recommender import get_recs, get_mock_recs
 
 application = Flask(__name__)
-application.debug = True
+#application.debug = True
 application.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 @application.route('/')
@@ -14,6 +14,10 @@ def api_root():
 def api_recs():
     access_token = request.args.get('access_token')
     user_id = request.args.get('user_id')
+    if not access_token:
+        abort(make_response(jsonify(message="missing access_token parameter"), 400))
+    if not user_id:
+        abort(make_response(jsonify(message="missing user_id parameter"), 400))
     recs = get_recs(user_id)
     #recs = get_mock_recs()
     tracks = []
