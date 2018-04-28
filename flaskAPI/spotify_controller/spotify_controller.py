@@ -1,8 +1,10 @@
 import requests
 
-def get_track(track_id, token):
-    url = "".join(["https://api.spotify.com/v1/tracks/", track_id])
-    headers = {"Authorization": "Bearer " + token}
-    r = requests.get(url, headers=headers)
-    return r.json()
+SPOTIFY_URL = "https://api.spotify.com/v1/"
 
+def get_several_tracks(track_ids, token):
+    url = ''.join([SPOTIFY_URL, "tracks"])
+    params = {"ids": track_ids}
+    headers = {"Authorization": "Bearer " + token}
+    r = requests.get(url, params=params, headers=headers)
+    return r.json()
