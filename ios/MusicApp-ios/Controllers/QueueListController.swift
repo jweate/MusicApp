@@ -14,6 +14,7 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
     var playback = PlaybackController()
     
     var tabBarHeight: CGFloat?
+    var user: SPTUser?
     
     
     override func viewDidLoad() {
@@ -44,10 +45,13 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
         // register Cells - located at bottom of file
         tableView.register(MyCell.self, forCellReuseIdentifier: "cellId")
         
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
+        super.viewDidAppear(animated)
+        tableView.reloadData()
     }
     
     override func setEditing(_ editing: Bool,
