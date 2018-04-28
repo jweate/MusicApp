@@ -3,7 +3,7 @@ from spotify_controller.spotify_controller import get_track
 from recommender.recommender import get_recs, get_mock_recs
 
 application = Flask(__name__)
-application.debug = True
+#application.debug = True
 application.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
 @application.route('/')

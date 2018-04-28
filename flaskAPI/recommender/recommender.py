@@ -3,6 +3,7 @@ import os
 
 def get_recs():
     #todo
+    model = gl.load_model('recommender_model')
     return 'Okay'
 
 def get_mock_recs():
