@@ -105,14 +105,14 @@ class Stack {
     static let instance = Stack()
     
     init() {
-        var urlComp = URLComponents(string: "http://ec2-54-172-30-237.compute-1.amazonaws.com/recs")
+        var urlComp = URLComponents(string: "http://ec2-18-205-232-42.compute-1.amazonaws.com/recs")
         urlComp?.queryItems = [
             // TODO
             // Need to get access token after login
             // Just swap value of access_token with actual token value
             // Below var doesn't work because it's empty
             // var myaccesstoken = RootController.firstTimeSession?.accessToken
-            URLQueryItem(name: "access_token", value: "past access token here"),
+            URLQueryItem(name: "access_token", value: "paste access token here"),
             URLQueryItem(name: "user_id", value: "0")
         ]
         let url = urlComp?.url
