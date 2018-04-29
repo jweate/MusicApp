@@ -34,11 +34,13 @@ public class AController {
 	@ResponseBody
 	public void addEvent(@RequestParam("EventType") String EventType,
 							@RequestParam("SongID") String SongID,
-							@RequestParam("UserID") int UserID) {
+							@RequestParam("UserID") String UserID) {
 		Event event = new Event();
 		event.setEventType(EventType);
 		event.setSongID(SongID);
 		event.setIdUser(UserID);
+		
+		dal.addEvent(event);
 	}
 	
 	@RequestMapping(value = "/getRecs", method = RequestMethod.GET)

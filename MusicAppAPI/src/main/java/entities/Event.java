@@ -5,7 +5,7 @@ public class Event {
 	private int idEvent;
 	private String EventType;
 	private String SongID;
-	private int idUser;
+	private String idUser;
 	
 	public Event() {
 		
@@ -35,12 +35,12 @@ public class Event {
 		SongID = songID;
 	}
 
-	public int getIdUser() {
+	public String getIdUser() {
 		return idUser;
 	}
 
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
+	public void setIdUser(String userID) {
+		this.idUser = userID;
 	}
 	
 	
