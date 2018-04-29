@@ -115,20 +115,27 @@ class Stack {
             // Just swap value of access_token with actual token value
             // Below var doesn't work because it's empty
             // var myaccesstoken = RootController.firstTimeSession?.accessToken
-            URLQueryItem(name: "access_token", value: "paste access token here"),
+            URLQueryItem(name: "access_token", value: "paste_access_token_here"),
             URLQueryItem(name: "user_id", value: "0")
         ]
         let url = urlComp?.url
-
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
         var jsonData: Data?
         
-        do {
-            jsonData = try Data(contentsOf: url!, options: NSData.ReadingOptions.mappedIfSafe)
-        } catch let error as NSError {
-            print(error.localizedDescription)
-            print("Using sample data")
-            jsonData = sampleData.data(using: .utf8)
-        }
+        // Need semaphore because dataTask is asynchronous
+        let semaphore = DispatchSemaphore(value: 0)
+        URLSession.shared.dataTask(with: request) { data,response,err in
+            let resp = response as! HTTPURLResponse
+            if resp.statusCode != 200 {
+                // Use sample data if response status code is not 200
+                jsonData = sampleData.data(using: .utf8)
+            } else {
+                jsonData = data
+            }
+            semaphore.signal()
+        }.resume()
+        semaphore.wait()
         
         let decoder = JSONDecoder()
         let rawTrackList = try! decoder.decode(RawTrackList.self, from: jsonData!)
