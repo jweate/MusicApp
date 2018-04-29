@@ -23,7 +23,10 @@ def api_recs():
     #recs = get_mock_recs()
     tracks = []
     track_ids = ','.join(recs)
-    track_json = get_several_tracks(track_ids, access_token)
+    resp = get_several_tracks(track_ids, access_token)
+    if resp.status_code == requests.codes.unauthorized:
+        abort(make_response(jsonify(resp.json()), resp.status_code))
+    track_json = resp.json()
     for track in track_json['tracks']:
         artists = []
         for artist in track['artists']:
