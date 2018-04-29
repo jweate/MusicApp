@@ -63,7 +63,7 @@ public class DAL {
 	public List<Track> getRecs(String token) {
 		List<Track> tracks = new ArrayList<>();
 		try {
-            Process pr = Runtime.getRuntime().exec("python ml-recommender/mockrecommender.py");
+            Process pr = Runtime.getRuntime().exec("python mockrecommender.py");
             BufferedReader bfr = new BufferedReader(new InputStreamReader(pr.getInputStream()));
             String line = "";
             while((line = bfr.readLine()) != null) {

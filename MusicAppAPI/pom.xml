@@ -58,7 +58,19 @@
 		</dependency>
 	</dependencies>
 
-	<build>
+	<build>	
+		<!-- <resources>
+			<resource>
+				<targetPath>../</targetPath>
+				<directory>
+					ml-recommender
+				</directory>
+				<includes>
+					<include>**/*.py</include>
+				</includes>
+			</resource>
+		</resources> -->
+	
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
