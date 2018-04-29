@@ -25,7 +25,7 @@ class CardView: UIView {
         
         print("Initializing card...")
         print("  title: \(track.title)")
-        print("  artist: \(track.artist)")
+//        print("  artist: \(track.artist)")
         print("  album: \(track.album)")
         
         // Track Setup
@@ -64,7 +64,7 @@ class CardView: UIView {
         artistLabel.font = .systemFont(ofSize: 18)
         artistLabel.textAlignment = .center
         artistLabel.textColor = .white
-        artistLabel.text = track.artist
+        artistLabel.text = track.artists[0]
         artistLabel.numberOfLines = 1
         
         self.addSubview(artistLabel)
