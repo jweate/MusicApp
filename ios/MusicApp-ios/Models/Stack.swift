@@ -44,7 +44,10 @@ let sampleData = """
         {
             "title": "Slime Shit (feat. Yak Gotti, Duke & Peewee Roscoe)",
             "artists": [
-                "Young Thug"
+                "Young Thug",
+                "Yak Gotti",
+                "Duke",
+                "PeeWee Roscoe"
             ],
             "album": "Slime season 3",
             "duration_ms": 278040,
@@ -89,7 +92,7 @@ let sampleData = """
             "album": "Slime season 3",
             "duration_ms": 241453,
             "id": "1o5jdqnWybW9Mau4GDWPMa",
-            "artworkURL": {"https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
+            "artworkURL": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
         }
     ],
 }
@@ -122,6 +125,8 @@ class Stack {
         do {
             jsonData = try Data(contentsOf: url!, options: NSData.ReadingOptions.mappedIfSafe)
         } catch let error as NSError {
+            print(error.localizedDescription)
+            print("Using sample data")
             jsonData = sampleData.data(using: .utf8)
         }
         
@@ -133,13 +138,13 @@ class Stack {
         for rawTrack in rawTrackList.tracks {
             print("Appending Track ----")
             print("  title: \(rawTrack.title)")
-            print(" artists: ", terminator: "")
+            print("artists: ", terminator: "")
     
             for (index, artist) in rawTrack.artists.enumerated() {
                 if index == 0 {
                     print("\(artist)")
                 } else {
-                    print("          \(artist)")
+                    print("         \(artist)")
                 }
             }
             print("  album: \(rawTrack.album)")
