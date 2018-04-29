@@ -61,7 +61,7 @@ public class DAL {
     }
 
     public List<Track> getRecs(String token, String id) {
-        String url = "http://ec2-54-172-30-237.compute-1.amazonaws.com/recs?access_token=" + token + "&user_id=" + id;
+        String url = "http://http://ec2-18-205-232-42.compute-1.amazonaws.com//recs?access_token=" + token + "&user_id=" + id;
         JSONArray jsonArray = null;
         try {
             URL obj = new URL(url);
