@@ -84,37 +84,42 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
     
     // action for the Play button
     @objc func playTrack(sender: UIButton!) {
-        
-        let track = "spotify:track:" + Queue.instance.getAt(atIndex: Queue.instance.getPointer())!.id
-        
-        if (playing) {
-            pause()
-            playing = false
-            startTime = (self.player?.playbackState.position)!
+        if !Queue.instance.isEmpty() {
+            let track = "spotify:track:" + Queue.instance.getAt(atIndex: Queue.instance.getPointer())!.id
             
-        } else {
-            play(track)
-            playing = true
+            if (playing) {
+                pause()
+                playing = false
+                startTime = (self.player?.playbackState.position)!
+                
+            } else {
+                play(track)
+                playing = true
+            }
         }
     }
  
     // action for the skip button
     @objc func skipTrack(sender: UIButton!) {
-        Queue.instance.skipNext()
-        print("pointer is " + String(Queue.instance.getPointer()))
-        let track = "spotify:track:" + Queue.instance.getAt(atIndex: Queue.instance.getPointer())!.id
-        startTime = 0
-        playing = true
-        play(track)
+        if !Queue.instance.isEmpty() {
+            Queue.instance.skipNext()
+            print("pointer is " + String(Queue.instance.getPointer()))
+            let track = "spotify:track:" + Queue.instance.getAt(atIndex: Queue.instance.getPointer())!.id
+            startTime = 0
+            playing = true
+            play(track)
+        }
     }
     
     // action for the back button
     @objc func backTrack(sender: UIButton!) {
-        Queue.instance.skipPrev()
-        let track = "spotify:track:" + Queue.instance.getAt(atIndex: Queue.instance.getPointer())!.id
-        startTime = 0
-        playing = true
-        play(track)
+        if !Queue.instance.isEmpty() {
+            Queue.instance.skipPrev()
+            let track = "spotify:track:" + Queue.instance.getAt(atIndex: Queue.instance.getPointer())!.id
+            startTime = 0
+            playing = true
+            play(track)
+        }
     }
 
     // helper function for playing a track

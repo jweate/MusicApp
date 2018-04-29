@@ -65,4 +65,8 @@ class Queue {
         return array
     }
     
+    public func isEmpty() -> Bool {
+        return list.isEmpty
+    }
+    
 }
