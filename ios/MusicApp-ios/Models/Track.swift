@@ -15,8 +15,9 @@ struct RawTrack: Decodable {
     
     var id: String
     var title: String
-    var artist: String
+    var artists = [String]()
     var album: String
+    var artworkURL: String
     var duration_ms: Int
 }
 
@@ -38,17 +39,24 @@ struct Track {
     
     let id: String
     let title: String
-    let artist: String
+    var artists = [String]()
     let duration: Int
     let album: String
     let artwork: UIImage
     
-    init(_ rawTrack: RawTrack, image: UIImage ) {
+    init(_ rawTrack: RawTrack ) {
         id = rawTrack.id
         title = rawTrack.title
-        artist = rawTrack.artist
+        artists = rawTrack.artists
         album = rawTrack.album
         duration = rawTrack.duration_ms
-        artwork = image
+        let url = URL(string: rawTrack.artworkURL)
+        if let data = try? Data(contentsOf: url!) {
+            artwork = UIImage(data: data)!
+        }
+        else {
+            // Change to default image
+            artwork = UIImage(named: "SS3")!
+        }
     }
 }

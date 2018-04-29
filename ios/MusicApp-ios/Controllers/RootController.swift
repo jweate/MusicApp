@@ -70,7 +70,7 @@ class RootController: UITabBarController {
 //        Queue.instance.append(track: Track("Sample Song 4", "6JzzI3YxHCcjZ7MCQS2YS1"))
 //        Queue.instance.append(track: Track("Sample Song 5", "58s6EuEYJdlb0kO7awm3Vp"))
         
-        print(Queue.instance.count())
+        print(Queue.instance.size())
     }
     
     @objc func updateAfterFirstLogin () {

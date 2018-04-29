@@ -49,10 +49,11 @@ class AuthController: UIViewController {
     @objc func buttonAction(sender: UIButton!) {
         
         print("Button tapped")
-        if UIApplication.shared.openURL(loginUrl!) {
-            if auth.canHandle(auth.redirectURL) {
-                // To do - build in error handling
-            }
+        if UIApplication.shared.canOpenURL(loginUrl!) {
+            UIApplication.shared.open(loginUrl!)
+        }
+        else if auth.canHandle(auth.redirectURL) {
+            // To do - build in error handling
         }
     }
     

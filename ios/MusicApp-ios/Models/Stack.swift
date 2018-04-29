@@ -13,99 +13,83 @@ let sampleData = """
     "tracks": [
         {
             "title": "With Them",
-            "artist": "Young Thug",
+            "artists": [
+                "Young Thug"
+            ],
             "album": "Slime season 3",
             "duration_ms": 197746,
             "id": "0tISnxqgVmxqhVghsTi2Rr",
-            "image": {
-                "height": 300,
-                "url": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
-                "width": 300
-            },
+            "artworkURL": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
         },
         {
             "title": "Memo",
-            "artist": "Young Thug",
+            "artists": [
+                "Young Thug"
+            ],
             "album": "Slime season 3",
             "duration_ms": 195413,
             "id": "7tk5tOCj84jine8kKJkPYs",
-            "image": {
-                "height": 300,
-                "url": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
-                "width": 300
-            },
+            "artworkURL": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
         },
         {
             "title": "Drippin'",
-            "artist": "Young Thug",
+            "artists": [
+                "Young Thug"
+            ],
             "album": "Slime season 3",
             "duration_ms": 186453,
             "id": "0f85bMoarvHbdIcfhDjSjN",
-            "image": {
-                "height": 300,
-                "url": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
-                "width": 300
-            },
+            "artworkURL": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
         },
         {
             "title": "Slime Shit (feat. Yak Gotti, Duke & Peewee Roscoe)",
-            "artist": "Young Thug",
+            "artists": [
+                "Young Thug"
+            ],
             "album": "Slime season 3",
             "duration_ms": 278040,
             "id": "7iynYKl5NWdjM1FXTzs6hw",
-            "image": {
-                "height": 300,
-                "url": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
-                "width": 300
-            },
+            "artworkURL": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
         },
         {
             "title": "Digits",
-            "artist": "Young Thug",
+            "artists": [
+                "Young Thug"
+            ],
             "album": "Slime season 3",
             "duration_ms": 176386,
             "id": "4cg1yakyRSIOjxKM2I7J1q",
-            "image": {
-                "height": 300,
-                "url": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
-                "width": 300
-            },
+            "artworkURL": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
         },
         {
             "title": "Worth It",
-            "artist": "Young Thug",
+            "artists": [
+                "Young Thug"
+            ],
             "album": "Slime season 3",
             "duration_ms": 186026,
             "id": "5QCr1xFufKJOTkpcR9ih24",
-            "image": {
-                "height": 300,
-                "url": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
-                "width": 300
-            },
+            "artworkURL": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
         },
         {
             "title": "Tattoos",
-            "artist": "Young Thug",
+            "artists": [
+                "Young Thug"
+            ],
             "album": "Slime season 3",
             "duration_ms": 241813,
             "id": "1vbUiccx25u2ncTe4RujS2",
-            "image": {
-                "height": 300,
-                "url": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
-                "width": 300
-            },
+            "artworkURL": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
         },
         {
             "title": "Problem",
-            "artist": "Young Thug",
+            "artists": [
+                "Young Thug"
+            ],
             "album": "Slime season 3",
             "duration_ms": 241453,
             "id": "1o5jdqnWybW9Mau4GDWPMa",
-            "image": {
-                "height": 300,
-                "url": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
-                "width": 300
-            },
+            "artworkURL": {"https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
         }
     ],
 }
@@ -121,20 +105,45 @@ class Stack {
     static let instance = Stack()
     
     init() {
-        let jsonData = sampleData.data(using: .utf8)
+        var urlComp = URLComponents(string: "http://ec2-54-172-30-237.compute-1.amazonaws.com/recs")
+        urlComp?.queryItems = [
+            // TODO
+            // Need to get access token after login
+            // Just swap value of access_token with actual token value
+            // Below var doesn't work because it's empty
+            // var myaccesstoken = RootController.firstTimeSession?.accessToken
+            URLQueryItem(name: "access_token", value: "past access token here"),
+            URLQueryItem(name: "user_id", value: "0")
+        ]
+        let url = urlComp?.url
+
+        var jsonData: Data?
+        
+        do {
+            jsonData = try Data(contentsOf: url!, options: NSData.ReadingOptions.mappedIfSafe)
+        } catch let error as NSError {
+            jsonData = sampleData.data(using: .utf8)
+        }
+        
         let decoder = JSONDecoder()
         let rawTrackList = try! decoder.decode(RawTrackList.self, from: jsonData!)
-        
+
         os_log("Loaded tracks")
-        
-        let albumArtwork = UIImage(named: "SS3")
         
         for rawTrack in rawTrackList.tracks {
             print("Appending Track ----")
             print("  title: \(rawTrack.title)")
-            print("  artist: \(rawTrack.artist)")
+            print(" artists: ", terminator: "")
+    
+            for (index, artist) in rawTrack.artists.enumerated() {
+                if index == 0 {
+                    print("\(artist)")
+                } else {
+                    print("          \(artist)")
+                }
+            }
             print("  album: \(rawTrack.album)")
-            let track = Track(rawTrack, image: albumArtwork!)
+            let track = Track(rawTrack)
             list.append(value: track)
             //Queue.instance.append(track: track)
         }
@@ -160,7 +169,6 @@ class Stack {
     public func getAt(atIndex index: Int) -> Track? {
         return list.nodeAt(atIndex: index)?.value
     }
-    
     
     public func toArray() -> [Track] {
         var array = [Track]()
