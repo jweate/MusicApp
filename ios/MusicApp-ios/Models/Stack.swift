@@ -94,7 +94,7 @@ let sampleData = """
             "id": "1o5jdqnWybW9Mau4GDWPMa",
             "artworkURL": "https://i.scdn.co/image/aa0ad7304c2d98477434b270bed98f609f37a692",
         }
-    ],
+    ]
 }
 """
 
@@ -115,7 +115,7 @@ class Stack {
             // Just swap value of access_token with actual token value
             // Below var doesn't work because it's empty
             // var myaccesstoken = RootController.firstTimeSession?.accessToken
-            URLQueryItem(name: "access_token", value: "paste_access_token_here"),
+            URLQueryItem(name: "access_token", value: "paste_token_here"),
             URLQueryItem(name: "user_id", value: "0")
         ]
         let url = urlComp?.url

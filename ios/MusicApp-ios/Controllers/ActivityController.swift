@@ -12,7 +12,7 @@ class ActivityController: UINavigationController {
     
     var activityFeed = ActivityFeedController()
     var myProfile = MyProfileController()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,7 +20,7 @@ class ActivityController: UINavigationController {
                                                                       style: .plain,
                                                                       target: self,
                                                                       action: #selector(navigateToMyProfile)),
-                                                      animated: false)
+                                                      animated: true)
         
         self.viewControllers = [activityFeed]
         
@@ -31,16 +31,17 @@ class ActivityController: UINavigationController {
         ]
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     @objc func navigateToMyProfile(_ sender: UIBarButtonItem) {
-        self.pushViewController(myProfile, animated: false)
+        self.pushViewController(myProfile, animated: true)
     }
     
     
-
+    
 }
+

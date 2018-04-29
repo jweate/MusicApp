@@ -26,9 +26,21 @@ class MyProfileController: UIViewController {
         SPTUser.requestCurrentUser(withAccessToken: RootController.firstTimeSession?.accessToken, callback: { (error, request) in
             if(error == nil){
                 self.user = request as? SPTUser
-                self.name = self.user!.displayName as String
-                self.url = URL(string: (self.user!.largestImage.imageURL.absoluteString))
-                self.downloadImage(url: self.url!)
+                if self.user!.displayName == nil {
+                    self.name = "User"
+                }
+                else {
+                    self.name = self.user!.displayName as String
+                }
+                
+                if self.user!.largestImage.imageURL == nil {
+                    self.imageView.image = UIImage(named: "ic_account_box_48pt")
+                }
+                else {
+                    self.url = URL(string: (self.user!.largestImage.imageURL.absoluteString))
+                    self.downloadImage(url: self.url!)
+                }
+
                 button.setTitle(self.name, for: .normal)
 
             }
