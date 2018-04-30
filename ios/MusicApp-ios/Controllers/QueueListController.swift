@@ -11,7 +11,7 @@ import UIKit
 class QueueListController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var tableView = UITableView()
-    var playback = PlaybackController()
+    var playback: PlaybackController?
     
     var tabBarHeight: CGFloat?
     var user: SPTUser?
@@ -35,12 +35,21 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
         tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1.0).isActive = true
+<<<<<<< HEAD
         
         self.view.addSubview(playback.view)
         playback.view.translatesAutoresizingMaskIntoConstraints = false
         playback.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
         playback.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
         playback.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
+=======
+
+        self.view.addSubview((playback?.view)!)
+        playback?.view.translatesAutoresizingMaskIntoConstraints = false
+        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
+        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
+>>>>>>> 3443d7f523b89a7695123487b923506499b20fac
         
         // register Cells - located at bottom of file
         tableView.register(MyCell.self, forCellReuseIdentifier: "cellId")
@@ -52,6 +61,11 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tableView.reloadData()
+        self.view.addSubview((playback?.view)!)
+        playback?.view.translatesAutoresizingMaskIntoConstraints = false
+        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
+        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
     }
     
     override func setEditing(_ editing: Bool,

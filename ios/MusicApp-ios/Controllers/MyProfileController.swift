@@ -15,6 +15,8 @@ class MyProfileController: UIViewController {
     var imageView = UIImageView()
     var name: String?
     var url: URL?
+    var tabBarHeight: CGFloat?
+    var playback: PlaybackController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +35,7 @@ class MyProfileController: UIViewController {
                     self.name = self.user!.displayName as String
                 }
                 
-                if self.user!.largestImage.imageURL == nil {
+                if self.user!.largestImage == nil {
                     self.imageView.image = UIImage(named: "ic_account_box_48pt")
                 }
                 else {
@@ -51,6 +53,11 @@ class MyProfileController: UIViewController {
         self.view.addSubview(button)
         self.view.addSubview(self.imageView)
         
+        self.view.addSubview((playback?.view)!)
+        playback?.view.translatesAutoresizingMaskIntoConstraints = false
+        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
+        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
 
         button.translatesAutoresizingMaskIntoConstraints = false
         button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
@@ -90,6 +97,15 @@ class MyProfileController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.view.addSubview((playback?.view)!)
+        playback?.view.translatesAutoresizingMaskIntoConstraints = false
+        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
+        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
     }
     
 
