@@ -24,8 +24,8 @@ class SwipeDeckController: UIViewController {
         super.viewDidLoad()
         
         self.title = "Browse"
-        
-        let token = "BQDsdsu_25uHjQnAoDJg1dRGQ-iU1nU5FC5gqWS_uU85BIAUZDs5HBVdkD_KXpTRBAjnpfVatN5L4-841_cdYF3sU-WN1EDkF9mhtekGP3ABpqSS3sswjBfkwiO9Cgwjn82v6U9mgPHmQCZgXQ0OvehNNAmIZLUow8oX8X7zdxyc3s2SWQ"
+        //let token = RootController.firstTimeSession?.accessToken
+        let token = "BQDUFWiKFqvXgoWFoRMZU_TV5XUzBewCARp1j7ggqaZgK0vjZTaAm4OFWrItswe5hmNZd5GNxAX46KBIwnK69kzkI5W3DdZsrzuvzB8eebCt6lK93X3RnRvL0ngqu5N5pVAhheCYNv2uxNAIgStH3UeTTkwcMqjtY4EsAa-frnAqOLZG7Q"
         let url = URL(string: "https://api.spotify.com/v1/me")
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"

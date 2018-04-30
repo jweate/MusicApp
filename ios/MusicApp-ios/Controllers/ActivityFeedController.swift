@@ -39,11 +39,42 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     var tableView = UITableView()
     var playback: PlaybackController?
     var tabBarHeight: CGFloat?
-    
+    var userIDName: String?
+    var token: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         //let token = RootController.firstTimeSession?.accessToken
         self.title = "Activity"
+        token = "BQDUFWiKFqvXgoWFoRMZU_TV5XUzBewCARp1j7ggqaZgK0vjZTaAm4OFWrItswe5hmNZd5GNxAX46KBIwnK69kzkI5W3DdZsrzuvzB8eebCt6lK93X3RnRvL0ngqu5N5pVAhheCYNv2uxNAIgStH3UeTTkwcMqjtY4EsAa-frnAqOLZG7Q"
+        
+        print(token)
+        let url = URL(string: "https://api.spotify.com/v1/me")
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.addValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
+        var jsonData: Data?
+        //Need semaphore because dataTask is asynchronous
+        let semaphore = DispatchSemaphore(value: 0)
+        URLSession.shared.dataTask(with: request) { data,response,err in
+            let resp = response as! HTTPURLResponse
+            if resp.statusCode != 200 {
+                // Use sample data if response status code is not 200
+                // THIS SHOULD NEVER HAPPEN. IF IT DOES, WE'RE SCREWED.
+                //jsonData = self.demoData.data(using: .utf8)
+                print("AYO WTF IS GOOD")
+            } else {
+                jsonData = data
+            }
+            semaphore.signal()
+            }.resume()
+        semaphore.wait()
+        
+        let jsonDict: NSDictionary = (try! JSONSerialization.jsonObject(with: jsonData!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSDictionary
+        
+        let userID = jsonDict["id"]! as? String
+        userIDName = userID
+        print("\(userID!)")
+        
         eventList = getEventList()
         tableView.dataSource = self
         tableView.delegate = self
@@ -61,23 +92,12 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         
         //let myCell = UITableViewCell.init(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cellId")
         tableView.register(ActivityCell.self, forCellReuseIdentifier: "cellId")
-        
-//        self.view.addSubview(playback.view)
-//        playback.view.translatesAutoresizingMaskIntoConstraints = false
-//        playback.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
-//        playback.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
-//        playback.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*49.0).isActive = true
-//
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     func getEventList() -> LinkedList<Event> {
         let list = LinkedList<Event>()
-        let url = URL(string: "http://musicappapin-env.bgffh6vnm9.us-east-2.elasticbeanstalk.com/getEvents")
+        let url = URL(string: "http://musicappapin-env.bgffh6vnm9.us-east-2.elasticbeanstalk.com/getConEvents?idUser=\(userIDName!)")
+        print(userIDName)
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
         var jsonData: Data?
@@ -139,13 +159,13 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
-        let token = RootController.firstTimeSession?.accessToken
+        //token = RootController.firstTimeSession?.accessToken
         let event = eventList?.nodeAt(atIndex: indexPath.row)?.value
         print(event!.idUser)
         let url = URL(string: "https://api.spotify.com/v1/users/\(event!.idUser)")
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
-        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
         var jsonData: Data?
         //Need semaphore because dataTask is asynchronous
         let semaphore = DispatchSemaphore(value: 0)
@@ -166,14 +186,16 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         var userName: String?
         if jsonDict["display_name"] is NSNull {
             userName = jsonDict["id"] as? String
+            userIDName = userName
         }
         else {
             userName = jsonDict["display_name"] as? String
+            userIDName = userName
         }
         let newImg = UIImageView(frame: CGRect(x: 5, y: 5, width: 20, height: 20))
         newImg.contentMode = .scaleAspectFit
         let imageArray = jsonDict["images"] as? [[String:Any]]
-        if imageArray!.count == 0 {
+        if imageArray == nil || imageArray!.count == 0 {
             newImg.image = #imageLiteral(resourceName: "ic_account_box_48pt")
             cell.imageView?.image = resizeImage(image: newImg.image!)
         }
