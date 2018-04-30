@@ -9,28 +9,31 @@
 import Foundation
 
 struct RawEvent: Decodable {
-    var idEvent: String
+    var idEvent: Int
     var idUser: String
     var eventType: String
-    var title: String
-    var artist: String
+    var trackName: String
+    var artistName: String
+    var songID: String
 }
 
 
 struct Event {
     
-    var idEvent: String
+    var idEvent: Int
     var idUser: String
     var eventType: String
-    var title: String
-    var artist: String
+    var trackName: String
+    var artistName: String
+    var songID: String
     
     init(_ rawEvent: RawEvent ) {
         idEvent = rawEvent.idEvent
         idUser = rawEvent.idUser
         eventType = rawEvent.eventType
-        title = rawEvent.title
-        artist = rawEvent.artist
+        trackName = rawEvent.trackName
+        artistName = rawEvent.artistName
+        songID = rawEvent.songID
     }
 }
 

@@ -20,10 +20,6 @@ class ActivityCell : UITableViewCell {
     }
 }
 
-struct RawEventList: Decodable {
-    var events: [RawEvent]
-}
-
 class ActivityFeedController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
     let demoData = """
@@ -33,14 +29,16 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
             "idEvent": "1",
             "idUser": "22gq726ts4zr5z2csk5k5ewwa",
             "eventType": "UserAddedSong",
-            "title": "Supermodel",
-            "artist": "SZA"
+            "trackName": "Supermodel",
+            "artistName": "SZA"
         },
     ]
 }
 """
     public var eventList: LinkedList<Event>?
     var tableView = UITableView()
+    var playback = PlaybackController()
+    var tabBarHeight: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +56,12 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         //let myCell = UITableViewCell.init(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cellId")
         tableView.register(ActivityCell.self, forCellReuseIdentifier: "cellId")
         
-        
+//        self.view.addSubview(playback.view)
+//        playback.view.translatesAutoresizingMaskIntoConstraints = false
+//        playback.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+//        playback.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
+//        playback.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*49.0).isActive = true
+//
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -74,23 +77,23 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         var jsonData: Data?
         jsonData = self.demoData.data(using: .utf8)
         // Need semaphore because dataTask is asynchronous
-//        let semaphore = DispatchSemaphore(value: 0)
-//        URLSession.shared.dataTask(with: request) { data,response,err in
-//            let resp = response as! HTTPURLResponse
-//            if resp.statusCode != 200 {
-//                // Use sample data if response status code is not 200
-//                jsonData = self.demoData.data(using: .utf8)
-//            } else {
-//                jsonData = data
-//            }
-//            semaphore.signal()
-//            }.resume()
-//        semaphore.wait()
+        let semaphore = DispatchSemaphore(value: 0)
+        URLSession.shared.dataTask(with: request) { data,response,err in
+            let resp = response as! HTTPURLResponse
+            if resp.statusCode != 200 {
+                // Use sample data if response status code is not 200
+                jsonData = self.demoData.data(using: .utf8)
+            } else {
+                jsonData = data
+            }
+            semaphore.signal()
+            }.resume()
+        semaphore.wait()
         
         let decoder = JSONDecoder()
-        let rawEventList = try! decoder.decode(RawEventList.self, from: jsonData!)
+        let rawEventList = try! decoder.decode([RawEvent].self, from: jsonData!)
         
-        for rawEvent in rawEventList.events {
+        for rawEvent in rawEventList {
             let event = Event(rawEvent)
             list.append(value: event)
         }
@@ -121,7 +124,7 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
-        let token = "paste_token_here"
+        let token = "BQDsdsu_25uHjQnAoDJg1dRGQ-iU1nU5FC5gqWS_uU85BIAUZDs5HBVdkD_KXpTRBAjnpfVatN5L4-841_cdYF3sU-WN1EDkF9mhtekGP3ABpqSS3sswjBfkwiO9Cgwjn82v6U9mgPHmQCZgXQ0OvehNNAmIZLUow8oX8X7zdxyc3s2SWQ"
         let event = eventList?.nodeAt(atIndex: indexPath.row)?.value
         print(event!.idUser)
         let url = URL(string: "https://api.spotify.com/v1/users/\(event!.idUser)")
@@ -137,6 +140,7 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
                 // Use sample data if response status code is not 200
                 jsonData = self.demoData.data(using: .utf8)
             } else {
+                print("hello i am here~!")
                 jsonData = data
             }
             semaphore.signal()
@@ -174,7 +178,7 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
             cell.textLabel?.text = "\(userName!) has added another user as a connection"
         case "UserAddedSong"?:
             cell.textLabel?.text = "\(userName!) has added a new song to their queue"
-            cell.detailTextLabel?.text = "\(event!.artist) - \(event!.title)"
+            cell.detailTextLabel?.text = "\(event!.artistName) - \(event!.trackName)"
         default:
             // maybe # of songs listened to?
             print("hi")

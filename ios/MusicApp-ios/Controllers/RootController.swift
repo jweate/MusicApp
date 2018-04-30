@@ -58,6 +58,7 @@ class RootController: UITabBarController {
         activity.tabBarItem.tag = 2
         
         queue.tabBarHeight = tabBar.frame.height
+        print("HELLO HELLO I REALLY NEED THIS NUMBER!!! \(tabBar.frame.height)")
         //queue.queueList.tabBarHeight = tabBar.frame.height
         
         viewControllers = [queue, browse, activity]

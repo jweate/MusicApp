@@ -39,7 +39,7 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
         self.view.addSubview(playback.view)
         playback.view.translatesAutoresizingMaskIntoConstraints = false
         playback.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
-        playback.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.2).isActive = true
+        playback.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
         playback.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
         
         // register Cells - located at bottom of file
