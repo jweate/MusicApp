@@ -38,7 +38,7 @@ def api_recs():
             'album': track['album']['name'],
             'artworkURL': track['album']['images'][1]['url']
             })
-    return jsonify(tracks=tracks)
+    return jsonify(tracks)
 
 if __name__ == "__main__":
     application.run()
