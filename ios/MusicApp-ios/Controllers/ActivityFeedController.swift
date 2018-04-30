@@ -88,6 +88,12 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func reloadData() {
+        self.view.addSubview((playback?.view)!)
+        playback?.view.translatesAutoresizingMaskIntoConstraints = false
+        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
+        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
+        
         token = RootController.firstTimeSession?.accessToken
         self.title = "Activity"
         let url = URL(string: "https://api.spotify.com/v1/me")
@@ -124,14 +130,8 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         self.view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
-        tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1.0).isActive = true
+        tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.84).isActive = true
         self.tableView.addSubview(self.refreshControl)
-        
-        self.view.addSubview((playback?.view)!)
-        playback?.view.translatesAutoresizingMaskIntoConstraints = false
-        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
-        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
-        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
         
         //let myCell = UITableViewCell.init(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cellId")
         tableView.register(ActivityCell.self, forCellReuseIdentifier: "cellId")
@@ -145,11 +145,6 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         reloadData()
-//        self.view.addSubview((playback?.view)!)
-//        playback?.view.translatesAutoresizingMaskIntoConstraints = false
-//        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
-//        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
-//        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
         tableView.reloadData()
     }
     

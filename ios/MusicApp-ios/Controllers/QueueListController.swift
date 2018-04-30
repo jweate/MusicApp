@@ -34,7 +34,7 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
         self.view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
-        tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1.0).isActive = true
+        tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.84).isActive = true
 
         self.view.addSubview((playback?.view)!)
         playback?.view.translatesAutoresizingMaskIntoConstraints = false
