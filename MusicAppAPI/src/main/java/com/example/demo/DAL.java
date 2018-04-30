@@ -36,26 +36,85 @@ public class DAL {
 
         @Override
         public Event mapRow(ResultSet arg0, int arg1) throws SQLException {
+        	
             Event event = new Event();
 
             event.setIdEvent(arg0.getInt("idEvent"));
             event.setEventType(arg0.getString("EventType"));
             event.setSongID(arg0.getString("SongID"));
             event.setIdUser(arg0.getString("idUser"));
+            event.setTrackName(arg0.getString("trackName"));
+            event.setArtistName(arg0.getString("artistName"));
+            
             return event;
         }
 
     }
+    
+    class UserRowMapper implements RowMapper<User> {
+
+		@Override
+		public User mapRow(ResultSet arg0, int arg1) throws SQLException {
+			
+			User user = new User();
+			
+			user.setIdUser(arg0.getString("idUser"));
+			
+			
+			return user;
+		}
+    }
+    
+    
 
     public List<Event> getAllEvents() {
-        String sql = "SELECT * FROM Events";
+        String sql = "SELECT * FROM Events ORDER BY idEvent DESC;";
         return jdbcTemplate.query(sql, new EventRowMapper());
     }
+    
+//    String sql = "select * from \n" + 
+//			"(select * from Events) as x \n" + 
+//			"inner join\n" + 
+//			"(select * from Users where idUsers = '"
+//			+ user.getIdUser() +"') as y\n" + 
+//			"on x.idUser = y.idUsers;";
+    
+    public List<Event> getConEvents(User user) {
+    		String sql = "select idEvent, EventType, SongID, trackName, artistName, idUser from \n" + 
+    				"(select * from Events) as x \n" + 
+    				"inner join \n" + 
+    				"(select * from Users_has_Users where Users_idUsers = '"+user.getIdUser()+"') as y \n" + 
+    				"on x.idUser = y.Users_idUsers1;";
+    		
+    		return jdbcTemplate.query(sql, new EventRowMapper());
+    }
+    
+    public void addUser(User user) {
+    		String sql = "INSERT IGNORE INTO Users VALUES ('" +
+    				user.getIdUser() + "');";
+    		jdbcTemplate.execute(sql);
+    }
+    
+    public void addCon(User user1, User user2) {
+    		String sql = "INSERT INTO Users_has_Users VALUES ('"+
+    				user1.getIdUser() + "','"+
+    				user2.getIdUser() + "');";
+    		
+    		String sql1 = "INSERT INTO Users_has_Users VALUES ('"+
+    				user2.getIdUser() + "','"+
+    				user1.getIdUser() + "');";
+    		
+		jdbcTemplate.execute(sql);
+		jdbcTemplate.execute(sql1);
+		
+	}
 
     public void addEvent(Event event) {
-        String sql = "INSERT INTO Events VALUES (null,'";
+        String sql = "INSERT IGNORE INTO Events VALUES (null,'";
         sql += event.getEventType() + "','";
         sql += event.getSongID() + "','";
+        sql += event.getTrackName() + "','";
+        sql += event.getArtistName() + "','";
         sql += event.getIdUser() + "');";
         jdbcTemplate.execute(sql);
     }
@@ -111,7 +170,11 @@ public class DAL {
         }
 
         return tracks;
-    }}
+    }
+
+	
+	
+}
 
     
 
