@@ -103,6 +103,8 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
                 play(track)
                 playing = true
             }
+            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "PlaybackChange"), object: nil)
         }
     }
  
@@ -115,6 +117,8 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
             startTime = 0
             playing = true
             play(track)
+            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "PlaybackChange"), object: nil)
         }
     }
     
@@ -139,6 +143,9 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
                 print("playing!")
             }
         })
+        
+        
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "PlaybackChange"), object: nil)
     }
     
     // helper function for pausing a track
@@ -149,6 +156,9 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
                 print("playing!")
             }
         })
+        
+        
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "PlaybackChange"), object: nil)
     }
     
 }

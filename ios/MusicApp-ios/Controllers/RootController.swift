@@ -56,6 +56,8 @@ class RootController: TabBarController {
         let browse = BrowseController()
         let connect = ConnectController()
         
+        print((RootController.firstTimeSession?.accessToken)!)
+        
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateAfterFirstLogin),
                                                name: Notification.Name("LoggedIn"),

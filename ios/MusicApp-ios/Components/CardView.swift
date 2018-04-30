@@ -51,14 +51,14 @@ class CardView: UIView {
         titleLabel.textAlignment = .center
         titleLabel.textColor = .black
         titleLabel.numberOfLines = 1
-        titleLabel.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 20)
+        titleLabel.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 25)
         
         self.addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 25).isActive = true
         titleLabel.widthAnchor.constraint(equalToConstant: self.frame.width).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: imageView!.bottomAnchor, constant: 10).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: imageView!.bottomAnchor, constant: 15).isActive = true
         
         
         
@@ -90,7 +90,7 @@ class CardView: UIView {
         albumLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         albumLabel.widthAnchor.constraint(equalToConstant: self.frame.width).isActive = true
         albumLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        albumLabel.topAnchor.constraint(equalTo: artistLabel.bottomAnchor, constant: 5).isActive = true
+        albumLabel.topAnchor.constraint(equalTo: artistLabel.bottomAnchor, constant: 10).isActive = true
         
         /*
         let views: [String: Any] = [
