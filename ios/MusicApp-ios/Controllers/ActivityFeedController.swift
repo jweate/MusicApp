@@ -43,6 +43,42 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     var token: String?
     override func viewDidLoad() {
         super.viewDidLoad()
+        reloadData()
+    }
+    
+    func getEventList() -> LinkedList<Event> {
+        let list = LinkedList<Event>()
+        let url = URL(string: "http://musicappapin-env.bgffh6vnm9.us-east-2.elasticbeanstalk.com/getConEvents?idUser=\(userIDName!)")
+        print(userIDName)
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        var jsonData: Data?
+        jsonData = self.demoData.data(using: .utf8)
+        // Need semaphore because dataTask is asynchronous
+        let semaphore = DispatchSemaphore(value: 0)
+        URLSession.shared.dataTask(with: request) { data,response,err in
+            let resp = response as! HTTPURLResponse
+            if resp.statusCode != 200 {
+                // Use sample data if response status code is not 200
+                jsonData = self.demoData.data(using: .utf8)
+            } else {
+                jsonData = data
+            }
+            semaphore.signal()
+            }.resume()
+        semaphore.wait()
+        
+        let decoder = JSONDecoder()
+        let rawEventList = try! decoder.decode([RawEvent].self, from: jsonData!)
+        
+        for rawEvent in rawEventList {
+            let event = Event(rawEvent)
+            list.append(value: event)
+        }
+        return list
+    }
+    
+    func reloadData() {
         token = RootController.firstTimeSession?.accessToken
         self.title = "Activity"
         let url = URL(string: "https://api.spotify.com/v1/me")
@@ -91,38 +127,6 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         tableView.register(ActivityCell.self, forCellReuseIdentifier: "cellId")
     }
     
-    func getEventList() -> LinkedList<Event> {
-        let list = LinkedList<Event>()
-        let url = URL(string: "http://musicappapin-env.bgffh6vnm9.us-east-2.elasticbeanstalk.com/getConEvents?idUser=\(userIDName!)")
-        print(userIDName)
-        var request = URLRequest(url: url!)
-        request.httpMethod = "GET"
-        var jsonData: Data?
-        jsonData = self.demoData.data(using: .utf8)
-        // Need semaphore because dataTask is asynchronous
-        let semaphore = DispatchSemaphore(value: 0)
-        URLSession.shared.dataTask(with: request) { data,response,err in
-            let resp = response as! HTTPURLResponse
-            if resp.statusCode != 200 {
-                // Use sample data if response status code is not 200
-                jsonData = self.demoData.data(using: .utf8)
-            } else {
-                jsonData = data
-            }
-            semaphore.signal()
-            }.resume()
-        semaphore.wait()
-        
-        let decoder = JSONDecoder()
-        let rawEventList = try! decoder.decode([RawEvent].self, from: jsonData!)
-        
-        for rawEvent in rawEventList {
-            let event = Event(rawEvent)
-            list.append(value: event)
-        }
-        return list
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -130,11 +134,13 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.view.addSubview((playback?.view)!)
-        playback?.view.translatesAutoresizingMaskIntoConstraints = false
-        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
-        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
-        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
+        reloadData()
+//        self.view.addSubview((playback?.view)!)
+//        playback?.view.translatesAutoresizingMaskIntoConstraints = false
+//        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+//        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
+//        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
