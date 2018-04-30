@@ -34,13 +34,14 @@ class CardView: UIView {
         artistLabel = UILabel()
         albumLabel = UILabel()
         
-        imageView = UIImageView(image: track.artwork)
+//        imageView = UIImageView(image: track.artwork)
+        imageView = UIImageView(image: resizeImage(image: track.artwork))
         
         
         self.addSubview(imageView!)
         imageView!.translatesAutoresizingMaskIntoConstraints = false
         imageView!.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        imageView!.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -100).isActive = true
+        imageView!.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -80).isActive = true
         
         
         titleLabel.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: 40)
@@ -109,5 +110,18 @@ class CardView: UIView {
         // Corner Radius
         layer.cornerRadius = 10.0;
         
+    }
+    
+    func resizeImage(image: UIImage) -> UIImage {
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: 250, height: 250)
+        let newSize = CGSize(width: 250, height: 250)
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
     }
 }

@@ -12,6 +12,8 @@ class ActivityController: UINavigationController {
     
     var activityFeed = ActivityFeedController()
     var myProfile = MyProfileController()
+    var playback: PlaybackController?
+    var tabBarHeight: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +23,8 @@ class ActivityController: UINavigationController {
                                                                       target: self,
                                                                       action: #selector(navigateToMyProfile)),
                                                       animated: true)
-        
+        activityFeed.playback = playback
+        activityFeed.tabBarHeight = tabBarHeight
         self.viewControllers = [activityFeed]
         
         self.navigationBar.barTintColor = UIColor(hexString: "#333333")

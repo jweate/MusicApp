@@ -11,8 +11,7 @@ import UIKit
 class QueueController: UINavigationController {
     
     var rootVC = QueueListController()
-    //var queueList = QueueListController()
-    //var playback = PlaybackController()
+    var playback: PlaybackController?
     
     var tabBarHeight: CGFloat?
     
@@ -20,6 +19,7 @@ class QueueController: UINavigationController {
         super.viewDidLoad()
     
         rootVC.tabBarHeight = tabBarHeight!
+        rootVC.playback = playback!
         self.viewControllers = [rootVC]
         
         self.navigationBar.barTintColor = UIColor(hexString: "#333333")

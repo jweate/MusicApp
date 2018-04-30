@@ -41,6 +41,8 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
 """
     public var eventList: LinkedList<Event>?
     var tableView = UITableView()
+    var playback: PlaybackController?
+    var tabBarHeight: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +56,12 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
         tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1.0).isActive = true
+        
+        self.view.addSubview((playback?.view)!)
+        playback?.view.translatesAutoresizingMaskIntoConstraints = false
+        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
+        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
         
         //let myCell = UITableViewCell.init(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cellId")
         tableView.register(ActivityCell.self, forCellReuseIdentifier: "cellId")
@@ -102,6 +110,15 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.view.addSubview((playback?.view)!)
+        playback?.view.translatesAutoresizingMaskIntoConstraints = false
+        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
+        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
+    }
+    
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -121,7 +138,7 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
-        let token = "paste_token_here"
+        let token = "BQAoNaSGue0LGiE_3tKHZvEGQp_cn6NxUawZF33WkPI83ae6KNhT_1m06tWWK7EREPwAaKwOpr4dx_W__nJxX9t1lP-MO6eEq122lmXFKBGSZeAuXexxKxa0zuhtHeFvYbPZ7QC6tEqbzke1uC_rgBF1NujT3CjbzlC-"
         let event = eventList?.nodeAt(atIndex: indexPath.row)?.value
         print(event!.idUser)
         let url = URL(string: "https://api.spotify.com/v1/users/\(event!.idUser)")

@@ -16,6 +16,9 @@ class SwipeDeckController: UIViewController {
     var swipeableView: ZLSwipeableView!
     var loadCardsFromXib = false
     var index = 0
+    var queueList = QueueListController()
+    var tabBarHeight: CGFloat?
+    var playback: PlaybackController?
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +31,19 @@ class SwipeDeckController: UIViewController {
         
         tracks = stack.toArray()
         
+        
         self.view.addSubview(swipeableView)
         swipeableView.translatesAutoresizingMaskIntoConstraints = false
         swipeableView!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        swipeableView!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        swipeableView!.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.8).isActive = true
+        swipeableView!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -0.8*tabBarHeight!).isActive = true
+        swipeableView!.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.65).isActive = true
         swipeableView!.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
+        
+        self.view.addSubview((playback?.view)!)
+        playback?.view.translatesAutoresizingMaskIntoConstraints = false
+        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
+        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
         
         swipeableView.didStart = {view, location in
             print("Did start swiping view at location: \(location)")
@@ -73,6 +83,15 @@ class SwipeDeckController: UIViewController {
         swipeableView.nextView = {
             return self.nextCardView()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.view.addSubview((playback?.view)!)
+        playback?.view.translatesAutoresizingMaskIntoConstraints = false
+        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
+        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
     }
     
     

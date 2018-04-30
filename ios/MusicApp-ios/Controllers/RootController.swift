@@ -34,10 +34,13 @@ class RootController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let playback = PlaybackController()
         let queue = QueueController()
         let browse = BrowseController()
         let activity = ActivityController()
+        queue.playback = playback
+        browse.playback = playback
+        activity.playback = playback
         auth = AuthController()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateAfterFirstLogin), name: Notification.Name("LoggedIn"), object: nil)
@@ -58,6 +61,8 @@ class RootController: UITabBarController {
         activity.tabBarItem.tag = 2
         
         queue.tabBarHeight = tabBar.frame.height
+        browse.tabBarHeight = tabBar.frame.height
+        activity.tabBarHeight = tabBar.frame.height
         //queue.queueList.tabBarHeight = tabBar.frame.height
         
         viewControllers = [queue, browse, activity]

@@ -11,8 +11,7 @@ import UIKit
 class BrowseController: UINavigationController {
     
     var rootVC = SwipeDeckController()
-    //var queueList = QueueListController()
-    //var playback = PlaybackController()
+    var playback: PlaybackController?
     
     var tabBarHeight: CGFloat?
     
@@ -20,7 +19,9 @@ class BrowseController: UINavigationController {
         super.viewDidLoad()
         
 
-        //rootVC.tabBarHeight = tabBarHeight!
+        rootVC.tabBarHeight = tabBarHeight!
+        rootVC.playback = playback!
+        //queueList.tabBarHeight = tabBarHeight!
         self.viewControllers = [rootVC]
         
         self.navigationBar.barTintColor = UIColor(hexString: "#333333")
