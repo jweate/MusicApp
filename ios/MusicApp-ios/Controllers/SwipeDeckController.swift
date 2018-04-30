@@ -154,10 +154,13 @@ class SwipeDeckController: UIViewController {
                 return
             }
             
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {           // check for http errors
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(String(describing: response))")
-                
+            if let httpStatus = response as? HTTPURLResponse {  // check for http errors
+                if httpStatus.statusCode != 200 {
+                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                    print("response = \(String(describing: response))")
+                } else {
+                    print("status code is: \(httpStatus.statusCode)")
+                }
             }
             
             let responseString = String(data: data, encoding: .utf8)

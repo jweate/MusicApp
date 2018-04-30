@@ -20,7 +20,7 @@ class ActivityCell : UITableViewCell {
     }
 }
 
-class ActivityFeedController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+class ActivityFeedController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     let demoData = """
 {
@@ -41,6 +41,15 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     var tabBarHeight: CGFloat?
     var userIDName: String?
     var token: String?
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(ActivityFeedController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor(hexString: "#00ffff")
+        
+        return refreshControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         reloadData()
@@ -116,6 +125,7 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
         tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1.0).isActive = true
+        self.tableView.addSubview(self.refreshControl)
         
         self.view.addSubview((playback?.view)!)
         playback?.view.translatesAutoresizingMaskIntoConstraints = false
@@ -228,6 +238,12 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         cell.imageView?.contentMode = .scaleAspectFit
         
         return cell
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        reloadData()
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     func resizeImage(image: UIImage) -> UIImage {
