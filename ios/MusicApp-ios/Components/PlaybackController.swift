@@ -20,48 +20,55 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
     var startTime = TimeInterval(0)
     
     // MARK: Properties
-    var playButton: UIButton?
-    var skipNextButton: UIButton?
-    var skipPrevButton: UIButton?
+    var playButton = UIButton()
+    var skipNextButton = UIButton()
+    var skipPrevButton = UIButton()
     var trackDurationSlider: UISlider?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(hexString: "#333333")
-
-        playButton = UIButton()
-        skipNextButton = UIButton()
-        skipPrevButton = UIButton()
+        view.frame = CGRect(x: 0, y: 500, width: 300, height: 75)
+        view.backgroundColor = UIColor(hexString: "#0a0a0a")
         
-        playButton!.setImage(UIImage(named: "icon-play"), for: .normal)
-        view.addSubview(playButton!)
-        playButton!.translatesAutoresizingMaskIntoConstraints = false
-        playButton!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        playButton!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        playButton!.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        playButton!.widthAnchor.constraint(equalToConstant: 80).isActive = true
-        playButton!.addTarget(self, action: #selector(playTrack), for: .touchUpInside)
+        layoutButtons()
         
-        skipNextButton!.setImage(UIImage(named: "icon-skip-next"), for: .normal)
-        view.addSubview(skipNextButton!)
-        skipNextButton!.translatesAutoresizingMaskIntoConstraints = false
-        skipNextButton!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 100).isActive = true
-        skipNextButton!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        skipNextButton!.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        skipNextButton!.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        skipNextButton!.addTarget(self, action: #selector(skipTrack), for: .touchUpInside)
-        
-        skipPrevButton!.setImage(UIImage(named: "icon-skip-prev"), for: .normal)
-        view.addSubview(skipPrevButton!)
-        skipPrevButton!.translatesAutoresizingMaskIntoConstraints = false
-        skipPrevButton!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -100).isActive = true
-        skipPrevButton!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        skipPrevButton!.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        skipPrevButton!.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        skipPrevButton!.addTarget(self, action: #selector(backTrack), for: .touchUpInside)
+        // set up button handlers
+        playButton.addTarget(self, action: #selector(playTrack), for: .touchUpInside)
+        skipNextButton.addTarget(self, action: #selector(skipTrack), for: .touchUpInside)
+        skipPrevButton.addTarget(self, action: #selector(backTrack), for: .touchUpInside)
         
         NotificationCenter.default.addObserver(self, selector: #selector(createPlayer), name: Notification.Name("Playtime"), object: nil)
+    }
+    
+    func layoutButtons() {
+        
+        // layout play/pause button
+        playButton.setImage(UIImage(named: "icon-play"), for: .normal)
+        view.addSubview(playButton)
+        playButton.translatesAutoresizingMaskIntoConstraints = false
+        playButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        playButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        playButton.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        playButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        
+        // layout skip next button
+        skipNextButton.setImage(UIImage(named: "icon-skip-next"), for: .normal)
+        view.addSubview(skipNextButton)
+        skipNextButton.translatesAutoresizingMaskIntoConstraints = false
+        skipNextButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 100).isActive = true
+        skipNextButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        skipNextButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        skipNextButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        // layout skip prev button
+        skipPrevButton.setImage(UIImage(named: "icon-skip-prev"), for: .normal)
+        view.addSubview(skipPrevButton)
+        skipPrevButton.translatesAutoresizingMaskIntoConstraints = false
+        skipPrevButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -100).isActive = true
+        skipPrevButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        skipPrevButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        skipPrevButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
         
     }
     
@@ -125,7 +132,7 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
     // helper function for playing a track
     func play(_ track: String){
         print(Queue.instance.getPointer())
-        playButton!.setImage(UIImage(named: "icon-pause"), for: .normal)
+        playButton.setImage(UIImage(named: "icon-pause"), for: .normal)
         
         self.player?.playSpotifyURI(track, startingWith: 0, startingWithPosition: startTime, callback: { (error) in
             if (error != nil) {
@@ -136,7 +143,7 @@ class PlaybackController: UIViewController, SPTAudioStreamingPlaybackDelegate, S
     
     // helper function for pausing a track
     func pause() {
-        playButton!.setImage(UIImage(named: "icon-play"), for: .normal)
+        playButton.setImage(UIImage(named: "icon-play"), for: .normal)
         self.player?.setIsPlaying(false ,callback: { (error) in
             if (error != nil) {
                 print("playing!")

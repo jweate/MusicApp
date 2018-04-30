@@ -7,22 +7,9 @@
 //  Copyright © 2018 Jacob Weate. All rights reserved.
 //
 
-
-
 import UIKit
 
-class ActivityCell : UITableViewCell {
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: UITableViewCellStyle.subtitle, reuseIdentifier: reuseIdentifier)
-    }
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-class ActivityFeedController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-    let demoData = """
+let example_activity_data = """
 {
     "events": [
         {
@@ -35,10 +22,12 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     ]
 }
 """
+
+class ActivityFeedController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
     public var eventList: LinkedList<Event>?
     var tableView = UITableView()
-    var playback: PlaybackController?
-    var tabBarHeight: CGFloat?
+    var bottomOffset: CGFloat?
     var userIDName: String?
     var token: String?
     
@@ -55,21 +44,27 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         reloadData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        reloadData()
+        tableView.reloadData()
+    }
+    
     func getEventList() -> LinkedList<Event> {
         let list = LinkedList<Event>()
         let url = URL(string: "http://musicappapin-env.bgffh6vnm9.us-east-2.elasticbeanstalk.com/getConEvents?idUser=\(userIDName!)")
-        print(userIDName)
+        print(userIDName!)
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
         var jsonData: Data?
-        jsonData = self.demoData.data(using: .utf8)
+        jsonData = example_activity_data.data(using: .utf8)
         // Need semaphore because dataTask is asynchronous
         let semaphore = DispatchSemaphore(value: 0)
         URLSession.shared.dataTask(with: request) { data,response,err in
             let resp = response as! HTTPURLResponse
             if resp.statusCode != 200 {
                 // Use sample data if response status code is not 200
-                jsonData = self.demoData.data(using: .utf8)
+                jsonData = example_activity_data.data(using: .utf8)
             } else {
                 jsonData = data
             }
@@ -88,11 +83,6 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func reloadData() {
-        self.view.addSubview((playback?.view)!)
-        playback?.view.translatesAutoresizingMaskIntoConstraints = false
-        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
-        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
-        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
         
         token = RootController.firstTimeSession?.accessToken
         self.title = "Activity"
@@ -133,19 +123,7 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.84).isActive = true
         self.tableView.addSubview(self.refreshControl)
         
-        //let myCell = UITableViewCell.init(style: UITableViewCellStyle.subtitle, reuseIdentifier: "cellId")
         tableView.register(ActivityCell.self, forCellReuseIdentifier: "cellId")
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        reloadData()
-        tableView.reloadData()
     }
     
     // MARK: - Table view data source
@@ -181,7 +159,7 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
             let resp = response as! HTTPURLResponse
             if resp.statusCode != 200 {
                 // Use sample data if response status code is not 200
-                jsonData = self.demoData.data(using: .utf8)
+                jsonData = example_activity_data.data(using: .utf8)
             } else {
                 print("hello i am here~!")
                 jsonData = data
@@ -255,4 +233,14 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     }
     
 }
+
+class ActivityCell : UITableViewCell {
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: UITableViewCellStyle.subtitle, reuseIdentifier: reuseIdentifier)
+    }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 

@@ -10,53 +10,49 @@ import UIKit
 
 class QueueListController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // MARK: Properties
+    // Queue table view instance
     var tableView = UITableView()
-    var playback: PlaybackController?
     
-    var tabBarHeight: CGFloat?
-    var user: SPTUser?
+    // Used for view content offset
+    var bottomOffset: CGFloat?
     
     
+    // MARK: Setup Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
+        // table view deligate congifuration
         tableView.dataSource = self
         tableView.delegate = self
         
-        // set up editting environment
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+        // navigation configuration
         self.title = "Queue"
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
 
-        self.view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
-        tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.84).isActive = true
-
-        self.view.addSubview((playback?.view)!)
-        playback?.view.translatesAutoresizingMaskIntoConstraints = false
-        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
-        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
-        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
+        layoutTableView()
+        //layoutPlayback()
         
         // register Cells - located at bottom of file
-        tableView.register(MyCell.self, forCellReuseIdentifier: "cellId")
-        
-        
+        tableView.register(QueueListCell.self, forCellReuseIdentifier: "cellId")
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tableView.reloadData()
-        self.view.addSubview((playback?.view)!)
-        playback?.view.translatesAutoresizingMaskIntoConstraints = false
-        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
-        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
-        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
+        //layoutPlayback()
+    }
+    
+    func layoutTableView() {
+        self.view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+        //tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1 * bottomOffset!).isActive = true
+        tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1.0).isActive = true
     }
     
     override func setEditing(_ editing: Bool,
@@ -126,7 +122,7 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
 }
 
 // Individual cells in the Table View
-class MyCell : UITableViewCell {
+class QueueListCell : UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

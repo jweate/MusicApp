@@ -15,31 +15,30 @@ import os.log
  *   - checks for authentication
  *   - maybe other stuff?
  */
-class RootController: UITabBarController {
+class RootController: TabBarController {
     
     // MARK: Properties
-    public var auth: AuthController?
     var isAuth = false
     static var firstTimeSession: SPTSession?
     public var user: SPTUser?
     
+    var playback = PlaybackController()
+ 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateAfterFirstLogin), name: Notification.Name("LoggedIn"), object: nil)
+    }
+    
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
         
-        auth = AuthController()
-        // determines if user needs to be authenticated
-        if (!isAuth){
-            self.present(auth!, animated: true)
+        // determine if user needs to be authenticated
+        if (!isAuth) {
+            self.present(AuthController(), animated: true)
         }
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        NotificationCenter.default.addObserver(self, selector: #selector(updateAfterFirstLogin), name: Notification.Name("LoggedIn"), object: nil)
-        
-    }
-    
     @objc func updateAfterFirstLogin() {
         os_log("updated")
         isAuth = true
@@ -52,44 +51,64 @@ class RootController: UITabBarController {
         }
     }
     
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func loadTabs() {
-        let playback = PlaybackController()
         let queue = QueueController()
         let browse = BrowseController()
-        let activity = ActivityController()
-        queue.playback = playback
-        browse.playback = playback
-        activity.playback = playback
+        let connect = ConnectController()
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateAfterFirstLogin),
+                                               name: Notification.Name("LoggedIn"),
+                                               object: nil)
         
         queue.tabBarItem = UITabBarItem(title: "queue",
                                         image: UIImage(named: "icon-queue-inactive"),
                                         selectedImage: UIImage(named: "icon-queue-active"))
+            .tabBarItemShowingOnlyImage()
+        
         queue.tabBarItem.tag = 0
         browse.tabBarItem = UITabBarItem(title: "browse",
                                          image: UIImage(named: "icon-browse-inactive"),
                                          selectedImage: UIImage(named: "icon-browse-active"))
+            .tabBarItemShowingOnlyImage()
         
         browse.tabBarItem.tag = 1
-        activity.tabBarItem = UITabBarItem(title: "connect",
-                                           image: UIImage(named: "icon-connect-inactive"),
-                                           selectedImage: UIImage(named: "icon-connect-active"))
-        activity.tabBarItem.tag = 2
+        connect.tabBarItem = UITabBarItem(title: "connect",
+                                          image: UIImage(named: "icon-connect-inactive"),
+                                          selectedImage: UIImage(named: "icon-connect-active"))
+            .tabBarItemShowingOnlyImage()
+        connect.tabBarItem.tag = 2
         
-        queue.tabBarHeight = tabBar.frame.height
-        browse.tabBarHeight = tabBar.frame.height
-        activity.tabBarHeight = tabBar.frame.height
-        
-        viewControllers = [queue, browse, activity]
-        tabBar.barTintColor = UIColor(hexString: "#333333")
+        tabBar.isTranslucent = false
+        tabBar.barTintColor = UIColor(hexString: "#0a0a0a")
         tabBar.tintColor = UIColor(hexString: "#00ffff")
+        
+        layoutPlayback()
+        
+        let bottomOffset = tabBar.frame.height + playback.view.frame.height
+        print("Bottom Offset:")
+        print(tabBar.frame.height)
+        print(playback.view.frame.height)
+        print(bottomOffset)
+        print(self.view.frame.width)
+        print(self.view.frame.height)
+        //let bottomOffset = tabBar.frame.height
+        queue.bottomOffset = bottomOffset
+        browse.bottomOffset = bottomOffset
+        connect.bottomOffset = bottomOffset
+        
+        viewControllers = [queue, browse, connect]
     }
+    
+    
+    func layoutPlayback() {
+        view.addSubview(playback.view)
+        playback.view.translatesAutoresizingMaskIntoConstraints = false
+        playback.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+        playback.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.15).isActive = true
+        playback.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1 * tabBar.frame.height).isActive = true
+    }
+    
 }
 
 extension UIColor {

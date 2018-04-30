@@ -11,28 +11,21 @@ import UIKit
 class BrowseController: UINavigationController {
     
     var rootVC = SwipeDeckController()
-    var playback: PlaybackController?
     
-    var tabBarHeight: CGFloat?
+    var bottomOffset: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        rootVC.tabBarHeight = tabBarHeight!
-        rootVC.playback = playback!
-        //queueList.tabBarHeight = tabBarHeight!
+        rootVC.bottomOffset = bottomOffset
+        
         self.viewControllers = [rootVC]
         
-        self.navigationBar.barTintColor = UIColor(hexString: "#333333")
+        self.navigationBar.isTranslucent = false
+        self.navigationBar.barTintColor = UIColor(hexString: "#0a0a0a")
         self.navigationBar.tintColor = UIColor(hexString: "#00ffff")
         self.navigationBar.titleTextAttributes = [
             NSAttributedStringKey.foregroundColor: UIColor(hexString: "#f5f5f5")
         ]
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

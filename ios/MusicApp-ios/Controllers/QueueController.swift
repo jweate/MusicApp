@@ -11,18 +11,18 @@ import UIKit
 class QueueController: UINavigationController {
     
     var rootVC = QueueListController()
-    var playback: PlaybackController?
     
-    var tabBarHeight: CGFloat?
+    var bottomOffset: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        rootVC.tabBarHeight = tabBarHeight!
-        rootVC.playback = playback!
+        rootVC.bottomOffset = bottomOffset!
+        
         self.viewControllers = [rootVC]
         
-        self.navigationBar.barTintColor = UIColor(hexString: "#333333")
+        self.navigationBar.isTranslucent = false
+        self.navigationBar.barTintColor = UIColor(hexString: "#0a0a0a")
         self.navigationBar.tintColor = UIColor(hexString: "#00ffff")
         self.navigationBar.titleTextAttributes = [
             NSAttributedStringKey.foregroundColor: UIColor(hexString: "#f5f5f5")

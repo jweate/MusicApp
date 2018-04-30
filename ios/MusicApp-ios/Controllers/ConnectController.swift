@@ -8,12 +8,11 @@
 
 import UIKit
 
-class ActivityController: UINavigationController {
+class ConnectController: UINavigationController {
     
     var activityFeed = ActivityFeedController()
     var myProfile = MyProfileController()
-    var playback: PlaybackController?
-    var tabBarHeight: CGFloat?
+    var bottomOffset: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +22,14 @@ class ActivityController: UINavigationController {
                                                                       target: self,
                                                                       action: #selector(navigateToMyProfile)),
                                                       animated: true)
-        activityFeed.playback = playback
-        activityFeed.tabBarHeight = tabBarHeight
-        myProfile.playback = playback
-        myProfile.tabBarHeight = tabBarHeight
+        
+        activityFeed.bottomOffset = bottomOffset
+        myProfile.bottomOffset = bottomOffset
         
         self.viewControllers = [activityFeed]
         
-        self.navigationBar.barTintColor = UIColor(hexString: "#333333")
+        self.navigationBar.isTranslucent = false
+        self.navigationBar.barTintColor = UIColor(hexString: "#0a0a0a")
         self.navigationBar.tintColor = UIColor(hexString: "#00ffff")
         self.navigationBar.titleTextAttributes = [
             NSAttributedStringKey.foregroundColor: UIColor(hexString: "#f5f5f5")
@@ -38,16 +37,9 @@ class ActivityController: UINavigationController {
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     @objc func navigateToMyProfile(_ sender: UIBarButtonItem) {
         self.pushViewController(myProfile, animated: true)
     }
-    
-    
     
 }
 

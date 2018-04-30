@@ -12,13 +12,11 @@ class SwipeDeckController: UIViewController {
     
     var queue = Queue.instance
     var stack = Stack.instance
-    var tracks: [Track]?
-    var swipeableView: ZLSwipeableView!
-    var loadCardsFromXib = false
     var index = 0
+    var tracks: [Track]?
     var queueList = QueueListController()
-    var tabBarHeight: CGFloat?
-    var playback: PlaybackController?
+    var swipeView = ZLSwipeableView()
+    var bottomOffset: CGFloat?
  
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +31,15 @@ class SwipeDeckController: UIViewController {
         //Need semaphore because dataTask is asynchronous
         let semaphore = DispatchSemaphore(value: 0)
         URLSession.shared.dataTask(with: request) { data,response,err in
-            let resp = response as! HTTPURLResponse
-            if resp.statusCode != 200 {
-                // Use sample data if response status code is not 200
-                // THIS SHOULD NEVER HAPPEN. IF IT DOES, WE'RE SCREWED.
-                //jsonData = self.demoData.data(using: .utf8)
-            } else {
-                jsonData = data
-            }
-            semaphore.signal()
+                let resp = response as! HTTPURLResponse
+                if resp.statusCode != 200 {
+                    // Use sample data if response status code is not 200
+                    // THIS SHOULD NEVER HAPPEN. IF IT DOES, WE'RE SCREWED.
+                    // jsonData = self.demoData.data(using: .utf8)
+                } else {
+                    jsonData = data
+                }
+                semaphore.signal()
             }.resume()
         semaphore.wait()
         
@@ -52,36 +50,44 @@ class SwipeDeckController: UIViewController {
         let postUrl = "http://musicappapin-env.bgffh6vnm9.us-east-2.elasticbeanstalk.com/addUser?idUser="
         makePostRequest(postString: "\(userID!)", urlString: postUrl)
         
-        swipeableView = ZLSwipeableView()
-        
-        swipeableView.numberOfActiveView = 8
-        
+        swipeView.numberOfActiveView = 8
         tracks = stack.toArray()
         
         
-        self.view.addSubview(swipeableView)
-        swipeableView.translatesAutoresizingMaskIntoConstraints = false
-        swipeableView!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        swipeableView!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -0.8*tabBarHeight!).isActive = true
-        swipeableView!.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.65).isActive = true
-        swipeableView!.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
+        self.view.addSubview(swipeView)
+        swipeView.translatesAutoresizingMaskIntoConstraints = false
+        swipeView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        swipeView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1 * bottomOffset!).isActive = true
+        swipeView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.8).isActive = true
+        swipeView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
         
-        self.view.addSubview((playback?.view)!)
-        playback?.view.translatesAutoresizingMaskIntoConstraints = false
-        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
-        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
-        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
+        setupSwipeViewHandlers(userID!)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        swipeView.nextView = {
+            return self.nextCardView()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    
+    func setupSwipeViewHandlers(_ userID: String) {
         
-        swipeableView.didStart = {view, location in
+        swipeView.didStart = {view, location in
             print("Did start swiping view at location: \(location)")
         }
-        swipeableView.swiping = {view, location, translation in
+        swipeView.swiping = {view, location, translation in
             print("Swiping at view location: \(location) translation: \(translation)")
         }
-        swipeableView.didEnd = {view, location in
+        swipeView.didEnd = {view, location in
             print("Did end swiping view at location: \(location)")
         }
-        swipeableView.didSwipe = {view, direction, vector in
+        swipeView.didSwipe = {view, direction, vector in
             print("Did swipe view in direction: \(direction), vector: \(vector)")
             if (direction.description == "Right") {
                 print("Swipe Right")
@@ -93,7 +99,7 @@ class SwipeDeckController: UIViewController {
                     postDetails.append(cardView.track!.id)
                     postDetails.append(cardView.track!.title)
                     postDetails.append(cardView.track!.artists.joined(separator: ", "))
-                    postDetails.append(userID!)
+                    postDetails.append(userID)
                     let eventUrl = "http://musicappapin-env.bgffh6vnm9.us-east-2.elasticbeanstalk.com/"
                     self.makeEventPost(postString: postDetails, urlString: eventUrl)
                 } else {
@@ -101,41 +107,24 @@ class SwipeDeckController: UIViewController {
                 }
             }
         }
-        swipeableView.didCancel = {view in
+        swipeView.didCancel = {view in
             print("Did cancel swiping view")
         }
-        swipeableView.didTap = {view, location in
+        swipeView.didTap = {view, location in
             print("Did tap at location \(location)")
         }
-        swipeableView.didDisappear = { view in
+        swipeView.didDisappear = { view in
             print("Did disappear swiping view")
         }
         
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        swipeableView.nextView = {
-            return self.nextCardView()
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.view.addSubview((playback?.view)!)
-        playback?.view.translatesAutoresizingMaskIntoConstraints = false
-        playback?.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
-        playback?.view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
-        playback?.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1*tabBarHeight!).isActive = true
-    }
-    
     
     func nextCardView() -> UIView? {
         if index >= tracks!.count {
             index = 0
         }
         
-        let cardView = CardView(frame: swipeableView.bounds, track: tracks![index])
+        let cardView = CardView(frame: swipeView.bounds, track: tracks![index])
         
         index = index + 1
         

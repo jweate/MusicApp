@@ -13,26 +13,44 @@ class AuthController: UIViewController {
     var session:SPTSession!
     var loginUrl: URL?
     
+    var loginButton: UIButton?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        let button = UIButton()
-        button.backgroundColor = UIColor.white
-        button.setTitle("Sign In with Spotify", for: .normal)
-        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        
-        self.view.addSubview(button)
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        button.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        button.layer.cornerRadius = 20
-        button.backgroundColor = UIColor(hexString: "#1DB954")
-        
+        setupLoginButton()
         setup()
+    }
+    
+    func setupLoginButton() {
+        
+        // initialize button
+        loginButton = UIButton(type: .system)
+        
+        // pre-drawing configurations
+        loginButton!.tintColor = UIColor.white
+        loginButton!.backgroundColor = UIColor(hexString: "#1DB954")
+        
+        loginButton!.setTitle("LOGIN WITH SPOTIFY", for: .normal)
+        loginButton!.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14.0)
+        
+        loginButton!.setImage(UIImage(named: "icon-spotify"), for: .normal)
+        loginButton!.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 15)
+        loginButton!.titleEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0)
+        
+        // handler configuration
+        loginButton!.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+        // draw
+        self.view.addSubview(loginButton!)
+        
+        // post-drawing configurations
+        loginButton!.layer.cornerRadius = 20
+        loginButton!.translatesAutoresizingMaskIntoConstraints = false
+        loginButton!.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        loginButton!.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        loginButton!.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        loginButton!.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.6).isActive = true
     }
     
     

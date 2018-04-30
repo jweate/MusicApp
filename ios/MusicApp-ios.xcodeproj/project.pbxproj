@@ -15,12 +15,12 @@
 		294AB0D220782A52005E9A69 /* AuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294AB0D120782A52005E9A69 /* AuthController.swift */; };
 		294AB0D420782AE8005E9A69 /* QueueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294AB0D320782AE8005E9A69 /* QueueController.swift */; };
 		294AB0D620782CAC005E9A69 /* BrowseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294AB0D520782CAC005E9A69 /* BrowseController.swift */; };
-		294AB0DC20783189005E9A69 /* ActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294AB0DB20783189005E9A69 /* ActivityController.swift */; };
-		294AB0DE2078336A005E9A69 /* PlaybackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294AB0DD2078336A005E9A69 /* PlaybackView.swift */; };
+		294AB0DC20783189005E9A69 /* ConnectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294AB0DB20783189005E9A69 /* ConnectController.swift */; };
 		294AB0E020783E55005E9A69 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 294AB0DF20783E55005E9A69 /* Launch Screen.storyboard */; };
 		294AB0E2207843B2005E9A69 /* MyProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294AB0E1207843B2005E9A69 /* MyProfileController.swift */; };
 		2964633A2084176400503644 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296463392084176400503644 /* Stack.swift */; };
 		2964633C2084184100503644 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2964633B2084184100503644 /* LinkedList.swift */; };
+		29F25D8A20965B94008FD2A4 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F25D8920965B94008FD2A4 /* TabBarController.swift */; };
 		45DF13C48230236C6D7FFB82 /* Pods_MusicApp_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC572712DD40B5A535C261A9 /* Pods_MusicApp_iosUITests.framework */; };
 		B78EF47A209668150025B22B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78EF479209668150025B22B /* Event.swift */; };
 		E27CC066206D706B006AEBEA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27CC065206D706B006AEBEA /* AppDelegate.swift */; };
@@ -59,12 +59,12 @@
 		294AB0D120782A52005E9A69 /* AuthController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthController.swift; sourceTree = "<group>"; };
 		294AB0D320782AE8005E9A69 /* QueueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueController.swift; sourceTree = "<group>"; };
 		294AB0D520782CAC005E9A69 /* BrowseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseController.swift; sourceTree = "<group>"; };
-		294AB0DB20783189005E9A69 /* ActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityController.swift; sourceTree = "<group>"; };
-		294AB0DD2078336A005E9A69 /* PlaybackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackView.swift; sourceTree = "<group>"; };
+		294AB0DB20783189005E9A69 /* ConnectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectController.swift; sourceTree = "<group>"; };
 		294AB0DF20783E55005E9A69 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		294AB0E1207843B2005E9A69 /* MyProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileController.swift; sourceTree = "<group>"; };
 		296463392084176400503644 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		2964633B2084184100503644 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		29F25D8920965B94008FD2A4 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		944F1C6CC701FBA740B8FAC7 /* Pods-MusicApp-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicApp-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicApp-ios/Pods-MusicApp-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		A3081584DE87F8A03229E9DF /* Pods-MusicApp-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicApp-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicApp-iosUITests/Pods-MusicApp-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B78EF479209668150025B22B /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -116,13 +116,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		294AB0D720782F03005E9A69 /* Views */ = {
+		294AB0D720782F03005E9A69 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				E286292C207EAE31008E41AF /* CardView.swift */,
-				294AB0DD2078336A005E9A69 /* PlaybackView.swift */,
+				E2E18C7020810ECD000CE9AF /* PlaybackController.swift */,
+				29F25D8920965B94008FD2A4 /* TabBarController.swift */,
 			);
-			path = Views;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		294AB0D820782F1E005E9A69 /* Controllers */ = {
@@ -132,10 +133,9 @@
 				294AB0D120782A52005E9A69 /* AuthController.swift */,
 				294AB0D320782AE8005E9A69 /* QueueController.swift */,
 				29295701207AA4A4002F98A3 /* QueueListController.swift */,
-				E2E18C7020810ECD000CE9AF /* PlaybackController.swift */,
 				294AB0D520782CAC005E9A69 /* BrowseController.swift */,
 				29295703207AA6B5002F98A3 /* SwipeDeckController.swift */,
-				294AB0DB20783189005E9A69 /* ActivityController.swift */,
+				294AB0DB20783189005E9A69 /* ConnectController.swift */,
 				29295705207AA79F002F98A3 /* ActivityFeedController.swift */,
 				294AB0E1207843B2005E9A69 /* MyProfileController.swift */,
 				29295707207AA9E6002F98A3 /* ProfileController.swift */,
@@ -190,11 +190,11 @@
 				E27CC085206D70C0006AEBEA /* Frameworks */,
 				29D080E7208149D9005E55D5 /* Models */,
 				294AB0D820782F1E005E9A69 /* Controllers */,
-				294AB0D720782F03005E9A69 /* Views */,
+				294AB0D720782F03005E9A69 /* Components */,
 				E27CC06C206D706B006AEBEA /* Assets.xcassets */,
 				E27CC065206D706B006AEBEA /* AppDelegate.swift */,
-				E2E18C742081876E000CE9AF /* ZLSwipeableViewSwift */,
 				E27CC071206D706B006AEBEA /* Info.plist */,
+				E2E18C742081876E000CE9AF /* ZLSwipeableViewSwift */,
 				294AB0DF20783E55005E9A69 /* Launch Screen.storyboard */,
 				E27CC08C206D70FB006AEBEA /* MusicApp-ios-Bridging-Header.h */,
 			);
@@ -413,6 +413,7 @@
 				29295702207AA4A4002F98A3 /* QueueListController.swift in Sources */,
 				E2E18C842081876E000CE9AF /* Direction.swift in Sources */,
 				E286292D207EAE31008E41AF /* CardView.swift in Sources */,
+				29F25D8A20965B94008FD2A4 /* TabBarController.swift in Sources */,
 				294AB0D420782AE8005E9A69 /* QueueController.swift in Sources */,
 				29295704207AA6B5002F98A3 /* SwipeDeckController.swift in Sources */,
 				29295708207AA9E6002F98A3 /* ProfileController.swift in Sources */,
@@ -421,12 +422,11 @@
 				294AB0D220782A52005E9A69 /* AuthController.swift in Sources */,
 				294AB0D620782CAC005E9A69 /* BrowseController.swift in Sources */,
 				E2E18C822081876E000CE9AF /* Scheduler.swift in Sources */,
-				294AB0DC20783189005E9A69 /* ActivityController.swift in Sources */,
+				294AB0DC20783189005E9A69 /* ConnectController.swift in Sources */,
 				E2E18C802081876E000CE9AF /* ViewManager.swift in Sources */,
 				E27CC066206D706B006AEBEA /* AppDelegate.swift in Sources */,
 				E2E18C7320817B7A000CE9AF /* Track.swift in Sources */,
 				2964633A2084176400503644 /* Stack.swift in Sources */,
-				294AB0DE2078336A005E9A69 /* PlaybackView.swift in Sources */,
 				294AB0E2207843B2005E9A69 /* MyProfileController.swift in Sources */,
 				E2E18C7120810ECD000CE9AF /* PlaybackController.swift in Sources */,
 				2964633C2084184100503644 /* LinkedList.swift in Sources */,
