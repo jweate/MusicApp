@@ -25,6 +25,9 @@ class ActivityController: UINavigationController {
                                                       animated: true)
         activityFeed.playback = playback
         activityFeed.tabBarHeight = tabBarHeight
+        myProfile.playback = playback
+        myProfile.tabBarHeight = tabBarHeight
+        
         self.viewControllers = [activityFeed]
         
         self.navigationBar.barTintColor = UIColor(hexString: "#333333")
