@@ -55,18 +55,34 @@ public class DAL {
 
 		@Override
 		public User mapRow(ResultSet arg0, int arg1) throws SQLException {
-			
 			User user = new User();
-			
-			user.setIdUser(arg0.getString("idUser"));
-			
-			
+			user.setIdUser(arg0.getString("idUsers"));
+			return user;
+		}
+    }
+    
+    class UserRowMapper2 implements RowMapper<User> {
+
+		@Override
+		public User mapRow(ResultSet arg0, int arg1) throws SQLException {
+			User user = new User();
+			user.setIdUser(arg0.getString("Users_idUsers1"));
 			return user;
 		}
     }
     
     
 
+    public void addLiked(String idUser, String SongID, int liked) {
+    	
+    		String sql = "INSERT INTO UsersLiked VALUES ("
+    				+ "'"+SongID + "' ,"
+    				+ liked + " ,"
+    				+ "'" + idUser + "');";
+    		
+    		jdbcTemplate.execute(sql);
+    		
+    }
     public List<Event> getAllEvents() {
         String sql = "SELECT * FROM Events ORDER BY idEvent DESC;";
         return jdbcTemplate.query(sql, new EventRowMapper());
@@ -87,6 +103,18 @@ public class DAL {
     				"on x.idUser = y.Users_idUsers1;";
     		
     		return jdbcTemplate.query(sql, new EventRowMapper());
+    }
+    
+    public List<User> getConnections(User user) {
+    		String sql = "SELECT Users_idUsers1 FROM Users_has_Users WHERE Users_idUsers = '"+ user.getIdUser()+"';";
+    		
+    		return jdbcTemplate.query(sql, new UserRowMapper2());
+    }
+    
+    public List<User> getUsers(){
+    		String sql = "SELECT * FROM Users";
+    		
+    		return jdbcTemplate.query(sql, new UserRowMapper());
     }
     
     public void addUser(User user) {
@@ -171,6 +199,19 @@ public class DAL {
 
         return tracks;
     }
+
+	public int getLiked(String idUser, String SongID) {
+		
+		String sql = "SELECT Liked FROM UsersLiked WHERE idUsers = '"+ idUser +"' && SongID = '"+ SongID+"';";
+		
+		try {
+			Object o = jdbcTemplate.queryForObject(sql, int.class);
+			return (int)o;
+		} catch (Exception e) {
+			return -1;
+		}
+		
+	}
 
 	
 	

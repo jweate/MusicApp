@@ -44,6 +44,28 @@ public class AController {
 		return dal.getConEvents(user);
 	}
 	
+	@RequestMapping(value = "/getCons", method = RequestMethod.GET)
+	@ResponseBody
+	public List<User> getCons(@RequestParam("idUser") String idUser) {
+		User user = new User();
+		user.setIdUser(idUser);
+		return dal.getConnections(user);
+	}
+	
+	@RequestMapping(value = "/getUsers", method = RequestMethod.GET)
+	@ResponseBody
+	public List<User> getUsers() {
+		
+		return dal.getUsers();
+	}
+	
+	@RequestMapping(value = "/getLiked", method = RequestMethod.GET)
+	@ResponseBody
+	public int getLiked(@RequestParam("idUser") String idUser, 
+						@RequestParam("SongID") String SongID) {
+		return dal.getLiked(idUser, SongID);
+		
+	}
 	
 	@RequestMapping(value = "/getRecs", method = RequestMethod.GET)
 	@ResponseBody
@@ -53,6 +75,19 @@ public class AController {
 	}
 	
 	//**************---------POST-----------******************
+	
+	@RequestMapping(value = "/addLiked", method = RequestMethod.POST)
+	@ResponseBody
+	public void addLiked(@RequestParam("idUser") String idUser,
+					   @RequestParam("SongID") String SongID,
+					   @RequestParam("liked") int liked)
+	{
+		
+		
+		
+		dal.addLiked(idUser, SongID, liked);
+	}
+	
 	
 	@RequestMapping(value = "/addCon", method = RequestMethod.POST)
 	@ResponseBody
