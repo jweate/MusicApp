@@ -62,7 +62,7 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         //tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1 * bottomOffset!).isActive = true
         tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1.0).isActive = true
         
-        //tableView.rowHeight = 76
+        tableView.rowHeight = 76
         tableView.separatorStyle = .none
     }
     
@@ -318,16 +318,14 @@ class ActivityFeedCell : UITableViewCell {
         eventLabel.font = UIFont.boldSystemFont(ofSize: 18)
         eventLabel.textAlignment = .left
         eventLabel.textColor = .black
-        eventLabel.numberOfLines = 1
-        eventLabel.frame = CGRect(x: 0, y: 0, width: container.frame.width, height: 20)
+        eventLabel.numberOfLines = 2
+        eventLabel.frame = CGRect(x: 0, y: 0, width: container.frame.width - container.frame.height - 10, height: 20)
         
         container.addSubview(eventLabel)
         
         eventLabel.translatesAutoresizingMaskIntoConstraints = false
         eventLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: 2).isActive = true
         eventLabel.leftAnchor.constraint(equalTo: eventImageView.rightAnchor, constant: 5).isActive = true
-        
-        
         
         
         
