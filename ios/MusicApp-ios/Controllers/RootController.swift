@@ -26,6 +26,7 @@ class RootController: UITabBarController {
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
         
+        auth = AuthController()
         // determines if user needs to be authenticated
         if (!isAuth){
             self.present(auth!, animated: true)
@@ -34,6 +35,30 @@ class RootController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(updateAfterFirstLogin), name: Notification.Name("LoggedIn"), object: nil)
+        
+    }
+    
+    @objc func updateAfterFirstLogin() {
+        os_log("updated")
+        isAuth = true
+        if let sessionObj:AnyObject = UserDefaults.standard.object(forKey: "SpotifySession") as AnyObject? {
+            let sessionDataObj = sessionObj as! Data
+            RootController.firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as? SPTSession
+            self.dismiss(animated: true)
+            loadTabs()
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "Playtime"), object: nil)
+        }
+    }
+    
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func loadTabs() {
         let playback = PlaybackController()
         let queue = QueueController()
         let browse = BrowseController()
@@ -41,9 +66,6 @@ class RootController: UITabBarController {
         queue.playback = playback
         browse.playback = playback
         activity.playback = playback
-        auth = AuthController()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateAfterFirstLogin), name: Notification.Name("LoggedIn"), object: nil)
         
         
         queue.tabBarItem = UITabBarItem(title: "queue",
@@ -63,44 +85,10 @@ class RootController: UITabBarController {
         queue.tabBarHeight = tabBar.frame.height
         browse.tabBarHeight = tabBar.frame.height
         activity.tabBarHeight = tabBar.frame.height
-        //queue.queueList.tabBarHeight = tabBar.frame.height
         
         viewControllers = [queue, browse, activity]
         tabBar.barTintColor = UIColor(hexString: "#333333")
         tabBar.tintColor = UIColor(hexString: "#00ffff")
-
-//        Queue.instance.append(track: Track("Sample Song 1", "4iV5W9uYEdYUVa79Axb7Rh"))
-//        Queue.instance.append(track: Track("Sample Song 2", "6JzzI3YxHCcjZ7MCQS2YS1"))
-//        Queue.instance.append(track: Track("Sample Song 3", "58s6EuEYJdlb0kO7awm3Vp"))
-//        Queue.instance.append(track: Track("Sample Song 4", "6JzzI3YxHCcjZ7MCQS2YS1"))
-//        Queue.instance.append(track: Track("Sample Song 5", "58s6EuEYJdlb0kO7awm3Vp"))
-        
-        print(Queue.instance.size())
-    }
-    
-    @objc func updateAfterFirstLogin () {
-        os_log("updated")
-        isAuth = true
-        if let sessionObj:AnyObject = UserDefaults.standard.object(forKey: "SpotifySession") as AnyObject? {
-            let sessionDataObj = sessionObj as! Data
-            RootController.firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as? SPTSession
-            self.dismiss(animated: true)
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "Playtime"), object: nil)
-            //print(RootController.firstTimeSession?.accessToken)
-//            SPTUser.requestCurrentUser(withAccessToken: RootController.firstTimeSession?.accessToken, callback: { (error, request) in
-//                if(error == nil){
-//                    let user = request as! SPTUser
-//                    print(user.displayName)
-//                    
-//                }
-//            })
-        }
-    }
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 

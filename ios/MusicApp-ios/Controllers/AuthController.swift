@@ -47,8 +47,6 @@ class AuthController: UIViewController {
         
     // action for the Login button
     @objc func buttonAction(sender: UIButton!) {
-        
-        print("Button tapped")
         if UIApplication.shared.canOpenURL(loginUrl!) {
             UIApplication.shared.open(loginUrl!)
         }

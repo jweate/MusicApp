@@ -98,24 +98,17 @@ let sampleData = """
 }
 """
 
-struct RawTrackList: Decodable {
-    var tracks: [RawTrack]
-}
-
 class Stack {
     
     public var list = LinkedList<Track>()
     static let instance = Stack()
+    var accessToken: String?
     
     init() {
         var urlComp = URLComponents(string: "http://ec2-18-205-232-42.compute-1.amazonaws.com/recs")
+        accessToken = RootController.firstTimeSession?.accessToken
         urlComp?.queryItems = [
-            // TODO
-            // Need to get access token after login
-            // Just swap value of access_token with actual token value
-            // Below var doesn't work because it's empty
-            // var myaccesstoken = RootController.firstTimeSession?.accessToken
-            URLQueryItem(name: "access_token", value: "paste_token_here"),
+            URLQueryItem(name: "access_token", value: accessToken),
             URLQueryItem(name: "user_id", value: "0")
         ]
         let url = urlComp?.url
@@ -138,23 +131,11 @@ class Stack {
         semaphore.wait()
         
         let decoder = JSONDecoder()
-        let rawTrackList = try! decoder.decode(RawTrackList.self, from: jsonData!)
+        let rawTrackList = try! decoder.decode([RawTrack].self, from: jsonData!)
 
         os_log("Loaded tracks")
         
-        for rawTrack in rawTrackList.tracks {
-            print("Appending Track ----")
-            print("  title: \(rawTrack.title)")
-            print("artists: ", terminator: "")
-    
-            for (index, artist) in rawTrack.artists.enumerated() {
-                if index == 0 {
-                    print("\(artist)")
-                } else {
-                    print("         \(artist)")
-                }
-            }
-            print("  album: \(rawTrack.album)")
+        for rawTrack in rawTrackList {
             let track = Track(rawTrack)
             list.append(value: track)
             //Queue.instance.append(track: track)
