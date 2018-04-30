@@ -24,12 +24,11 @@ class SwipeDeckController: UIViewController {
         super.viewDidLoad()
         
         self.title = "Browse"
-        //let token = RootController.firstTimeSession?.accessToken
-        let token = "BQDUFWiKFqvXgoWFoRMZU_TV5XUzBewCARp1j7ggqaZgK0vjZTaAm4OFWrItswe5hmNZd5GNxAX46KBIwnK69kzkI5W3DdZsrzuvzB8eebCt6lK93X3RnRvL0ngqu5N5pVAhheCYNv2uxNAIgStH3UeTTkwcMqjtY4EsAa-frnAqOLZG7Q"
+        let token = RootController.firstTimeSession?.accessToken
         let url = URL(string: "https://api.spotify.com/v1/me")
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
-        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.addValue("Bearer \(token!)", forHTTPHeaderField: "Authorization")
         var jsonData: Data?
         //Need semaphore because dataTask is asynchronous
         let semaphore = DispatchSemaphore(value: 0)

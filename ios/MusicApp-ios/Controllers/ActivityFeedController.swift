@@ -43,11 +43,8 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     var token: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-        //let token = RootController.firstTimeSession?.accessToken
+        token = RootController.firstTimeSession?.accessToken
         self.title = "Activity"
-        token = "BQDUFWiKFqvXgoWFoRMZU_TV5XUzBewCARp1j7ggqaZgK0vjZTaAm4OFWrItswe5hmNZd5GNxAX46KBIwnK69kzkI5W3DdZsrzuvzB8eebCt6lK93X3RnRvL0ngqu5N5pVAhheCYNv2uxNAIgStH3UeTTkwcMqjtY4EsAa-frnAqOLZG7Q"
-        
-        print(token)
         let url = URL(string: "https://api.spotify.com/v1/me")
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
