@@ -41,6 +41,8 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        layoutTableView()
         reloadData()
     }
     
@@ -48,6 +50,20 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidAppear(animated)
         reloadData()
         tableView.reloadData()
+    }
+    
+    func layoutTableView() {
+        
+        self.tableView.backgroundColor = .black
+        
+        self.view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
+        //tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -1 * bottomOffset!).isActive = true
+        tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1.0).isActive = true
+        
+        //tableView.rowHeight = 76
+        tableView.separatorStyle = .none
     }
     
     func getEventList() -> LinkedList<Event> {
@@ -123,7 +139,7 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
         tableView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.84).isActive = true
         self.tableView.addSubview(self.refreshControl)
         
-        tableView.register(ActivityCell.self, forCellReuseIdentifier: "cellId")
+        tableView.register(ActivityFeedCell.self, forCellReuseIdentifier: "ActivityFeedCell")
     }
     
     // MARK: - Table view data source
@@ -144,7 +160,13 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     // populates individual Cells
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+        
+        let cellIdentifier = "ActivityFeedCell"
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? ActivityFeedCell else {
+            fatalError("The dequeued cell is not an instance of ActivityFeedCell.")
+        }
+        
         //token = RootController.firstTimeSession?.accessToken
         let event = eventList?.nodeAt(atIndex: indexPath.row)?.value
         print(event!.idUser)
@@ -193,15 +215,15 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
             let imageData = try? Data(contentsOf: imageURL!)
             
             if let realImage = UIImage(data: imageData!) {
-                cell.imageView?.image = resizeImage(image: realImage)
+                cell.eventImageView.image = resizeImage(image: realImage)
             }
         }
         switch event?.eventType {
         case "UserAddedConnection"?:
-            cell.textLabel?.text = "\(userName!) has added another user as a connection"
+            cell.eventLabel.text = "\(userName!) has added another user as a connection"
         case "UserAddedSong"?:
-            cell.textLabel?.text = "\(userName!) has added a new song to their queue"
-            cell.detailTextLabel?.text = "\(event!.artistName) - \(event!.trackName)"
+            cell.eventLabel.text = "\(userName!) has added a new song to their queue"
+            cell.eventDetailLabel.text = "\(event!.artistName) - \(event!.trackName)"
         default:
             // maybe # of songs listened to?
             print("hi")
@@ -234,13 +256,96 @@ class ActivityFeedController: UIViewController, UITableViewDataSource, UITableVi
     
 }
 
-class ActivityCell : UITableViewCell {
+// Individual cells in the Table View
+class ActivityFeedCell : UITableViewCell {
+    
+    var eventLabel = UILabel()
+    var eventDetailLabel = UILabel()
+    var eventImageView = UIImageView()
+    
+    var container = UIView()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: UITableViewCellStyle.subtitle, reuseIdentifier: reuseIdentifier)
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        let bgView = UIView(frame: CGRect(x: 0, y: 3, width: 414, height: 76))
+        bgView.backgroundColor = .black
+        backgroundView = bgView
+        
+        selectionStyle = .none
+        selectedBackgroundView = UIView(frame: CGRect(x: 0, y: 3, width: 414, height: 76))
+        selectedBackgroundView?.backgroundColor = .blue
+        
+        container.frame = CGRect(x: 0, y: 0, width: bgView.frame.width, height: 70)
+        container.backgroundColor = .white
+        container.layer.masksToBounds = false
+        container.layer.cornerRadius = 10.0
+        
+        contentView.backgroundColor = .clear
+        
+        layoutImage()
+        layoutText()
+        
+        self.contentView.addSubview(container)
+        
     }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func layoutImage() {
+        
+        container.addSubview(eventImageView)
+        
+        eventImageView.translatesAutoresizingMaskIntoConstraints = false
+        eventImageView.topAnchor.constraint(equalTo: container.topAnchor, constant: 2).isActive = true
+        eventImageView.leftAnchor.constraint(equalTo: container.leftAnchor, constant: 2).isActive = true
+        eventImageView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -2).isActive = true
+        eventImageView.rightAnchor.constraint(equalTo: container.leftAnchor, constant: container.frame.height - 2).isActive = true
+        
+        eventImageView.heightAnchor.constraint(equalToConstant: container.frame.height).isActive = true
+        eventImageView.widthAnchor.constraint(equalToConstant: container.frame.height).isActive = true
+        
+        eventImageView.contentMode = .scaleAspectFill
+        eventImageView.layer.masksToBounds = true
+        eventImageView.layer.cornerRadius = 10
+        eventImageView.backgroundColor = .white
+    }
+    
+    func layoutText() {
+        
+        eventLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        eventLabel.textAlignment = .left
+        eventLabel.textColor = .black
+        eventLabel.numberOfLines = 1
+        eventLabel.frame = CGRect(x: 0, y: 0, width: container.frame.width, height: 20)
+        
+        container.addSubview(eventLabel)
+        
+        eventLabel.translatesAutoresizingMaskIntoConstraints = false
+        eventLabel.topAnchor.constraint(equalTo: container.topAnchor, constant: 2).isActive = true
+        eventLabel.leftAnchor.constraint(equalTo: eventImageView.rightAnchor, constant: 5).isActive = true
+        
+        
+        
+        
+        
+        eventDetailLabel.font = UIFont.italicSystemFont(ofSize: 12)
+        eventDetailLabel.textAlignment = .left
+        eventDetailLabel.textColor = .darkGray
+        eventDetailLabel.numberOfLines = 1
+        eventDetailLabel.frame = CGRect(x: 0, y: 0, width: container.frame.width, height: 15)
+        
+        container.addSubview(eventDetailLabel)
+        
+        eventDetailLabel.translatesAutoresizingMaskIntoConstraints = false
+        eventDetailLabel.topAnchor.constraint(equalTo: eventLabel.bottomAnchor, constant: 2).isActive = true
+        eventDetailLabel.leftAnchor.constraint(equalTo: eventImageView.rightAnchor, constant: 10).isActive = true
+        
+        
+    }
+    
 }
 
 

@@ -32,8 +32,6 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
         // navigation configuration
         self.title = "Queue"
         self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        self.tableView.backgroundColor = .black
 
         layoutTableView()
         
@@ -56,6 +54,9 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func layoutTableView() {
+        
+        self.tableView.backgroundColor = .black
+        
         self.view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1.0).isActive = true
@@ -95,7 +96,7 @@ class QueueListController: UIViewController, UITableViewDataSource, UITableViewD
         let cellIdentifier = "QueueListCell"
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? QueueListCell else {
-            fatalError("The dequeued cell is not an instance of MealTableViewCell.")
+            fatalError("The dequeued cell is not an instance of QueueListCell.")
         }
         
         let track = Queue.instance.getAt(atIndex: indexPath.row)!
