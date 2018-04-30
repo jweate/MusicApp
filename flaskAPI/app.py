@@ -7,6 +7,11 @@ application = Flask(__name__)
 #application.debug = True
 application.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 
+@application.route('/', defaults={'path': ''})
+@application.route('/<path:path>')
+def catch_all(path):
+    abort(make_response(jsonify(message="Not found"), 404))
+
 @application.route('/')
 def api_root():
     return 'Welcome!'
