@@ -3,9 +3,9 @@ import graphlab as gl
 
 data_dir = './dataset'
 
-actions = gl.SFrame.read_csv(path.join(data_dir, 'actions.csv'))
-tracks = gl.SFrame.read_csv(path.join(data_dir, 'tracks.csv'))
-track_features = gl.SFrame.read_csv(path.join(data_dir, 'track_features.csv'))
+actions = gl.SFrame.read_csv(path.join(data_dir, 'rec_observation.csv'))
+tracks = gl.SFrame.read_csv(path.join(data_dir, 'rec_tracks.csv'))
+track_features = gl.SFrame.read_csv(path.join(data_dir, 'rec_tracks_features.csv'))
 tracks = tracks.join(track_features, on='trackID')
 training_data, validation_data = gl.recommender.util.random_split_by_user(actions, user_id='userID', item_id='trackID')
 

@@ -16,3 +16,14 @@ def get_several_tracks_features(track_ids, token):
     r = requests.get(url, params=params, headers=headers)
     return r.json()
 
+def get_spotify_recs(limit, seed_artists, seed_genres, token):
+    url = ''.join([SPOTIFY_URL, "recommendations"])
+    params = {
+            "limit": limit,
+            "seed_artists": seed_artists,
+            "seed_genres": seed_genres
+            }
+    headers = {"Authorization": "Bearer " + token}
+    r = requests.get(url, params=params, headers=headers)
+    return r.json()
+
