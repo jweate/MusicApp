@@ -23,10 +23,11 @@ class RootController: TabBarController {
     public var user: SPTUser?
     
     var playback = PlaybackController()
+    var auth = AuthController()
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(updateAfterFirstLogin), name: Notification.Name("LoggedIn"), object: nil)
     }
     
@@ -35,19 +36,22 @@ class RootController: TabBarController {
         
         // determine if user needs to be authenticated
         if (!isAuth) {
-            self.present(AuthController(), animated: true)
+            self.present(auth, animated: true)
         }
     }
 
     @objc func updateAfterFirstLogin() {
         os_log("updated")
         isAuth = true
+        //self.dismiss(animated: false)
         if let sessionObj:AnyObject = UserDefaults.standard.object(forKey: "SpotifySession") as AnyObject? {
             let sessionDataObj = sessionObj as! Data
             RootController.firstTimeSession = NSKeyedUnarchiver.unarchiveObject(with: sessionDataObj) as? SPTSession
-            self.dismiss(animated: true)
-            loadTabs()
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "Playtime"), object: nil)
+            if (RootController.firstTimeSession != nil) {
+                self.dismiss(animated: false)
+                loadTabs()
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "Playtime"), object: nil)
+            }
         }
     }
     
@@ -98,7 +102,7 @@ class RootController: TabBarController {
         queue.bottomOffset = bottomOffset
         browse.bottomOffset = bottomOffset
         connect.bottomOffset = bottomOffset
-        
+
         viewControllers = [queue, browse, connect]
     }
     
