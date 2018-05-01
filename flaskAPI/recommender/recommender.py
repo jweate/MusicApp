@@ -3,9 +3,9 @@ import os
 
 def get_recs(user_id):
     curr_path = os.path.dirname(os.path.abspath(__file__))
-    model_dir = os.path.join(curr_path, 'recommender_model')
+    model_dir = os.path.join(curr_path, 'new_model')
     model = gl.load_model(model_dir)
-    recs = model.recommend(users=[user_id])
+    recs = model.recommend(users=[user_id], k=25)
     rec_list = list(recs['trackID'])
     return rec_list
 
