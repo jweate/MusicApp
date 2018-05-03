@@ -13,7 +13,7 @@ class SwipeDeckController: UIViewController {
     var queue = Queue.instance
     var stack = Stack.instance
     var index = 0
-    var tracks: [Track]?
+//    var tracks: LinkedList<Track>?
     var newConnList: [String]?
     var queueList = QueueListController()
     var swipeView = ZLSwipeableView()
@@ -55,7 +55,6 @@ class SwipeDeckController: UIViewController {
         // -------------------------------------------------
         
         swipeView.numberOfActiveView = 8
-        tracks = stack.toArray()
         newConnList = stack.newConnList
         
         self.view.addSubview(swipeView)
@@ -98,16 +97,25 @@ class SwipeDeckController: UIViewController {
                 if let cardView = view as? CardView {
                     print("Got card view")
                     self.queue.append(track: cardView.track!)
-                    var postDetails = [String]()
-                    postDetails.append("UserAddedSong")
-                    postDetails.append(cardView.track!.id)
-                    postDetails.append(cardView.track!.title)
-                    postDetails.append(cardView.track!.artists.joined(separator: ", "))
-                    postDetails.append(userID)
+                    var postEventDetails = [String]()
+                    postEventDetails.append("UserAddedSong")
+                    postEventDetails.append(cardView.track!.id)
+                    postEventDetails.append(cardView.track!.title)
+                    postEventDetails.append(cardView.track!.artists.joined(separator: ", "))
+                    postEventDetails.append(userID)
                     let eventUrl = "http://musicappapin-env.bgffh6vnm9.us-east-2.elasticbeanstalk.com/"
-                    self.makeEventPost(postString: postDetails, urlString: eventUrl)
+                    self.makeEventPost(postString: postEventDetails, urlString: eventUrl)
+                    
+                    let likeUrl = "http://musicappapin-env.bgffh6vnm9.us-east-2.elasticbeanstalk.com/addLiked"
+                    self.makeLikePost(userID: userID, songID: cardView.track!.id, liked: 1, urlString: likeUrl)
+                    
                 } else {
                     fatalError("Error")
+                }
+            } else if (direction.description == "Left") {
+                if let cardView = view as? CardView {
+                    let likeUrl = "http://musicappapin-env.bgffh6vnm9.us-east-2.elasticbeanstalk.com/addLiked"
+                    self.makeLikePost(userID: userID, songID: cardView.track!.id, liked: 0, urlString: likeUrl)
                 }
             }
         }
@@ -124,16 +132,18 @@ class SwipeDeckController: UIViewController {
     }
     
     func nextCardView() -> UIView? {
-        if index >= tracks!.count {
-            index = 0
+        if stack.trackList.isEmpty {
+            // TODO
+            // get new recommendations
+            return nil
         }
         
-        let cardView = CardView(frame: swipeView.bounds, track: tracks![index])
-        
-        index = index + 1
+        let currTrack = stack.pop()
+        let cardView = CardView(frame: swipeView.bounds, track: currTrack!)
         
         return cardView
     }
+    
     func makeEventPost(postString: [String], urlString: String) {
         let url : NSString = urlString+"addEvent?EventType=\(postString[0])&SongID=\(postString[1])&trackName=\(postString[2])&artistName=\(postString[3])&idUser=\(postString[4])" as NSString
         let urlStr = url.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
@@ -143,6 +153,31 @@ class SwipeDeckController: UIViewController {
         request2.httpMethod = "POST"
         let task = URLSession.shared.dataTask(with: request2) { data, response, error in
             guard let data = data, error == nil else {                                                 // check for fundamental networking error
+                print("error=\(String(describing: error))")
+                return
+            }
+            
+            if let httpStatus = response as? HTTPURLResponse {  // check for http errors
+                if httpStatus.statusCode != 200 {
+                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                    print("response = \(String(describing: response))")
+                } else {
+                    print("status code is: \(httpStatus.statusCode)")
+                }
+            }
+            
+            let responseString = String(data: data, encoding: .utf8)
+            print("responseString = \(String(describing: responseString))")
+        }
+        task.resume()
+    }
+    
+    func makeLikePost(userID: String, songID: String, liked: Int, urlString: String) {
+        let url = URL(string: urlString+"?idUser=\(userID)&SongID=\(songID)&liked=\(liked)")
+        var request = URLRequest(url: url!)
+        request.httpMethod = "POST"
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {          // check for fundamental networking error
                 print("error=\(String(describing: error))")
                 return
             }
