@@ -33,7 +33,7 @@ def api_recs():
         abort(make_response(jsonify(resp.json()), resp.status_code))
 
     track_json = resp.json()
-    new_conn_list = get_new_connections(user_id, get_similar_users(user_id)) 
+    new_connections = get_new_connections(user_id, get_similar_users(user_id)) 
 
     tracks = []
     for track in track_json['tracks']:
@@ -42,24 +42,15 @@ def api_recs():
             artists.append(artist['name'])
 
         curr_track_id = track['id']
-        new_connection = ""
-        for conn in new_conn_list:
-            if has_liked(conn, curr_track_id) == 1:
-                new_connection = conn
-                break
-
-        if new_connection:
-            new_conn_list.remove(new_connection)
 
         tracks.append({'id': curr_track_id,
             'title': track['name'],
             'duration_ms': track['duration_ms'],
             'artists': artists,
             'album': track['album']['name'],
-            'artworkURL': track['album']['images'][1]['url'],
-            'new_connection': new_connection
+            'artworkURL': track['album']['images'][1]['url']
             })
-    return jsonify(tracks)
+    return jsonify(tracks=tracks,new_connections=new_connections)
 
 if __name__ == "__main__":
     application.run()

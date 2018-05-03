@@ -1,7 +1,7 @@
 import graphlab as gl
 import os, pandas
 
-SIMILARITY_THRESHOLD = 0.6
+SIMILARITY_THRESHOLD = 0.2
 
 def get_recs(user_id):
     curr_path = os.path.dirname(os.path.abspath(__file__))
