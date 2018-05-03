@@ -100,7 +100,8 @@ let sampleData = """
 
 class Stack {
     
-    public var list = LinkedList<Track>()
+    public var trackList = LinkedList<Track>()
+    public var newConnList = [String]()
     static let instance = Stack()
     var accessToken: String?
     
@@ -109,7 +110,7 @@ class Stack {
         accessToken = RootController.firstTimeSession?.accessToken
         urlComp?.queryItems = [
             URLQueryItem(name: "access_token", value: accessToken),
-            URLQueryItem(name: "user_id", value: "0")
+            URLQueryItem(name: "user_id", value: "user5")
         ]
         let url = urlComp?.url
         var request = URLRequest(url: url!)
@@ -131,36 +132,39 @@ class Stack {
         semaphore.wait()
         
         let decoder = JSONDecoder()
-        let rawTrackList = try! decoder.decode([RawTrack].self, from: jsonData!)
+        let rec = try! decoder.decode(Rec.self, from: jsonData!)
 
         os_log("Loaded tracks")
-        
-        for rawTrack in rawTrackList {
+
+        for rawTrack in rec.tracks {
             let track = Track(rawTrack)
-            list.append(value: track)
-            //Queue.instance.append(track: track)
+            trackList.append(value: track)
+        }
+        
+        for user in rec.new_connections {
+            newConnList.append(user)
         }
         
     }
     
     public func size() -> Int {
-        return list.size
+        return trackList.size
     }
     
     public func push(track: Track) {
-        list.append(value: track)
+        trackList.append(value: track)
     }
     
     public func pop() -> Track? {
-        return list.removeAt(0)
+        return trackList.removeAt(0)
     }
     
     public func removeAt(atIndex index: Int) -> Track? {
-        return list.removeAt(index)
+        return trackList.removeAt(index)
     }
     
     public func getAt(atIndex index: Int) -> Track? {
-        return list.nodeAt(atIndex: index)?.value
+        return trackList.nodeAt(atIndex: index)?.value
     }
     
     public func toArray() -> [Track] {

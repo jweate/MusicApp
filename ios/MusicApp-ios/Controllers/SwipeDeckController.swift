@@ -14,6 +14,7 @@ class SwipeDeckController: UIViewController {
     var stack = Stack.instance
     var index = 0
     var tracks: [Track]?
+    var newConnList: [String]?
     var queueList = QueueListController()
     var swipeView = ZLSwipeableView()
     var bottomOffset: CGFloat?
@@ -22,6 +23,8 @@ class SwipeDeckController: UIViewController {
         super.viewDidLoad()
         
         self.title = "Browse"
+        
+        // This should be moved to when you first login
         let token = RootController.firstTimeSession?.accessToken
         let url = URL(string: "https://api.spotify.com/v1/me")
         var request = URLRequest(url: url!)
@@ -49,10 +52,11 @@ class SwipeDeckController: UIViewController {
         print("\(userID!)")
         let postUrl = "http://musicappapin-env.bgffh6vnm9.us-east-2.elasticbeanstalk.com/addUser?idUser="
         makePostRequest(postString: "\(userID!)", urlString: postUrl)
+        // -------------------------------------------------
         
         swipeView.numberOfActiveView = 8
         tracks = stack.toArray()
-        
+        newConnList = stack.newConnList
         
         self.view.addSubview(swipeView)
         swipeView.translatesAutoresizingMaskIntoConstraints = false

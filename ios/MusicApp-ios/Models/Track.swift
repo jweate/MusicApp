@@ -9,31 +9,13 @@
 import Foundation
 
 struct RawTrack: Decodable {
-    struct Artist: Decodable {
-        var name: String
-    }
-    
     var id: String
     var title: String
     var artists = [String]()
     var album: String
-    var artworkURL: String
+    var artwork: String
     var duration_ms: Int
 }
-
-/*
-class Track {
-    public var title: String?
-    public var artist: String?
-    public var id: String?
-    
-    init (_ Title: String, _ Id: String) {
-        self.title = Title
-        self.id = Id
-    }
-}
-*/
-
 
 struct Track {
     
@@ -50,7 +32,7 @@ struct Track {
         artists = rawTrack.artists
         album = rawTrack.album
         duration = rawTrack.duration_ms
-        let url = URL(string: rawTrack.artworkURL)
+        let url = URL(string: rawTrack.artwork)
         if let data = try? Data(contentsOf: url!) {
             artwork = UIImage(data: data)!
         }
@@ -60,3 +42,4 @@ struct Track {
         }
     }
 }
+
