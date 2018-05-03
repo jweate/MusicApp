@@ -48,7 +48,7 @@ def api_recs():
             'duration_ms': track['duration_ms'],
             'artists': artists,
             'album': track['album']['name'],
-            'artworkURL': track['album']['images'][1]['url']
+            'artwork': track['album']['images'][1]['url']
             })
     return jsonify(tracks=tracks,new_connections=new_connections)
 
